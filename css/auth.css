@@ -1,0 +1,153 @@
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+  outline: 0px !important;
+  -webkit-appearance: none;
+  /* box-shadow: none !important; */
+}
+.sign_inner {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.sign_inner h1 {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 45px;
+  line-height: 82px;
+  color: #000000;
+}
+.sign_note {
+  color: #595959;
+  margin-bottom: 50px;
+}
+.sign_inner p span {
+  color: #f56a00;
+  cursor: pointer;
+}
+.sign_inner .btn_google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 64px;
+  background: #ffffff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+.sign_inner .btn_google b {
+  margin-left: 10px;
+}
+.sign_inner .btn_google img {
+  height: 20px;
+  width: 20px;
+}
+#signin_email {
+  height: 64px;
+  border-radius: 15px;
+}
+#signin_password {
+  height: 64px;
+  border-radius: 15px;
+}
+#signin {
+  display: none;
+}
+#signup_name {
+  height: 64px;
+  border-radius: 15px;
+}
+#signup_email {
+  height: 64px;
+  border-radius: 15px;
+}
+#signup_password {
+  height: 64px;
+  border-radius: 15px;
+}
+#signup_phone {
+  height: 64px;
+  border-radius: 15px;
+}
+label input:focus + p,
+label input:not(:placeholder-shown) + p,
+label input p:focus + p {
+  top: 0;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  background-color: white;
+}
+label input:not(:focus) + p {
+  color: grey;
+}
+label select:focus + p,
+label select:not(:placeholder-shown) + p,
+label select p:focus + p {
+  top: 0;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  background-color: white;
+}
+label select:focus {
+  border-color: black !important;
+}
+label select:not(:focus) + p {
+  color: grey;
+}
+label select option:nth-child(1) {
+  color: gery;
+}
+label {
+  position: relative;
+  display: flex;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+label p {
+  color: black;
+  font-size: 1rem;
+  user-select: none;
+  position: absolute;
+  top: 30%;
+  /* transform: translate(-50%); */
+  margin-left: 0.8rem;
+  padding: 0 0.4rem;
+  transition: top 0.2s, font-size 0.2s, color 0.2s;
+}
+label .password_label {
+  display: flex;
+}
+.sign_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 64px;
+  font-size: 20px !important;
+  color: white !important;
+  background-color: #f56a00 !important;
+  border-radius: 15px !important;
+  margin-top: 10px;
+}
+.sign_button:active {
+  background-color: #7a0000 !important;
+}
+.sign_click {
+  margin-top: 20px;
+  color: #595959;
+}
+.sign_click b {
+  display: block;
+  color: #f56a00;
+  margin-top: 5px;
+}

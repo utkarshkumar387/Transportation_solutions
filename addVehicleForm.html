@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <title>Add vehicle form</title>
+  </head>
+  <body>
+    <div class="addVehicle">
+      <div class="container">
+        <form id="addVehicleForm" class="mt-5">
+          <hr />
+          <h3>Please Enter vehicle details</h3>
+          <hr />
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="image">Add vehicle image: </label>
+              </div>
+              <div class="col-md-6">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept=".png, .jpg, .jpeg"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label for="name">Enter name: </label>
+              </div>
+              <div class="col-md-6">
+                <input class="form-control" type="text" id="name" name="name" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label for="vehicle_number">Enter vehicle number: </label>
+              </div>
+              <div class="col-md-6">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="vehicle_number"
+                  name="vehicle_number"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label for="company">Enter vehicle Company: </label>
+              </div>
+              <div class="col-md-6">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="company"
+                  name="company"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label for="company">Select vehicle category: </label>
+              </div>
+              <div class="col-md-6">
+                <select class="form-control" id="vehicleList"></select>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <form action="" class="mt-5">
+          <hr />
+          <h3>Please select documents you want to submit now.</h3>
+          <hr />
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cert1"
+                  id="cert1"
+                  value="option1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  ><h5>certificate 1</h5></label
+                >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cert2"
+                  id="cert2"
+                  value="option1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  ><h5>certificate 2</h5></label
+                >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cert3"
+                  id="cert3"
+                  value="option1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  ><h5>certificate 3</h5></label
+                >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cert4"
+                  id="cert4"
+                  value="option1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  ><h5>certificate 4</h5></label
+                >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cert5"
+                  id="cert5"
+                  value="option1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  ><h5>certificate 5</h5></label
+                >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cert6"
+                  id="cert6"
+                  value="option1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  ><h5>certificate 6</h5></label
+                >
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary mt-3">Submit</button>
+        </form>
+        <form action="" class="mt-5 mb-5">
+          <hr />
+          <h3>Please insert details regarding certifiate</h3>
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mt-4">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <h4 class="card-title">Certificate 1</h4>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="image">Add document: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="file"
+                            id="image"
+                            name="image"
+                            accept=".pdf"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label for="name">Enter Start date: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label for="name">Enter End date: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="card-footer">
+                  <button class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mt-4">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <h4 class="card-title">Certificate 1</h4>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="image">Add document: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="file"
+                            id="image"
+                            name="image"
+                            accept=".pdf"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label for="name">Enter Start date: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label for="name">Enter End date: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="card-footer">
+                  <button class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mt-4">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <h4 class="card-title">Certificate 1</h4>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="image">Add document: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="file"
+                            id="image"
+                            name="image"
+                            accept=".pdf"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label for="name">Enter Start date: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label for="name">Enter End date: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="card-footer">
+                  <button class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mt-4">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <h4 class="card-title">Certificate 1</h4>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="image">Add document: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="file"
+                            id="image"
+                            name="image"
+                            accept=".pdf"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label for="name">Enter Start date: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label for="name">Enter End date: </label>
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="card-footer">
+                  <button class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script src="js/test.js"></script>
+</html>

@@ -1,0 +1,126 @@
+.card{
+    background-color: #424242;
+    height: 200px;
+    border-radius: 15px;
+    width: 98%;
+    position: relative;
+    margin-bottom: 150px;
+    display: flex;
+    /* margin-top: 120px !important; */
+
+}
+.cardImg {
+  display: flex;
+  justify-content: center;
+    position: absolute;
+    height: 195px;
+    width: 220px;
+    overflow: hidden;
+    background-color: aliceblue;
+    box-shadow: 0 0 0 17px #424242;
+    border-radius: 9px;
+    z-index: 1;
+    
+}
+.cardImg img {
+  height: 195px;
+    width: 220px;
+    object-fit: cover;
+    /* object-fit:center; */
+}
+
+.card button{
+  color: #FFFFF1 !important;
+  display: flex;
+  width: 100px;
+  height: 40px;
+  border-radius: 15px;
+  padding: 6px 0 0 25px;
+  background-color: #272727;
+  border: none;
+  font-weight: 500;
+  box-shadow: 0px 2px 8px 0px   #272727;
+}
+.card button:hover {
+  box-shadow: 0px 2px 8px 0px #f56a00;
+  background: #424242;
+  /* color: #f56a00 !important; */
+}
+.cardDetails p{
+  font-size: 1rem;
+  margin: 0;
+}
+
+.cardDoc p{
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.cert {
+  border: 2px solid green;
+  border-radius: 10px;
+  /* height: 40px; */
+  padding: 5px 20px 5px 20px;
+  margin: 5px 10px 5px 10px;
+}
+.cert p{
+  margin: 0;
+}
+.cert i {
+  display: block;
+  text-align: right;
+  font-size: 1.1rem;
+  margin-left: 20px;
+}
+.cert .fa-check {
+  color: green;
+}
+
+.cert .fa-times{
+  color: orangered;
+}
+.vehiclePlate {
+  display: inline-flex;
+  border: 2px solid #000000;
+  border-radius: 6px;
+  background-color: #ffce34;
+  position: relative;
+  color: #000;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-align: center;
+  text-shadow: 0 0 12px #000;
+  box-shadow: 0 1px 8px #181818;
+}
+
+.vehiclePlateNumber {
+  padding: 4px 6px 4px 6px;
+  box-shadow: inset 0 0 2px #000000;
+}
+.vehicleCompany img{
+  height: 50px;
+  /* width: 100px; */
+}
+.vehicleTable h4 {
+  color: #ffffff;
+}
+.vehicleDetails {
+  padding: 90px 0 0 50px;
+}
+/* .vehicleCardFooter {
+  padding: 50px 0 0 0;
+} */
+
+.vehicleCompany {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: -15px 0 0 0;
+  padding: 10px 20px 0 0;
+}
+.vehicleCompany p {
+  font-weight: 900;
+  font-size: 28px;
+  color: #272727;
+  /* width: 70px; */
+}
