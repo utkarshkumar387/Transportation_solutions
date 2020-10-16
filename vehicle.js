@@ -9,8 +9,8 @@ vehicle_document: "id": { "type": "integer", "required": false, "read_only": tru
 
 */
 var main_url1 = "https://transportations.herokuapp.com";
-var main_url = "https://transportations.herokuapp.com/";
-// var main_url = "http://127.0.0.1:8000/";
+// var main_url = "https://transportations.herokuapp.com/";
+var main_url = "http://127.0.0.1:8000/";
 
 function call_ajax(type, url, data, status) {
 
