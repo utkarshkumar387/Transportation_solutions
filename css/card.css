@@ -6,7 +6,6 @@
     position: relative;
     margin-bottom: 150px;
     display: flex;
-    /* margin-top: 120px !important; */
 
 }
 .cardImg {
@@ -26,25 +25,25 @@
   height: 195px;
     width: 220px;
     object-fit: cover;
-    /* object-fit:center; */
 }
 
-.card button{
+.card a{
   color: #FFFFF1 !important;
   display: flex;
-  width: 100px;
+  width: 85px;
   height: 40px;
   border-radius: 15px;
   padding: 6px 0 0 25px;
-  background-color: #272727;
   border: none;
   font-weight: 500;
-  box-shadow: 0px 2px 8px 0px   #272727;
-}
-.card button:hover {
-  box-shadow: 0px 2px 8px 0px #f56a00;
   background: #424242;
-  /* color: #f56a00 !important; */
+box-shadow:  6px 6px 12px #373737, 
+             -6px -6px 12px #4d4d4d;
+}
+.card a:hover {
+  background: #424242;
+  box-shadow:  6px 6px 12px#4d4d4d, 
+             -6px -6px 12px #373737;
 }
 .cardDetails p{
   font-size: 1rem;
@@ -59,7 +58,6 @@
 .cert {
   border: 2px solid green;
   border-radius: 10px;
-  /* height: 40px; */
   padding: 5px 20px 5px 20px;
   margin: 5px 10px 5px 10px;
 }
@@ -99,18 +97,14 @@
 }
 .vehicleCompany img{
   height: 50px;
-  /* width: 100px; */
 }
-.vehicleTable h4 {
+.vehicleTable h5 {
   color: #ffffff;
+  font-weight: 500;
 }
 .vehicleDetails {
   padding: 90px 0 0 50px;
 }
-/* .vehicleCardFooter {
-  padding: 50px 0 0 0;
-} */
-
 .vehicleCompany {
   position: absolute;
   top: 0;
@@ -122,5 +116,4 @@
   font-weight: 900;
   font-size: 28px;
   color: #272727;
-  /* width: 70px; */
 }

@@ -1,126 +1,126 @@
 .upload {
-    position: relative;
-    max-width: 205px;
-    margin: 0 50px 40px 50px;
-  }
-  .upload .edit {
-    position: absolute;
-    right: 82px;
-    z-index: 1;
-    bottom: -20px;
-  }
-  .upload .edit input {
-    display: none;
-  }
-  .upload .edit label {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    margin-bottom: 0;
-    border-radius: 100%;
-    background: #ffffff;
-    border: 1px solid transparent;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-    /* font-weight: normal; */
-    transition: all 0.2s ease-in-out;
-  }
-  .upload .edit label:hover {
-    background: #f1f1f1;
-    border-color: #d6d6d6;
-  }
-  .upload .edit label i {
-    font-size: 25px;
-    margin: 13px 13px;
-    color: grey;
-  }
-  .upload-preview {
-    width: 180px;
-    height: 180px;
-    position: relative;
-    border-radius: 100%;
-    border: 6px solid #f8f8f8;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-  }
-  .upload-preview div {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    object-fit: cover;
-  }
-  /* add images common end*/
-  
-  /* add vehicle form start */
-  .form-control {
-    height: 55px;
-    border-radius: 15px;
-    background-color: #272727;
-    border: none;
-    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5);
-  }
-  .vehicle .form-control:focus {
-    box-shadow: 0px 2px 8px 0px #FE9F00;
-    background-color: #424242;
-    color: white;
-  }
-  /* add vehicle form end */
+  position: relative;
+  max-width: 205px;
+  margin: 0 50px 40px 50px;
+}
+.upload .edit {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  bottom: -20px;
+}
+.upload .edit input {
+  display: none;
+}
+.upload .edit label {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  /* font-weight: normal; */
+  transition: all 0.2s ease-in-out;
+}
+.upload .edit label:hover {
+  border-color: #424242;
+  border-color: #424242;
+}
+.upload .edit label i {
+  font-size: 25px;
+  margin: 13px 13px;
+  color: grey;
+}
+.upload-preview {
+  width: 220px;
+  height: 195px;
+  position: relative;
+  border-radius: 15px;
+  border: 6px solid #424242;
+  /* box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1); */
+}
+.upload-preview div {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+}
+/* add images common end*/
 
-  /* vehicle document upload start */
-  .vehicle_upload_doc {
-    position: relative;
-    max-width: 205px;
-    margin: 50px auto;
-  }
-  .vehicle_upload_doc .vehicle_edit_doc {
-    position: absolute;
-    right: 5px;
-    z-index: 1;
-    bottom: 0;
-  }
-  .vehicle_upload_doc .vehicle_edit_doc input {
-    display: none;
-  }
-  
-  .vehicle_col_2 h1 {
-    font-family: "Open Sans", sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 45px;
-    line-height: 82px;
-    color: #EFEFEF;
-    margin-top: 10vh;
-  }
-  .vehicle_col_2 hr {
-    margin-bottom: 10vh;
-  }
-  /* vehicle document upload end */
-  
-  .addVehicle_form button {
-    display: flex;
-  }
-  
-  .upload_cert {
-    background-color: #272727;
-    height: 155px;
-    border-radius: 10px;
-    padding: 30px;
-    text-align: center;
-    margin-bottom: 15px;
-    cursor: pointer;
-    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5);
-  }
-  .upload_cert:hover {
-    box-shadow: 0px 2px 8px 0px #f56a00;
-  }
-  .vehicle_col_2 .row{
-    margin-top: 20px;
-  }
-  label {
-    color: #fafafa;
-  }
-  label input:focus {
-    border-color: black !important;
-  }
+/* add vehicle form start */
+.form-control {
+  height: 55px;
+  border-radius: 15px;
+  background-color: #272727;
+  border: none;
+  /* box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5); */
+}
+.vehicle .form-control:focus {
+  box-shadow: 0px 2px 8px 0px #fe9f00;
+  background-color: #424242;
+  color: white;
+}
+/* add vehicle form end */
+
+/* vehicle document upload start */
+.vehicle_upload_doc {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+.vehicle_upload_doc .vehicle_edit_doc {
+  position: absolute;
+  right: 5px;
+  z-index: 1;
+  bottom: 0;
+}
+.vehicle_upload_doc .vehicle_edit_doc input {
+  display: none;
+}
+
+.vehicle_col_2 h1 {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 45px;
+  line-height: 82px;
+  color: #efefef;
+  margin-top: 10vh;
+}
+.vehicle_col_2 hr {
+  margin-bottom: 10vh;
+}
+/* vehicle document upload end */
+
+.addVehicle_form button {
+  display: flex;
+}
+
+.upload_cert {
+  background-color: #272727;
+  height: 155px;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 15px;
+  cursor: pointer;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5);
+}
+.upload_cert:hover {
+  box-shadow: 0px 2px 8px 0px #f56a00;
+}
+.vehicle_col_2 .row {
+  margin-top: 20px;
+}
+label {
+  color: #fafafa;
+}
+label input:focus {
+  border-color: black !important;
+}

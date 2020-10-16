@@ -1,0 +1,18 @@
+.addVehicleForm {
+    display: flex;
+    justify-content: center;
+}
+/* .addVehicleForm input[type=text]{
+    width: 500px;
+} */
+.vehicle_row {
+    width: 30rem;
+}
+.addVehicleForm button {
+    float: right;
+    padding: 10px 30px;
+    background-color: #F56A00;
+    color: white;
+    font-weight: 500;
+    border-radius: 50px;
+}

@@ -56,6 +56,20 @@ label:focus,
   width: 390px;
   object-fit: cover;
 }
+.cardImgEdit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+.cardImgEdit .cardImgEditPreview {
+  height: 440px;
+  width: 390px;
+  object-fit: cover;
+  box-shadow: 0 0 0 17px #272727;
+  border-radius: 9px;
+  overflow: hidden;
+}
 
 .vehicleDetailsInner {
   position: absolute;
@@ -171,7 +185,7 @@ label:focus,
   /* border-bottom: 1px solid white; */
 }
 .vehicleDocument .row .col-md-6 {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #999999;
 }
 .box::before {
   content: "";
@@ -193,22 +207,65 @@ label:focus,
   margin-right: 10px;
   /* transform: rotate(-90deg); */
 }
-#vehicleEditDoc .modal-dialog .modal-content {
+.docAdd p {
+  display: flex;
+  text-align: center;
+  padding: 20px;
+}
+.custom {
+  position: absolute;
+  opacity: 0;
+  margin: 0;
+  width: 70%;
+  height: 70%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.dots {
+  position: relative;
+  top: -8px;
+  display: flex;
+  width: 45px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   background-color: #272727;
 }
-#vehicleEditDoc .modal-dialog .modal-content .modal-title {
-  color: white;
+
+.dots.one {
+  position: absolute;
+  left: 0;
+  top: 0px;
 }
-.vehicleDataEdit {
-  float: right;
-  margin: 30px;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  background: #424242;
-  box-shadow: 6px 6px 12px #373737, -6px -6px 12px #4d4d4d;
+
+.dots.two {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  background-color: #272727;
+  transform-origin: center;
+  border: 3px solid #272727;
+  opacity: 1;
 }
-.vehicleDataEdit i {
-  color: #999978;
-  font-size: 22px;
+
+.dots.three {
+  position: absolute;
+  left: 16px;
+  top: 0;
+}
+.threeDots {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  display: inline-block;
+
 }

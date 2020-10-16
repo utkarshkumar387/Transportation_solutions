@@ -8,6 +8,7 @@ vehicle_document_type: "id": { "type": "integer", "required": false, "read_only"
 vehicle_document: "id": { "type": "integer", "required": false, "read_only": true, "label": "ID" }, "attachment": { "type": "file upload", "required": true, "read_only": false, "label": "Attachment" }, "unique_id": { "type": "string", "required": true, "read_only": false, "label": "Unique id", "max_length": 40 }, "start_date": { "type": "date", "required": true, "read_only": false, "label": "Start date" }, "end_date": { "type": "date", "required": true, "read_only": false, "label": "End date" }, "document_type": { "type": "field", "required": true, "read_only": false, "label": "Document type" }, "vehicle_id": { "type": "field", "required": true, "read_only": false, "label": "Vehicle id" }
 
 */
+var main_url1 = "https://transportations.herokuapp.com";
 var main_url = "https://transportations.herokuapp.com/";
 // var main_url = "http://127.0.0.1:8000/";
 
@@ -16,7 +17,7 @@ function call_ajax(type, url, data, status) {
     var error = true;
     var message = "";
 
-    console.log(data);
+    // console.log(data);
 
     $.ajax({
         type: type,
@@ -25,7 +26,7 @@ function call_ajax(type, url, data, status) {
         data: data,
         success: function(data, textStatus, jqXHR) {
             message = data;
-            console.log(message);
+            // console.log(message);
             if (jqXHR.status == status) {
                 error = false;
             }
@@ -55,7 +56,7 @@ function add_post(sub_url, type, data, status) {
 }
 
 
-function get_put_delete(id, data, status) {
+function get_put_delete(sub_url, type, id, data, status) {
 
     if (sub_url != 'vehicle') {
         sub_url = 'vehicle/' + sub_url;
@@ -87,13 +88,13 @@ function fetch_data(sub_url) {
 }
 
 function get_data_by_id(sub_url, id) {
-    return get_put_delete(sub_url, id, {}, 200);
+    return get_put_delete(sub_url, "get", id, {}, 200);
 }
 
 function modify_data_by_id(sub_url, id, data) {
-    return get_put_delete(sub_url, id, data, 200);
+    return get_put_delete(sub_url, "put", id, data, 200);
 }
 
 function delete_data_by_id(sub_url, id) {
-    return get_put_delete(sub_url, id, {}, 204);
+    return get_put_delete(sub_url, "delete", id, {}, 204);
 }

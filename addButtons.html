@@ -7,7 +7,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -15,36 +14,31 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
+    <!-- font-awesome cdn -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <!-- external css -->
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="css/add.css" />
     <link rel="stylesheet" type="text/css" href="css/card.css" />
-    <!-- JavaScript -->
+    <!-- Jquery ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- javascript -->
     <script src="vehicle.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> -->
-
     <title>Your Vehicles</title>
   </head>
-
   <body>
     <div class="wrapper">
       <!-- Sidebar  -->
       <nav id="sidebar">
         <div class="sidebar-header">
-          <!-- <button type="button" id="sidebarCollapse" class="btn btn_toggle">
-              <i class="fa fa-bars" aria-hidden="true"></i>
-            </button>
             <span>
-              <h3>Trucks</h3>
+              <img src="images/truck.png" alt="" height="35" />
             </span>
-            <strong>TOT</strong> -->
+            <strong>TOT</strong>
         </div>
         <ul class="list-unstyled components mt-4 mx-2">
           <li class="active mt-1">
@@ -107,9 +101,6 @@
                 <i class="fa fa-bars" aria-hidden="true"></i>
               </button>
             </span>
-            <span>
-              <img src="images/truck.png" alt="" height="35" />
-            </span>
           </div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-auto">
@@ -128,98 +119,24 @@
             </ul>
           </div>
         </nav>
-        <!-- <div class="vehicle">
-                <div class="container">
-                  <form id="addVehicle_form" method="POST"
-                  enctype="multipart/form-data">
-                    <div class="row vehicle_row">
-                      <div class="vehicle_col_1">
-                        <div class="vehicle_upload upload">
-                          <div class="vehicle-edit edit">
-                            <input
-                              type="file"
-                              id="vehicle_imageUpload"
-                              accept=".png, .jpg, .jpeg"
-                            />
-                            <label for="vehicle_imageUpload"
-                              ><i class="fa fa-plus" aria-hidden="true"></i
-                            ></label>
-                          </div>
-                          <div class="vehicle-upload-preview upload-preview">
-                            <div
-                              id="vehicle_imagePreview"
-                              style="
-                                background-image: url(../images/vehicle_add.png);
-                              "
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                    </div>
-                  </form>
-                </div>
-              </div> -->
         <div
           id="addBtn_vid"
           class="addBtn_wrapper_vid"
-          style="cursor: pointer !important"
         >
-          <button
-            type="file"
-            data-toggle="modal"
-            data-target="#videoModal"
-            class="circle_vid"
-          >
-            <img
-              id="addSign_vid"
-              src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-              alt=""
-            />
-          </button>
+        <a href="addVehicleForm.html" class="circle_vid"><img
+          id="addSign_vid"
+          src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
+          alt=""
+        /></a>        
         </div>
         <div class="container-fluid">
           <div class="vehicleTable">
             <div class="row" id="table_data">
-              <!-- <div class="col-md-6" id="table_data"></div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="addButtons">
-        <div class="container">
-            <div class="buttons mt-5">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="addVehicleForm.html" class="btn btn-primary btn-lg">Add vehicle</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="dashTable ">
-        <div class="container">
-            <hr>
-            <h3>YOUR VEHICLE DETAILS</h3>
-            <table class="table table-dark">
-                <hr>
-                <thead>
-                    <tr>
-                        <th scope="col">Sr No.</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Number</th>
-                        <th scope="col">Company</th>
-                        <th scope="col">View</th>
-                    </tr>
-                </thead>
-                <tbody id="table_data">
-                   
-                </tbody>
-            </table>
-        </div>
-    </div> -->
-    
     <script type="text/javascript">
       var temp;
 
@@ -231,17 +148,16 @@
         if (data.error == false) {
           for (var i = 0; i < data.message.data.length; i++) {
             temp = data.message.data[i];
-            // $('#table_data').append('<tr> <th scope="row">'+(i+1)+'</th> <td>'+temp.name+'</td> <td>'+temp.vehicle_number+'</td> <td>'+temp.company+'</td><td><a href="views.html?id='+ temp.id +'" class="btn btn-danger">View</a></td> </tr>');
             $("#table_data").append(
               ' <div class="col-md-6"><div class="card"><div class="row"><div class="col-md-4"><div class="cardImg"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCzx95luSCVd_2k8HPIEPlcjqw_3xoI1GAbA&usqp=CAU"alt=""/></div></div><div class="col-md-8"><div class="vehicleCompany"><p>' +
                 temp.company +
-                '</p></div><div class="col-md-9 vehicleDetails"><h4 class="mb-3" color>' +
+                '</p></div><div class="col-md-9 vehicleDetails"><h5 class="mb-3" color>' +
                 temp.name +
-                '</h4><div class="row vehicleCardFooter"><div class="col-md-10"><div class="vehiclePlate"><span class="vehiclePlateNumber">' +
+                '</h5><div class="row vehicleCardFooter"><div class="col-md-10"><div class="vehiclePlate"><span class="vehiclePlateNumber">' +
                 temp.vehicle_number +
                 '</span></div></div><div class="col-md-2"><a href="views.html?id=' +
                 temp.id +
-                '" class="btn">Inspect</button</div></div><hr /></div></div></div></div></div>'
+                '" class="btn">View</button</div></div><hr /></div></div></div></div></div>'
             );
           }
         } else {
@@ -258,15 +174,7 @@
         });
       });
     </script>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   </body>
-  <!-- <script
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"
-  ></script> -->
   <!-- Popper.JS -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
