@@ -1,0 +1,272 @@
+p {
+    margin: 0;
+  }
+  textarea:hover,
+  input:hover,
+  textarea:active,
+  input:active,
+  textarea:focus,
+  input:focus,
+  button:focus,
+  button:active,
+  button:hover,
+  label:focus,
+  .btn:active,
+  .btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    /* box-shadow: none !important; */
+  }
+  .card {
+    background-color: #424242;
+    min-height: 500px;
+    height: 500px auto;
+    border-radius: 15px;
+    /* width: 98%; */
+    position: relative;
+    /* margin-top: 150px; */
+    display: flex;
+  }
+  .grid {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    height: 200px;
+    width: 390px;
+    background: linear-gradient(rgba(0, 0, 0, 0) 71%, #424242);
+    z-index: 1;
+    margin: 25px 0 0 35px;
+  }
+  .driver_details {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .driver_imagecard {
+    /* padding: 30px; */
+    height: 440px;
+    width: 390px;
+    overflow: hidden;
+    background-color: aliceblue;
+    box-shadow: 0 0 0 17px #424242;
+    border-radius: 9px;
+    margin: 25px 0 0 20px;
+  }
+  .driver_imagecard img {
+    height: 440px;
+    width: 390px;
+    object-fit: cover;
+  }
+  .cardImgEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  .cardImgEdit .cardImgEditPreview {
+    height: 440px;
+    width: 390px;
+    object-fit: cover;
+    box-shadow: 0 0 0 17px #272727;
+    border-radius: 9px;
+    overflow: hidden;
+  }
+  
+  .vehicleDetailsInner {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    padding: 0 0 10px 10px;
+    z-index: 2;
+    margin: 25px 0 0 35px;
+  }
+  .vehicleCertificatestatus {
+    margin-top: 30px;
+    padding: 0 100px 0 0;
+  }
+  .vehicleCertificatestatus .cert {
+    border: 1px solid black;
+    padding: 10px 0 10px 0;
+    display: flex;
+    border-radius: 10px;
+    display: flex;
+    margin-top: 12px;
+  }
+  .vehicleCertificatestatus .cert i {
+    font-size: 16px;
+    float: right;
+  }
+  .vehicleCertificatestatus .cert .fa-times {
+    color: orangered;
+  }
+  .vehicleCertificatestatus .cert .fa-check {
+    color: green;
+  }
+  .driver_documentdata h3 {
+    color: #fafad8;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 28px;
+    margin-top: 80px;
+  }
+  .driver_documentdata p {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    /* margin-top: 25px; */
+    padding: 25px 50px 0 50px;
+  }
+  
+  .driver_documentcard {
+    min-height: 250px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 50px;
+  }
+  .box {
+    position: relative;
+    width: auto;
+    margin-left: -20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 0 10px 30px;
+    line-height: 40px;
+    background-color: #dc1b20;
+    color: #000;
+    display: flex;
+    align-items: center;
+  }
+  .box a {
+    position: absolute;
+    /* margin-left: 70%; */
+    border-radius: 50%;
+    border: none;
+    background: #dc1b20;
+    box-shadow: 4px 4px 6px #bb171b, -4px -4px 6px#ff2025;
+  }
+  .box .viewDoc {
+    margin-left: 64%;
+  }
+  .box .editDoc {
+    margin-left: 78%;
+  }
+  .box a:focus {
+    outline: none !important;
+    border: none;
+  }
+  .box a:active {
+    box-shadow: inset 6px 6px 12px #b7161b, inset -6px -6px 12px #ff2025;
+  }
+  .box p {
+    color: white;
+  }
+  .driver_document .row {
+    padding: 10px 20px 0 20px;
+    /* border-bottom: 1px solid white; */
+  }
+  .driver_document .row .col-md-6 {
+    border-bottom: 1px solid #999999;
+  }
+  .box::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-bottom: 25px solid transparent;
+    border-right: 20px solid #be0c04;
+  }
+  
+  .vehicleCompany p {
+    position: absolute;
+    color: #272727;
+    bottom: 0;
+    /* top: 0; */
+    right: 0;
+    font-size: 60px;
+    font-weight: 800;
+    margin-right: 10px;
+    /* transform: rotate(-90deg); */
+  }
+  .docAdd p {
+    display: flex;
+    text-align: center;
+    padding: 20px;
+  }
+  .custom {
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+    width: 70%;
+    height: 70%;
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  .dots {
+    position: relative;
+    top: -8px;
+    display: flex;
+    width: 45px;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  
+  .dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #272727;
+  }
+  
+  .dots.one {
+    position: absolute;
+    left: 0;
+    top: 0px;
+  }
+  
+  .dots.two {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    box-sizing: border-box;
+    background-color: #272727;
+    transform-origin: center;
+    border: 3px solid #272727;
+    opacity: 1;
+  }
+  
+  .dots.three {
+    position: absolute;
+    left: 16px;
+    top: 0;
+  }
+  .threeDots {
+    position: absolute;
+    right: 0;
+    top: 20px;
+    display: inline-block;
+  
+  }
+  .driver_data {
+      padding: 40px;
+  }
+  .driver_data h4 {
+      color: #FAFAFA !important; 
+  }
+  .driver_data .fa{
+      color: #909090;
+      font-size: 24px;
+      
+  }
+  .driver_data .row {
+      padding: 10px;
+  } 
+  .driver_data p{
+      color: #999999;
+  }
+  

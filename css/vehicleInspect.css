@@ -31,11 +31,13 @@ label:focus,
   left: 0px;
   bottom: 0px;
   right: 0px;
-  height: 200px;
+  height: 55px;
   width: 390px;
-  background: linear-gradient(rgba(0, 0, 0, 0) 71%, #424242);
+  background: #181818;
+  opacity: 0.6;
   z-index: 1;
   margin: 25px 0 0 35px;
+  border-radius: 10px 10px 0 0;
 }
 .vehicleDetails {
   display: flex;
@@ -73,10 +75,13 @@ label:focus,
 
 .vehicleDetailsInner {
   position: absolute;
+  display: flex;
+  justify-content: space-between;
   left: 0px;
+  height: 45px;
   bottom: 0px;
   right: 0px;
-  padding: 0 0 10px 10px;
+  padding: 0 60px 10px 10px;
   z-index: 2;
   margin: 25px 0 0 35px;
 }
@@ -121,24 +126,20 @@ label:focus,
 .vehicleCertificatestatus .cert .fa-check {
   color: green;
 }
-.vehicleDocumentData h3 {
-  color: #fafad8;
+.vehicle_documentHeader{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+}
+.vehicle_documentHeader h3 {
+  color: #fafad8;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 35px;
+  font-size: 28px;
+}
+.vehicle_documentHeader {
   margin-top: 80px;
 }
-.vehicleDocumentData p {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  /* margin-top: 25px; */
-  padding: 25px 50px 0 50px;
-}
-
-.vehicleDocument .card {
+.vehicle_document .card {
   height: 230px;
   border-radius: 10px;
   margin-bottom: 50px;
@@ -156,7 +157,7 @@ label:focus,
   display: flex;
   align-items: center;
 }
-.box button {
+.box a {
   position: absolute;
   /* margin-left: 70%; */
   border-radius: 50%;
@@ -180,11 +181,11 @@ label:focus,
 .box p {
   color: white;
 }
-.vehicleDocument .row {
+.vehicle_document .row {
   padding: 10px 20px 0 20px;
   /* border-bottom: 1px solid white; */
 }
-.vehicleDocument .row .col-md-6 {
+.vehicle_document .row .col-md-6 {
   border-bottom: 1px solid #999999;
 }
 .box::before {

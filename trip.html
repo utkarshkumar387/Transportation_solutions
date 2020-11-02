@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Add vehicle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="css/trip.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="trip.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <!-- <button type="button" id="sidebarCollapse" class="btn btn_toggle">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </button>
+          <span>
+            <h3>Trucks</h3>
+          </span>
+          <strong>TOT</strong> -->
+            </div>
+            <ul class="list-unstyled components mt-4 mx-2">
+                <li class="active mt-1">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Dashboard
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="Vehicles.html">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                vehicles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="drivers.html">
+                                <i class="fa fa-id-card" aria-hidden="true"></i>
+                                Drivers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="inventory.html">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                Inventory
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Services
+                    </a>
+                    <a href="trip.html">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Trips
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-question mt-3" aria-hidden="true"></i>
+                        Help
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-sign-out mt-3" aria-hidden="true"></i>
+                        Log out
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="dashHeader">
+                    <span>
+                        <button type="button" id="sidebarCollapse" class="btn btn_toggle">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                    <span>
+                        <img src="images/truck.png" alt="" height="35" />
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container">
+                <div class="trip">
+                    <div id="trip_data">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var temp;
+        $(document).ready(function () {
+            var trip = fetch_data("trip");
+            console.log(trip.message);
+            if (trip.error == false) {
+                for (var i = 0; i < trip.message.data.length; i++) {
+                    temp = trip.message.data[i];
+                    $("#trip_data").append(
+                        `<div class="card">
+                            <div class="trip_buttons">
+                                <a href="#" class="btn">Expenses</a>
+                                <a href="views.html?id=`+
+                                temp.vehicle_id.id +
+                                `" class="btn">Vehicle</a>
+                                <a href="driver_view.html?id=`+
+                                temp.driver_id.id +
+                                `" class="btn">Driver</a>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="trip_sr">
+                                        <span><b>
+                                            ${i+1}.
+                                            </b></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="trip_from">
+                                        <span><b>From,</b></span>
+                                        <strong>`+
+                                            temp.from_place+
+                                            `</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="trip_to">
+                                        <span><b>To,</b></span>
+                                        <strong>`+
+                                            temp.to_place+
+                                            `</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="trip_date">
+                                        <span><b>On</b></span>
+                                        <span><strong>`+
+                                            temp.date+
+                                            `</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+                    );
+                }
+            }
+            else {
+                for (var i = 0; i < trip.message.length; i++) {
+                    console.log(trip.message[i]);
+                }
+            }
+        });
+    </script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebarCollapse").on("click", function () {
+                $("#sidebar").toggleClass("active");
+            });
+        });
+    </script>
+</body>
+
+</html>

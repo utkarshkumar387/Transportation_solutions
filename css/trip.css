@@ -1,0 +1,106 @@
+.card {
+    background-color: #424242;
+    max-height: 250px;
+    height: auto;
+    /* border: 2px solid #909090; */
+    border-radius: 15px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 70px;
+    display: flex;
+  }
+  .trip_from {
+      border: 1px solid #909090;
+      margin: 10px 0 0 0;
+      /* border-radius: 12px 0 0 12px; */
+      height: 120px;
+      padding: 20px;
+      /* padding: 10px 0 0 10px; */
+  }
+  .trip_from strong {
+      font-size: 25px;
+      text-transform: uppercase;
+      color: #FAFAFA;
+  }
+  .trip_from span {
+      display: block;
+      color: #909090; 
+  }
+  .col-md-4, .col-md-1, .col-md-3 {
+      padding: 0;
+  }
+  .trip_to {
+      margin: 10px 0 40px 0;
+      border: 1px solid #909090;
+      height: 120px;
+      padding: 20px;
+  }
+  .trip_to span {
+      display: block;
+      color: #909090;
+  }
+  .trip_to strong {
+      font-size: 25px;
+      text-transform: uppercase;
+      color: #FAFAFA;
+  }
+  .trip_date {
+        border: 1px solid #909090;
+        margin: 10px 40px 0 0;
+        border-radius: 0 12px 12px 0;
+        height: 120px;
+        padding: 20px;
+        /* padding: 10px 0 0 10px; */
+    
+  }
+  .trip_date span{
+    display: block;
+  }
+  .trip_date span:nth-child(2) {
+      font-size: 20px;
+  }
+  .trip_date strong {
+      font-size: 25px;
+  }
+  .trip_sr {
+    border: 1px solid #909090;
+    margin: 10px 0 0 40px;
+    border-radius: 12px 0 0 12px;
+    height: 120px;
+    padding: 20px;
+  }
+  .trip_buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 25px 0 0;
+  }
+  .trip_buttons a{
+      margin: 5px;
+  }
+  .trip_sr span{
+    color: #909090;
+  }
+  .trip_date span:nth-child(1){
+      color: #909090;
+  }
+  .trip_date span:nth-child(2){
+      color: #FAFAFA;
+  }
+  .card a{
+    color: #FFFFF1 !important;
+    display: flex;
+    height: 40px;
+    border-radius: 15px;
+    padding: 10px 15px 35px 15px;
+    margin: 10px 15px 10px 0;
+    border: none;
+    font-weight: 500;
+    background: #424242;
+box-shadow:  5px 5px 10px #353535, 
+             -5px -5px 10px #4f4f4f;
+  }
+  .card a:hover {
+    background: #424242;
+box-shadow: inset 5px 5px 10px #353535, 
+            inset -5px -5px 10px #4f4f4f;
+  }
