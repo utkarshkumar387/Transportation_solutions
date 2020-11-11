@@ -11,9 +11,11 @@
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <link rel="stylesheet" type="text/css" href="css/add.css" />
   <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
   <link rel="stylesheet" type="text/css" href="css/driver_view.css" />
   <link rel="stylesheet" type="text/css" href="css/inspectPopup.css" />
+  <link rel="stylesheet" type="text/css" href="css/addVehicleForm.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="driver.js"></script>
 </head>
@@ -146,7 +148,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   Close
                 </button>
-                <button type="button" onclick="modify_data_by_id()" class="btn btn-primary">Submit</button>
+                <button type="button" onclick="modify_certificate_data()" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </div>
@@ -210,7 +212,7 @@
           </div>
         </div>
 
-        <!-- delete vehicle popup -->
+        <!-- delete driver popup -->
         <div class="modal fade" id="vehicleDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -230,16 +232,16 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   No
                 </button>
-                <button onclick="delete_data_by_id()" type="button" class="btn btn-primary">Yes</button>
+                <button onclick="delete_driver_popup()" type="button" class="btn btn-primary">Yes</button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- edit vehicle details -->
-        <div class="modal fade bd-example-modal-xl" id="vehicleEditDetail" tabindex="-1" role="dialog"
+        <!-- edit driver details -->
+        <div class="modal fade bd-example-modal-lg" id="vehicleEditDetail" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+          <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">
@@ -250,41 +252,90 @@
                 </button>
               </div>
               <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="cardImgEdit">
-                      <div class="cardImgEditType">
-                        <input type="file" id="inpp" name="image" accept=".png, .jpg, .jpeg" />
-                        <label for="inpp"><i class="fa fa-plus" aria-hidden="true"></i></label>
+                <!-- <div class="vehicle_row"> -->
+                  <div class="vehicle_col_1">
+                      <div class="vehicle_upload upload">
+                          <div class="vehicle-edit edit">
+                              <input id="inpp" type="file" name="image" accept=".png, .jpg, .jpeg" />
+                              <label for="inpp"><i class="fa fa-plus" aria-hidden="true"></i></label>
+                          </div>
+                          <div class="vehicle-upload-preview upload-preview">
+                              <div id="vehicle_imagePreview"
+                                  style="background-image: url(../images/truck.png)"></div>
+                          </div>
                       </div>
-                      <img id="edit_vehicle_image" class="cardImgEditPreview" src="images/vehicle_add.png">
-                    </div>
                   </div>
-                  <div class="col-md-6 editDocModal">
-                    <form>
-                      <div class="form-group">
-                        <label for="edit_vehicle_name">Enter new name</label>
-                        <input type="email" class="form-control" id="edit_vehicle_name" aria-describedby="emailHelp"
-                          placeholder="Enter new unique ID" />
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="driver_name">Full Name</label>
+                              <input type="text" class="form-control" id="driver_name" name="driver_name"
+                                  aria-describedby="nameHelp" placeholder="Jhon doe" />
+                          </div>
                       </div>
-                      <div class="form-group">
-                        <label for="edit_vehicle_number">Enter new vehicle number
-                        </label>
-                        <input type="text" class="form-control" id="edit_vehicle_number" placeholder="" />
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="driver_age">Age</label>
+                              <input type="text" class="form-control" id="driver_age"
+                                  name="driver_age" placeholder="25" />
+                          </div>
                       </div>
-                      <div class="form-group">
-                        <label for="edit_vehicle_company">Enter new company
-                        </label>
-                        <input type="text" class="form-control" id="edit_vehicle_company" placeholder="" />
-                      </div>
-                      <div class="form-group">
-                        <label for="edit_vehicle_category">Select new vehicle type
-                        </label>
-                        <select id="edit_vehicle_category" class="form-control"></select>
-                      </div>
-                    </form>
                   </div>
-                </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="driver_number_1">Mobile number</label>
+                              <input type="text" class="form-control" id="driver_number_1" name="driver_number_1"
+                                  aria-describedby="nameHelp" placeholder="9876543210" />
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="driver_number_2">Alternate mobile number</label>
+                              <input type="text" class="form-control" id="driver_number_2"
+                                  name="driver_number_2" placeholder="9876543210" />
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="driver_address_1">Permanent address</label>
+                      <textarea rows="3" type="text" class="form-control" id="driver_address_1" name="driver_address_1"
+                          placeholder="Enter permanent address"></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="driver_address_2">Alternate address</label>
+                      <textarea rows="3" type="text" class="form-control" id="driver_address_2" name="driver_address_2"
+                          placeholder="Enter alternate address"></textarea>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label for="driver_village">Village</label>
+                              <input type="text" class="form-control" id="driver_village" name="driver_village"
+                                  aria-describedby="nameHelp" placeholder="Balotra" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label for="driver_district">District</label>
+                              <input type="text" class="form-control" id="driver_district"
+                                  name="driver_district" placeholder="Barmer" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label for="driver_state">State</label>
+                              <input type="text" class="form-control" id="driver_state"
+                                  name="driver_state" placeholder="Rajasthan" />
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="driver_salary">Salary</label>
+                      <input type="text" class="form-control" id="driver_salary" name="driver_salary"
+                          placeholder="20,000" />
+                  </div>
+              <!-- </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -330,8 +381,10 @@
       var driver_data;                                             //variable to get data by id
       var driver_document_data;                                    //variable to get driver document
       var temp_id;                                                 //variable to store each certificate id
+      var card_id;
       $(document).ready(function () {
         id = window.location.href.split("=")[1];                   //get id from here
+        card_id = id;
         driver_data = get_data_by_id("driver", id);                //pass sub url and id to driver.js to get data by id
         driver_document_data = fetch_data("driver_document");      //pass sub url to fetch driver document
         console.log(driver_document_data.message);
@@ -460,7 +513,7 @@
                     <a type="button" class="btn editDoc" onclick="certificate_edit_popup(${driver_data.message.documents[i].id})" data-toggle="modal" data-target="#vehicleEditDoc">
                       <i class="fa fa-pencil" aria-hidden="true"></i>
                     </a>
-                    <a href="${driver_data.message.documents[i].attachment}" type="button" class="btn viewDoc">
+                    <a href="${driver_data.message.documents[i].attachment}" type="button" target="_blank" class="btn viewDoc">
                       <i class="fa fa-eye" aria-hidden="true"></i>
                     </a>
                   </div>
@@ -478,22 +531,40 @@
           }
           // ********************************************************************************************
         }
-        
       })
       // *****************************modify document of driver popup********************************
-      function certificate_edit_popup(id){
+      function certificate_edit_popup(id){                                     //data will be shown in popup
         temp_id = id;
         $("#driver_edit_document_uniqueid").val($("#driver_certificate_uniqueid_"+ id).html());
       }
-      function modify_certificate_data(){
+      function modify_certificate_data(){                                     //data will be edited with the help of popup
         id = temp_id;
         console.log(id);
         data = {
           unique_id: $("#driver_edit_document_uniqueid").val(),
         }
-        var response = modify_data_by_id("driver_document", id, data);
+        var response = modify_data_by_id("driver_document", id, data);       //data will be sent to driver.js for modification
+
+        if(response.error == false){
+          window.location.reload();
+        }
 
       }
+      //*********************************************************************************************
+      //*******************************************delete driver*************************************
+      function delete_driver_popup(){
+            id = card_id;
+            console.log(id);
+            data = {
+              id: id,
+            }
+            var response = delete_driver_by_id('driver', id, data);
+            if(response.error == false){
+              window.location.replace("drivers.html")
+            }else{
+              console.log(data.message);
+            }
+          }
       // sidebar collapse
       $(document).ready(function () {
         $("#sidebarCollapse").on("click", function () {

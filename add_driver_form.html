@@ -23,7 +23,7 @@
     <!-- jquery -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
     <!-- external javascript -->
-    <script src="vehicle.js"></script>
+    <script src="driver.js"></script>
 </head>
 
 <body>
@@ -166,7 +166,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="driver_address_1">Permanent address</label>
-                                <textarea rows="3" type="text" class="form-control" id="driver_address_1" name="company"
+                                <textarea rows="3" type="text" class="form-control" id="driver_address_1" name="driver_address_1"
                                     placeholder="Enter permanent address"></textarea>
                             </div>
                             <div class="form-group">
@@ -203,12 +203,35 @@
                                     placeholder="20,000" />
                             </div>
                         </div>
-                        <button onclick="send_vehicle_data()" type="button" class="btn mt-3">Next</button>
+                        <button onclick="send_driver_data()" type="button" class="btn mt-3">Next</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function send_driver_data(){
+            var data = add_data('driver',{
+                image: null,
+                name: $('#driver_name').val(),
+                age: $('#driver_age').val(),
+                phone_no1: $('#driver_number_1').val(),
+                phone_no2: $('#driver_number_2').val(),
+                address_line1: $('#driver_address_1').val(),
+                address_line2: $('#driver_address_2').val(),
+                village: $('#driver_village').val(),
+                district: $('#driver_district').val(),
+                state: $('#driver_state').val(),
+                salary: $('#driver_salary').val()
+            });
+
+            if(data.error == false){
+                window.location.replace(`driver_view.html?id=` + data.message.id);
+            }else{
+                console.log(data.message);
+            }
+        }
+    </script>
     <!-- <script type="text/javascript">
       var temp;
       var image64= "";
