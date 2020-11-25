@@ -1,184 +1,176 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>Add vehicle</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
-    <link rel="stylesheet" type="text/css" href="css/drivers.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="driver.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <body>
-    <div class="wrapper">
-      <!-- Sidebar  -->
-      <nav id="sidebar">
-        <div class="sidebar-header">
-          <!-- <button type="button" id="sidebarCollapse" class="btn btn_toggle">
+  <title>Add vehicle</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
+  <link rel="stylesheet" type="text/css" href="css/drivers.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="driver.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <!-- <button type="button" id="sidebarCollapse" class="btn btn_toggle">
             <i class="fa fa-bars" aria-hidden="true"></i>
           </button>
           <span>
             <h3>Trucks</h3>
           </span>
           <strong>TOT</strong> -->
+      </div>
+      <ul class="list-unstyled components mt-4 mx-2">
+        <li class="active mt-1">
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <i class="fa fa-th-large" aria-hidden="true"></i>
+            Dashboard
+          </a>
+          <ul class="collapse list-unstyled" id="homeSubmenu">
+            <li>
+              <a href="vehicles.html">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                vehicles
+              </a>
+            </li>
+            <li>
+              <a href="drivers.html">
+                <i class="fa fa-id-card" aria-hidden="true"></i>
+                Drivers
+              </a>
+            </li>
+            <li>
+              <a href="inventory.html">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                Inventory
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+            Services
+          </a>
+          <a href="trip.html">
+            <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+            Trips
+          </a>
+          <a href="#">
+            <i class="fa fa-question mt-3" aria-hidden="true"></i>
+            Help
+          </a>
+          <a href="#">
+            <i class="fa fa-sign-out mt-3" aria-hidden="true"></i>
+            Log out
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Page Content  -->
+    <div id="content">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="dashHeader">
+          <span>
+            <button type="button" id="sidebarCollapse" class="btn btn_toggle">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+          </span>
+          <span>
+            <img src="images/truck.png" alt="" height="35" />
+          </span>
         </div>
-        <ul class="list-unstyled components mt-4 mx-2">
-          <li class="active mt-1">
-            <a
-              href="#homeSubmenu"
-              data-toggle="collapse"
-              aria-expanded="false"
-              class="dropdown-toggle"
-            >
-              <i class="fa fa-th-large" aria-hidden="true"></i>
-              Dashboard
-            </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-              <li>
-                <a href="vehicles.html">
-                  <i class="fa fa-truck" aria-hidden="true"></i>
-                  vehicles
-                </a>
-              </li>
-              <li>
-                <a href="drivers.html">
-                  <i class="fa fa-id-card" aria-hidden="true"></i>
-                  Drivers
-                </a>
-              </li>
-              <li>
-                <a href="inventory.html">
-                  <i class="fa fa-cogs" aria-hidden="true"></i>
-                  Inventory
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
-              Services
-            </a>
-            <a href="trip.html">
-              <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
-              Trips
-            </a>
-            <a href="#">
-              <i class="fa fa-question mt-3" aria-hidden="true"></i>
-              Help
-            </a>
-            <a href="#">
-              <i class="fa fa-sign-out mt-3" aria-hidden="true"></i>
-              Log out
-            </a>
-          </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Page</a>
+            </li>
+          </ul>
       </nav>
-      <!-- Page Content  -->
-      <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <div class="dashHeader">
-            <span>
-              <button type="button" id="sidebarCollapse" class="btn btn_toggle">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-              </button>
-            </span>
-            <span>
-              <img src="images/truck.png" alt="" height="35" />
-            </span>
-          </div>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Page</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Page</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Page</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Page</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <div class="container">
-            <div class="driver">
-              <div class="row" id="driver_data">
-              </div>
-            </div>
+      <div class="container">
+        <div class="driver">
         </div>
+        <div class="driver_header">
+          <h3>Drivers</h3>
+          <a class="btn button_add" href="add_driver_form.html"><i class="fa fa-plus" aria-hidden="true"></i> Add
+            Driver</a>
+        </div>
+        <hr style="background-color: #424242" />
+        <div class="row" id="driver_data">
+        </div>
+      </div>
     </div>
-    <script>
-      var temp;
-      $(document).ready(function (){
-        var driver = fetch_data("driver");
-        console.log(driver.message);
-        if(driver.error == false){
-          for(var i = 0; i<driver.message.data.length; i++){
-            // console.log(driver.message[i].name);
-            temp = driver.message.data[i];
-            // console.log(temp);
-            $("#driver_data").append(
-              '<div class="col-md-4"><div class="card"><div class="driver_detail"><div class="driver_img"><img src="https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg" src="' +
-              temp.image +
-              '" alt=""></div><div class="driver_detail_box"><p class="driver_name">'+ 
-              temp.name +
-              '</p><p class="driver_number mt-3"><i class="fa fa-phone" aria-hidden="true"></i>'+ 
-              temp.phone_no1 +
-              '</p><p class="driver_address"><i class="fa fa-address-book" aria-hidden="true"></i>'+ 
-              temp.village +
-              ', <span>'+
-              temp.state +
-              '</span></p><p class="driver_age"><i class="fa fa-calendar-o" aria-hidden="true"></i>'+ 
-              temp.age +
-              '</p><a href="driver_view.html?id='+
-              temp.id+'" class="btn">View</a></div></div></div></div>'
-            );
-          }
+  </div>
+  <script>
+    var temp;
+    $(document).ready(function () {
+      var driver = fetch_data("driver");
+      console.log(driver.message);
+      if (driver.error == false) {
+        for (var i = 0; i < driver.message.data.length; i++) {
+          // console.log(driver.message[i].name);
+          temp = driver.message.data[i];
+          // console.log(temp);
+          $("#driver_data").append(
+            '<div class="col-md-4"><div class="card"><div class="driver_detail"><div class="driver_img"><img src="https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg" src="' +
+            temp.image +
+            '" alt=""></div><div class="driver_detail_box"><p class="driver_name">' +
+            temp.name +
+            '</p><p class="driver_number mt-3"><i class="fa fa-phone" aria-hidden="true"></i>' +
+            temp.phone_no1 +
+            '</p><p class="driver_address"><i class="fa fa-address-book" aria-hidden="true"></i>' +
+            temp.village +
+            ', <span>' +
+            temp.state +
+            '</span></p><p class="driver_age"><i class="fa fa-calendar-o" aria-hidden="true"></i>' +
+            temp.age +
+            '</p><a href="driver_view.html?id=' +
+            temp.id + '" class="btn">View</a></div></div></div></div>'
+          );
         }
-        else {
-          for(var i=0; i<driver.message.length; i++){
-            console.log(driver.message[i]);
-          }
+      }
+      else {
+        for (var i = 0; i < driver.message.length; i++) {
+          console.log(driver.message[i]);
         }
-      });
-    </script>
-    <!-- Popper.JS -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Bootstrap JS -->
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-      crossorigin="anonymous"
-    ></script>
+      }
+    });
+  </script>
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-      $(document).ready(function () {                                                  
-        $("#sidebarCollapse").on("click", function () {
-          $("#sidebar").toggleClass("active");
-        });
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>

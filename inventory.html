@@ -112,7 +112,8 @@
                     <div class="inventory_spare">
                         <div class="inventory_scrapHeader">
                             <h3>Spare Parts</h3>
-                            <button class="btn button_add"><i class="fa fa-plus" aria-hidden="true"></i> Add Spare</button>
+                            <button class="btn button_add"><i class="fa fa-plus" aria-hidden="true"></i> Add
+                                Spare</button>
                         </div>
                         <hr style="background-color: #424242" />
                         <div id="inventory_spare" class="row">
@@ -121,7 +122,8 @@
                     <div class="inventory_scrap">
                         <div class="inventory_scrapHeader">
                             <h3>Scrap</h3>
-                            <button class="btn button_add"><i class="fa fa-plus" aria-hidden="true"></i> Add Scrap</button>
+                            <button class="btn button_add"><i class="fa fa-plus" aria-hidden="true"></i> Add
+                                Scrap</button>
                         </div>
                         <hr style="background-color: #424242" />
                         <div id="inventory_scrap" class="row">
@@ -133,38 +135,38 @@
     </div>
     </div>
     <script>
-      let temp;
-      $(document).ready(function (){
-        let inventory = fetch_data("inventory");
-        console.log(inventory.message);
-        if(inventory.error == false){
-            for(let i=0; i<inventory.message.data.length; i++){
-                temp = inventory.message.data[i];
-                if(inventory.message.data[i].category == 'Spare part'){
-                    console.log(inventory.message.data[i].category);
-                    $("#inventory_spare").append(
-                        `   <div class="col-md-4">
+        let temp;
+        $(document).ready(function () {
+            let inventory = fetch_data("inventory");
+            console.log(inventory.message);
+            if (inventory.error == false) {
+                for (let i = 0; i < inventory.message.data.length; i++) {
+                    temp = inventory.message.data[i];
+                    if (inventory.message.data[i].category == 'Spare part') {
+                        console.log(inventory.message.data[i].category);
+                        $("#inventory_spare").append(
+                            `   <div class="col-md-4">
                                 <div class="card">
                                     <img src="https://media.torque.com.sg/public/2018/06/18990368_m-e1530161429828.jpg"
                                         class="card-img-top" alt="..." />
                                     <div class="card-body">
                                         <h5 class="card-title">`+
-                                            temp.name +
-                                            `</h5>
+                            temp.name +
+                            `</h5>
                                         <div class="inventory_data">
                                             <span><strong>`+
-                                                temp.quantity +
-                                                ` </strong>`+
-                                                temp.quantity_type +
-                                                `</span>
+                            temp.quantity +
+                            ` </strong>` +
+                            temp.quantity_type +
+                            `</span>
                                             <span>`+
-                                                temp.invoice_id +
-                                                `</span>
+                            temp.invoice_id +
+                            `</span>
                                         </div>
                                         <hr style="background-color: #909090" />
-                                        <p class="card-text">`+ 
-                                            temp.description +
-                                            `</p>
+                                        <p class="card-text">`+
+                            temp.description +
+                            `</p>
                                             <div class="inventory_buttons">
                                                 <a href="#" class="btn">View invoice</a>
                                                 <a href="#" class="btn">Delete item</a>
@@ -172,9 +174,9 @@
                                     </div>
                                 </div>
                             </div>`
-                    )
-                }
-                else{
+                        )
+                    }
+                    else {
                         $("#inventory_scrap").append(
                             `   <div class="col-md-4">
                                     <div class="card">
@@ -182,36 +184,36 @@
                                             class="card-img-top" alt="..." />
                                         <div class="card-body">
                                             <h5 class="card-title">`+
-                                                temp.name +
-                                                `</h5>
+                            temp.name +
+                            `</h5>
                                             <div class="inventory_data">
                                                 <span><strong>`+
-                                                    temp.quantity +
-                                                    ` </strong>`+
-                                                    temp.quantity_type +
-                                                    `</span>
+                            temp.quantity +
+                            ` </strong>` +
+                            temp.quantity_type +
+                            `</span>
                                                 <span>`+
-                                                    temp.invoice_id +
-                                                    `</span>
+                            temp.invoice_id +
+                            `</span>
                                             </div>
                                             <hr style="background-color: #909090" />
-                                            <p class="card-text">`+ 
-                                                temp.description +
-                                                `</p>
+                                            <p class="card-text">`+
+                            temp.description +
+                            `</p>
                                             <a href="#" class="btn">View Invoice</a>
                                         </div>
                                     </div>
                                 </div>`
                         )
+                    }
                 }
             }
-        }
-        else {
-          for(var i=0; i<inventory.message.length; i++){
-            console.log(inventory.message[i]);
-          }
-        }
-      });
+            else {
+                for (var i = 0; i < inventory.message.length; i++) {
+                    console.log(inventory.message[i]);
+                }
+            }
+        });
     </script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"

@@ -10,12 +10,11 @@
     display: flex;
   }
   .trip_from {
-      border: 1px solid #909090;
-      margin: 10px 0 0 0;
-      /* border-radius: 12px 0 0 12px; */
-      height: 120px;
-      padding: 20px;
-      /* padding: 10px 0 0 10px; */
+    border: 1px solid #909090;
+    margin: 10px 0 0 40px;
+    border-radius: 12px 0 0 12px;
+    height: 120px;
+    padding: 20px;
   }
   .trip_from strong {
       font-size: 25px;
@@ -26,7 +25,7 @@
       display: block;
       color: #909090; 
   }
-  .col-md-4, .col-md-1, .col-md-3 {
+  .col-md-4, .col-md-1, .col-md-3, .col-md-2{
       padding: 0;
   }
   .trip_to {
@@ -44,6 +43,36 @@
       text-transform: uppercase;
       color: #FAFAFA;
   }
+  .trip_by {
+    margin: 10px 0 40px 0;
+    border: 1px solid #909090;
+    height: 120px;
+    padding: 20px;
+}
+.trip_by span {
+    display: block;
+    color: #909090;
+}
+.trip_by strong {
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #FAFAFA;
+}
+.trip_with {
+    margin: 10px 0 40px 0;
+    border: 1px solid #909090;
+    height: 120px;
+    padding: 20px;
+}
+.trip_with span {
+    display: block;
+    color: #909090;
+}
+.trip_with strong {
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #FAFAFA;
+}
   .trip_date {
         border: 1px solid #909090;
         margin: 10px 40px 0 0;
@@ -63,11 +92,8 @@
       font-size: 25px;
   }
   .trip_sr {
-    border: 1px solid #909090;
-    margin: 10px 0 0 40px;
-    border-radius: 12px 0 0 12px;
-    height: 120px;
-    padding: 20px;
+    margin: 28px 0 0 40px;
+    font-size: 28px;
   }
   .trip_buttons {
     display: flex;
@@ -78,7 +104,7 @@
       margin: 5px;
   }
   .trip_sr span{
-    color: #909090;
+    color: #FAFAFA;
   }
   .trip_date span:nth-child(1){
       color: #909090;
@@ -103,4 +129,22 @@ box-shadow:  5px 5px 10px #353535,
     background: #424242;
 box-shadow: inset 5px 5px 10px #353535, 
             inset -5px -5px 10px #4f4f4f;
+  }
+  .trip_header h3 {
+    color: #fafafa;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .trip_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  /* .inventory_buttons{
+      display: flex;
+      justify-content: space-between;
+  } */
+  .trip_top {
+      display: flex;
+      justify-content: space-between;
   }

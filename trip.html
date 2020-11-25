@@ -109,6 +109,13 @@
             </nav>
             <div class="container">
                 <div class="trip">
+                    <div class="trip_header">
+                        <h3>trips</h3>
+                        <a class="btn button_add" href="add_trip_form.html"><i class="fa fa-plus"
+                                aria-hidden="true"></i> Add
+                            Driver</a>
+                    </div>
+                    <hr style="background-color: #424242" />
                     <div id="trip_data">
                     </div>
                 </div>
@@ -123,47 +130,74 @@
             if (trip.error == false) {
                 for (var i = 0; i < trip.message.data.length; i++) {
                     temp = trip.message.data[i];
+                    var date = temp.date.split("-");
+                    // console.log(date);
+                    var data_month = date[1];
+                    var show_day = date[2];
+                    // console.log(data_month);
+                    var month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var show_month = month[data_month];
+
+                    // for(i=0;i<data_month;i++){
+                    //     console.log()
+                    // }
                     $("#trip_data").append(
                         `<div class="card">
+                            <div class="trip_top">
+                            <div class="trip_sr">
+                                        <span><b>
+                                            ${i + 1}.
+                                            </b></span>
+                                    </div>
                             <div class="trip_buttons">
                                 <a href="#" class="btn">Expenses</a>
                                 <a href="views.html?id=`+
-                                temp.vehicle_id.id +
-                                `" class="btn">Vehicle</a>
+                        temp.vehicle_id.id +
+                        `" class="btn">Vehicle</a>
                                 <a href="driver_view.html?id=`+
-                                temp.driver_id.id +
-                                `" class="btn">Driver</a>
+                        temp.driver_id.id +
+                        `" class="btn">Driver</a>
+                            </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-1">
-                                    <div class="trip_sr">
-                                        <span><b>
-                                            ${i+1}.
-                                            </b></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="trip_from">
                                         <span><b>From,</b></span>
                                         <strong>`+
-                                            temp.from_place+
-                                            `</strong>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="trip_to">
-                                        <span><b>To,</b></span>
-                                        <strong>`+
-                                            temp.to_place+
-                                            `</strong>
+                        temp.from_place +
+                        `</strong>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
+                                    <div class="trip_to">
+                                        <span><b>To,</b></span>
+                                        <strong>`+
+                        temp.to_place +
+                        `</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="trip_by">
+                                        <span><b>By</b></span>
+                                        <strong>`+
+                        temp.to_place +
+                        `</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="trip_with">
+                                        <span><b>With</b></span>
+                                        <strong>`+
+                        temp.to_place +
+                        `</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
                                     <div class="trip_date">
                                         <span><b>On</b></span>
-                                        <span><strong>`+
-                                            temp.date+
-                                            `</strong></span>
+                                        <span><strong>`+ show_day +
+                        `</strong>` +
+                        show_month + `</span>
                                     </div>
                                 </div>
                             </div>

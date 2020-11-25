@@ -53,47 +53,6 @@
   display: flex;
   justify-content: space-between;
 }
-.button_add {
-  border: 1px solid #f56a00;
-  color: #f56a00;
-  font-weight: 700;
-  border-radius: 15px;
-}
-.button_add:link,
-.button_add:visited {
-  text-decoration: none;
-  padding: 15px 40px;
-  display: inline-block;
-  transition: all 0.2s;
-}
-
-.button_add:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  color: white;
-  background-color: #f56a00;
-}
-
-.button_add:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-.button_add {
-  animation: moveInBottom 0.3s ease-out;
-  animation-fill-mode: backwards;
-}
-
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
 .inventory_buttons{
     display: flex;
     justify-content: space-between;

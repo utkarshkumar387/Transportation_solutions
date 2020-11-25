@@ -143,8 +143,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="driver_age">Age</label>
-                                        <input type="text" class="form-control" id="driver_age"
-                                            name="driver_age" placeholder="25" />
+                                        <input type="text" class="form-control" id="driver_age" name="driver_age"
+                                            placeholder="25" />
                                     </div>
                                 </div>
                             </div>
@@ -152,8 +152,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="driver_number_1">Mobile number</label>
-                                        <input type="text" class="form-control" id="driver_number_1" name="driver_number_1"
-                                            aria-describedby="nameHelp" placeholder="9876543210" />
+                                        <input type="text" class="form-control" id="driver_number_1"
+                                            name="driver_number_1" aria-describedby="nameHelp"
+                                            placeholder="9876543210" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -166,20 +167,20 @@
                             </div>
                             <div class="form-group">
                                 <label for="driver_address_1">Permanent address</label>
-                                <textarea rows="3" type="text" class="form-control" id="driver_address_1" name="driver_address_1"
-                                    placeholder="Enter permanent address"></textarea>
+                                <textarea rows="3" type="text" class="form-control" id="driver_address_1"
+                                    name="driver_address_1" placeholder="Enter permanent address"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="driver_address_2">Alternate address</label>
-                                <textarea rows="3" type="text" class="form-control" id="driver_address_2" name="driver_address_2"
-                                    placeholder="Enter alternate address"></textarea>
+                                <textarea rows="3" type="text" class="form-control" id="driver_address_2"
+                                    name="driver_address_2" placeholder="Enter alternate address"></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="driver_village">Village</label>
-                                        <input type="text" class="form-control" id="driver_village" name="driver_village"
-                                            aria-describedby="nameHelp" placeholder="Balotra" />
+                                        <input type="text" class="form-control" id="driver_village"
+                                            name="driver_village" aria-describedby="nameHelp" placeholder="Balotra" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -192,8 +193,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="driver_state">State</label>
-                                        <input type="text" class="form-control" id="driver_state"
-                                            name="driver_state" placeholder="Rajasthan" />
+                                        <input type="text" class="form-control" id="driver_state" name="driver_state"
+                                            placeholder="Rajasthan" />
                                     </div>
                                 </div>
                             </div>
@@ -203,15 +204,15 @@
                                     placeholder="20,000" />
                             </div>
                         </div>
-                        <button onclick="send_driver_data()" type="button" class="btn mt-3">Next</button>
+                        <button onclick="send_driver_data()" type="button" class="btn mt-3 mb-5">Next</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        function send_driver_data(){
-            var data = add_data('driver',{
+        function send_driver_data() {
+            var data = add_data('driver', {
                 image: null,
                 name: $('#driver_name').val(),
                 age: $('#driver_age').val(),
@@ -225,9 +226,9 @@
                 salary: $('#driver_salary').val()
             });
 
-            if(data.error == false){
+            if (data.error == false) {
                 window.location.replace(`driver_view.html?id=` + data.message.id);
-            }else{
+            } else {
                 console.log(data.message);
             }
         }
