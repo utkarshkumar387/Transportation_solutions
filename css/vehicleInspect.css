@@ -19,12 +19,14 @@ label:focus,
 }
 .card {
   background-color: #424242;
-  height: 500px;
   border-radius: 15px;
   /* width: 98%; */
   position: relative;
   /* margin-top: 150px; */
   display: flex;
+}
+.data_card{
+  min-height: 500px;
 }
 .grid {
   position: absolute;
@@ -139,10 +141,12 @@ label:focus,
 .vehicle_documentHeader {
   margin-top: 80px;
 }
-.vehicle_document .card {
-  height: 230px;
-  border-radius: 10px;
-  margin-bottom: 50px;
+.vehicle_document .cert_card{
+  background-color: #424242;
+  min-height: 500px;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
 }
 .box {
   position: relative;

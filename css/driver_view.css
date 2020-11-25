@@ -121,7 +121,7 @@ p {
   }
   
   .driver_documentcard {
-    min-height: 250px;
+    min-height: 150px;
     height: auto;
     border-radius: 10px;
     margin-bottom: 50px;
@@ -167,9 +167,9 @@ p {
     padding: 10px 20px 0 20px;
     /* border-bottom: 1px solid white; */
   }
-  .driver_document .row .col-md-6 {
+  /* .driver_document .row .col-md-6 {
     border-bottom: 1px solid #999999;
-  }
+  } */
   .box::before {
     content: "";
     position: absolute;

@@ -108,69 +108,68 @@
       </nav>
       <div class="container">
         <div class="driver">
-        </div>
-        <div class="driver_header">
-          <h3>Drivers</h3>
-          <a class="btn button_add" href="add_driver_form.html"><i class="fa fa-plus" aria-hidden="true"></i> Add
-            Driver</a>
-        </div>
-        <hr style="background-color: #424242" />
-        <div class="row" id="driver_data">
+          <div class="driver_header">
+            <h3>Drivers</h3>
+            <a class="btn button_add" href="add_driver_form.html"><i class="fa fa-plus" aria-hidden="true"></i> Add
+              Driver</a>
+          </div>
+          <hr style="background-color: #424242" />
+          <div class="row" id="driver_data">
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <script>
-    var temp;
-    $(document).ready(function () {
-      var driver = fetch_data("driver");
-      console.log(driver.message);
-      if (driver.error == false) {
-        for (var i = 0; i < driver.message.data.length; i++) {
-          // console.log(driver.message[i].name);
-          temp = driver.message.data[i];
-          // console.log(temp);
-          $("#driver_data").append(
-            '<div class="col-md-4"><div class="card"><div class="driver_detail"><div class="driver_img"><img src="https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg" src="' +
-            temp.image +
-            '" alt=""></div><div class="driver_detail_box"><p class="driver_name">' +
-            temp.name +
-            '</p><p class="driver_number mt-3"><i class="fa fa-phone" aria-hidden="true"></i>' +
-            temp.phone_no1 +
-            '</p><p class="driver_address"><i class="fa fa-address-book" aria-hidden="true"></i>' +
-            temp.village +
-            ', <span>' +
-            temp.state +
-            '</span></p><p class="driver_age"><i class="fa fa-calendar-o" aria-hidden="true"></i>' +
-            temp.age +
-            '</p><a href="driver_view.html?id=' +
-            temp.id + '" class="btn">View</a></div></div></div></div>'
-          );
+    <script>
+      var temp;
+      $(document).ready(function () {
+        var driver = fetch_data("driver");
+        console.log(driver.message);
+        if (driver.error == false) {
+          for (var i = 0; i < driver.message.data.length; i++) {
+            // console.log(driver.message[i].name);
+            temp = driver.message.data[i];
+            // console.log(temp);
+            $("#driver_data").append(
+              '<div class="col-md-4"><div class="card"><div class="driver_detail"><div class="driver_img"><img src="https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg" src="' +
+              temp.image +
+              '" alt=""></div><div class="driver_detail_box"><p class="driver_name">' +
+              temp.name +
+              '</p><p class="driver_number mt-3"><i class="fa fa-phone" aria-hidden="true"></i>' +
+              temp.phone_no1 +
+              '</p><p class="driver_address"><i class="fa fa-address-book" aria-hidden="true"></i>' +
+              temp.village +
+              ', <span>' +
+              temp.state +
+              '</span></p><p class="driver_age"><i class="fa fa-calendar-o" aria-hidden="true"></i>' +
+              temp.age +
+              '</p><a href="driver_view.html?id=' +
+              temp.id + '" class="btn">View</a></div></div></div></div>'
+            );
+          }
         }
-      }
-      else {
-        for (var i = 0; i < driver.message.length; i++) {
-          console.log(driver.message[i]);
+        else {
+          for (var i = 0; i < driver.message.length; i++) {
+            console.log(driver.message[i]);
+          }
         }
-      }
-    });
-  </script>
-  <!-- Popper.JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-    crossorigin="anonymous"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-    crossorigin="anonymous"></script>
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $("#sidebarCollapse").on("click", function () {
-        $("#sidebar").toggleClass("active");
       });
-    });
-  </script>
+    </script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+      crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+      crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#sidebarCollapse").on("click", function () {
+          $("#sidebar").toggleClass("active");
+        });
+      });
+    </script>
 </body>
 
 </html>

@@ -4,7 +4,8 @@
     border-radius: 15px;
     width: 98%;
     position: relative;
-    margin-bottom: 150px;
+    margin-bottom: 70px;
+    margin-top: 50px;
     display: flex;
 
 }
@@ -116,3 +117,17 @@ box-shadow:  6px 6px 12px #373737,
   font-size: 28px;
   color: #272727;
 }
+.vehicle_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vehicle_header h3 {
+  /* display: flex; */
+  color: #fafafa;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+/* .vehicle_addbutton{
+  display: flex;
+} */
