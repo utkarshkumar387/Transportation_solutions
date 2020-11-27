@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Add vehicle</title>
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <!-- font-awesome icons cdn -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- external stylesheets -->
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
+  <link rel="stylesheet" type="text/css" href="css/add.css" />
+  <link rel="stylesheet" type="text/css" href="css/form.css" />
+  <!-- ajax jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- jquery -->
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+  <!-- external javascript -->
+  <script src="vehicle.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <!-- <button type="button" id="sidebarCollapse" class="btn btn_toggle">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </button>
+          <span>
+            <h3>Trucks</h3>
+          </span>
+          <strong>TOT</strong> -->
+      </div>
+      <ul class="list-unstyled components mt-4 mx-2">
+        <li class="active mt-1">
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <i class="fa fa-th-large" aria-hidden="true"></i>
+            Dashboard
+          </a>
+          <ul class="collapse list-unstyled" id="homeSubmenu">
+            <li>
+              <a href="vehicles.html">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                vehicles
+              </a>
+            </li>
+            <li>
+              <a href="drivers.html">
+                <i class="fa fa-id-card" aria-hidden="true"></i>
+                Drivers
+              </a>
+            </li>
+            <li>
+              <a href="inventory.html">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                Inventory
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+            Services
+          </a>
+          <a href="trip.html">
+            <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+            Trips
+          </a>
+          <a href="#">
+            <i class="fa fa-question mt-3" aria-hidden="true"></i>
+            Help
+          </a>
+          <a href="#">
+            <i class="fa fa-sign-out mt-3" aria-hidden="true"></i>
+            Log out
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Page Content  -->
+    <div id="content">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="dashHeader">
+          <span>
+            <button type="button" id="sidebarCollapse" class="btn btn_toggle">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+          </span>
+          <span>
+            <img src="images/truck.png" alt="" height="35" />
+          </span>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Page</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="addVehicleForm">
+          <form id="addVehicleForm" method="POST" enctype="multipart/form-data">
+            <div class="vehicle_row">
+              <div class="vehicle_col_1">
+                <div class="vehicle_upload upload">
+                  <div class="vehicle-edit edit">
+                    <input id="inpp" type="file" name="image" accept=".png, .jpg, .jpeg" />
+                    <label for="inpp"><i class="fa fa-plus" aria-hidden="true"></i></label>
+                  </div>
+                  <div class="vehicle-upload-preview upload-preview">
+                    <div id="vehicle_imagePreview" style="background-image: url(../images/truck.png)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name">Vehicle Name</label>
+                    <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp"
+                      placeholder="Enter vehicle name" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="vehicle_number">Vehicle number</label>
+                    <input type="text" class="form-control" id="vehicle_number" name="vehicle_number"
+                      placeholder="Enter vehicle number" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="company">vehicle Company</label>
+                <input type="text" class="form-control" id="company" name="company"
+                  placeholder="Enter vehicle company" />
+              </div>
+              <div class="form-group">
+                <label for="vehicle_category">Select vehicle category</label>
+                <select class="form-control" id="vehicle_category" name="vehicle_category">
+                </select>
+              </div>
+            </div>
+            <button onclick="send_vehicle_data()" type="button" class="btn mt-3">Next</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var temp;
+    var image64 = "";
+
+    $(document).ready(function () {
+      var data = fetch_data('vehicle_category');
+
+      if (data.error == false) {
+
+        for (var i = 0; i < data.message.data.length; i++) {
+          temp = data.message.data[i];
+          $('#vehicle_category').append('<option value="' + temp.id + '">' + temp.name + '</option>');
+          console.log('---------');
+        }
+
+      } else {
+
+        console.log(data);
+
+        for (var i = 0; i < data.message.length; i++) {
+          console.log(data.message[i]);
+        }
+
+      }
+
+    });
+
+
+    function send_vehicle_data() {
+      var data = add_data('vehicle', {
+        image: image64,
+        name: $('#name').val(),
+        vehicle_number: $('#vehicle_number').val(),
+        category: $('#vehicle_category').val(),
+        company: $('#company').val()
+      });
+
+      if (data.error == false) {
+        window.location.replace("views.html?id=" + data.message.id);
+      } else {
+        console.log(data.message);
+      }
+      // console.log(data);
+
+    }
+
+    $('#inpp').change(function () {
+      image64 = "";
+
+      if (this.files && this.files[0]) {
+
+        var FR = new FileReader();
+
+        FR.addEventListener("load", function (e) {
+          image64 = e.target.result;
+          // document.getElementById("img").src = e.target.result;
+          // document.getElementById("b64").innerHTML = e.target.result;
+        });
+
+        FR.readAsDataURL(this.files[0]);
+      }
+
+    });
+
+    function demo() {
+      window.location.replace("views.html?id="); // + data.message.id);
+    }
+  </script>
+  <!-- jQuery CDN - Slim version (=without AJAX) -->
+  <!-- <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script> -->
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
+      });
+    });
+  </script>
+</body>
+
+</html>

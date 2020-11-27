@@ -10,7 +10,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-  <link rel="stylesheet" type="text/css" href="css/vehicleInspect.css" />
+  <link rel="stylesheet" type="text/css" href="css/vehicle_view.css" />
   <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <link rel="stylesheet" type="text/css" href="css/inspectPopup.css" />
@@ -116,19 +116,18 @@
                   <form>
                     <div class="form-group">
                       <label for="edit_document_unique_id">Enter new unique ID</label>
-                      <input type="email" class="form-control" id="edit_document_unique_id" aria-describedby="emailHelp"
-                        >
+                      <input type="email" class="form-control" id="edit_document_unique_id"
+                        aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                       <label for="edit_document_start_date">Enter new start date
                       </label>
-                      <input type="text" class="form-control" id="edit_document_start_date"
-                        />
+                      <input type="text" class="form-control" id="edit_document_start_date" />
                     </div>
                     <div class="form-group">
                       <label for="edit_document_end_date">Enter new end date
                       </label>
-                      <input type="text" class="form-control" id="edit_document_end_date"/>
+                      <input type="text" class="form-control" id="edit_document_end_date" />
                     </div>
                     <div class="form-group">
                       <label for="edit_document_file">Select new doc
@@ -297,7 +296,7 @@
         <div class="vehicleInspectDetails">
           <div class="card data_card">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-5 col-12">
                 <div class="vehicleDetails">
                   <div class="cardImg">
                     <img id="vehicle_image" src="https://c1.staticflickr.com/3/2711/4350276437_60cafe56b9_b.jpg"
@@ -317,7 +316,7 @@
                   <div class="grid"></div>
                 </div>
               </div>
-              <div class="col-md-7">
+              <div class="col-md-7 col-12">
                 <!-- <button type="button" class="btn vehicleDataEdit"></button>
                     <button type="button" class="btn vehicleDataEdit"></button> -->
                 <div class="dropdown">
@@ -570,10 +569,10 @@
         temp_document_id = id;
         // console.log(id);
         // modify_document_by_id(temp_document_id);
-        $("#edit_document_unique_id").val($("#certificate_uniqueID_"+id).html());
-        $("#edit_document_start_date").val($("#certificate_startdate_"+id).html());
-        $("#edit_document_end_date").val($("#certificate_enddate_"+id).html());
-        $("edit_document_file").val($("#certificate_attachment_"+id).html());
+        $("#edit_document_unique_id").val($("#certificate_uniqueID_" + id).html());
+        $("#edit_document_start_date").val($("#certificate_startdate_" + id).html());
+        $("#edit_document_end_date").val($("#certificate_enddate_" + id).html());
+        $("edit_document_file").val($("#certificate_attachment_" + id).html());
         // $("#edit_document_button").val(id);
       }
       // ***********************************************************************************************************      

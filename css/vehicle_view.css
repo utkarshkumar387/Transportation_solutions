@@ -274,3 +274,8 @@ label:focus,
   display: inline-block;
 
 }
+@media only screen and (max-width:600px){
+  .card{
+    height: 80vh;
+  }
+}

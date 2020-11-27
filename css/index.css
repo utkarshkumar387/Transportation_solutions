@@ -8,7 +8,7 @@ body {
 }
 
 .vehicleTable {
-  padding: 0 50px 0 80px;
+  /* padding: 0 50px 0 80px; */
 
 }
 #addBtn_vid a {
@@ -90,5 +90,10 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0px);
+  }
+}
+@media only screen and (max-width:600px){
+  .vehicleTable{
+    padding: 0;
   }
 }

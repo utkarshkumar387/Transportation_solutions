@@ -16,3 +16,8 @@
     font-weight: 500;
     border-radius: 50px;
 }
+@media only screen and (max-width:600px){
+    .vehicle_row{
+        width: 24rem;
+    }
+}

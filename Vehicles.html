@@ -111,7 +111,7 @@
           <div class="vehicle_header">
             <h3>Vehicles</h3>
             <div class="vehicle_addbutton">
-              <a class="btn button_add" href="addVehicleForm.html"><i class="fa fa-plus" aria-hidden="true"></i> Add
+              <a class="btn button_add" href="add_vehicle_form.html"><i class="fa fa-plus" aria-hidden="true"></i> Add
                 vehicle</a>
             </div>
           </div>
@@ -134,15 +134,15 @@
           temp = vehicle.message.data[i];
           console.log(vehicle.message.data[i].image);
           $("#table_data").append(
-            ' <div class="col-md-6"><div class="card"><div class="row"><div class="col-md-4"><div class="cardImg"><img src="https://transportations.herokuapp.com' +
+            ' <div class="col-md-6 col-lg-6 col-12"><div class="card"><div class="row"><div class="col-md-4 col-lg-4 col-12"><div class="cardImg"><img src="https://transportations.herokuapp.com' +
             temp.image +
-            '"alt=""/></div></div><div class="col-md-8"><div class="vehicleCompany"><p>' +
+            '"alt=""/></div></div><div class="col-md-8 col-lg-8 col-12"><div class="vehicleCompany"><p>' +
             temp.company +
-            '</p></div><div class="col-md-9 vehicleDetails"><h5 class="mb-3" color>' +
+            '</p></div><div class="col-md-9 col-lg-9 vehicleDetails"><h5 class="mb-3" color>' +
             temp.name +
-            '</h5><div class="row vehicleCardFooter"><div class="col-md-10"><div class="vehiclePlate"><span class="vehiclePlateNumber">' +
+            '</h5><div class="row vehicleCardFooter"><div class="col-lg-10 col-md-12 col-8"><div class="vehiclePlate"><span class="vehiclePlateNumber">' +
             temp.vehicle_number +
-            '</span></div></div><div class="col-md-2"><a href="views.html?id=' +
+            '</span></div></div><div class="col-lg-2 col-4"><a href="vehicle_view.html?id=' +
             temp.id +
             '" class="btn">View</a></div></div><hr /></div></div></div></div></div>'
           );
