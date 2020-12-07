@@ -103,14 +103,17 @@ p {
   .vehicleCertificatestatus .cert .fa-check {
     color: green;
   }
+  .driver_documentdata{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    align-items: center;
+  }
   .driver_documentdata h3 {
     color: #fafad8;
-    display: flex;
-    justify-content: center;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 28px;
-    margin-top: 80px;
   }
   .driver_documentdata p {
     display: flex;
@@ -268,5 +271,11 @@ p {
   } 
   .driver_data p{
       color: #999999;
+  }
+  @media only screen and (max-width:600px){
+    .driver_imagecard{
+      box-shadow: none;
+      margin: 50px 10px 10px 10px;
+    }
   }
   

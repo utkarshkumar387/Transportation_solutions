@@ -52,8 +52,32 @@
 .inventory_scrapHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .inventory_buttons{
     display: flex;
     justify-content: space-between;
+}
+.inventory .form-control {
+  height: 55px;
+  border-radius: 15px;
+  background-color: #272727;
+  border: none;
+  /* box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5); */
+}
+.inventory .form-control:focus {
+  box-shadow: 0px 2px 8px 0px #fe9f00;
+  background-color: #424242;
+  color: white;
+}
+.inventory label {
+  color: #fafafa;
+}
+.inventory label input:focus {
+  border-color: black !important;
+}
+.inventory_tags{
+  position: absolute;
+  height: 80px;
+  width: 80px;
 }

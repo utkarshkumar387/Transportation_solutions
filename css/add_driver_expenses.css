@@ -1,0 +1,43 @@
+.card{
+    background-color: #424242;
+    min-height: 300px;
+    border-radius: 15px;
+    width: 98%;
+    position: relative;
+    margin-bottom: 70px;
+    margin-top: 50px;
+    display: flex;
+}
+.driverexpenses_header h4{
+    color: white;
+}
+.driverexpenses_header{
+    display: flex;
+    justify-content: space-between;
+}
+.expenses_row{
+    display: flex;
+    align-items: center;
+}
+.card_data{
+    padding: 20px;
+}
+.driverexpenses table{
+    margin: 15px;
+}
+.driver_expenses_buttons{
+    display: flex;
+    justify-content: flex-end;
+
+}
+.table {
+    background-color: #424242;
+    border-radius: 10px;
+    color: white;
+}
+.table-hover tbody tr:hover{
+    color: white;
+}
+.table td, .table th{
+    border: none;
+}

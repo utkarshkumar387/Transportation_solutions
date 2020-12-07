@@ -24,13 +24,10 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
       <div class="sidebar-header">
-        <!-- <button type="button" id="sidebarCollapse" class="btn btn_toggle">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-              </button>
-              <span>
-                <h3>Trucks</h3>
-              </span>
-              <strong>TOT</strong> -->
+        <span>
+          <h3>Trucks</h3>
+        </span>
+        <strong>TOT</strong>
       </div>
       <ul class="list-unstyled components mt-4 mx-2">
         <li class="active mt-1">
@@ -84,9 +81,9 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="dashHeader">
           <span>
-            <!-- <button type="button" id="sidebarCollapse" class="btn btn_toggle">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                  </button> -->
+            <button type="button" id="sidebarCollapse" class="btn btn_toggle">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
           </span>
           <span>
             <img src="images/truck.png" alt="" height="35" />
@@ -95,9 +92,9 @@
       </nav>
 
       <!-- popup for edit documents -->
-      <div class="modal fade bd-example-modal-xl" id="vehicleEditDoc" tabindex="-1" role="dialog"
+      <div class="modal fade bd-example-modal" id="vehicleEditDoc" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-dialog modal-dialog-centered modal" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">
@@ -108,35 +105,28 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <img class="editDocPopup" src="images/edit_doc.png" height="300" alt="" />
+              <form>
+                <div class="form-group row">
+                  <label for="edit_document_unique_id" class="col-md-4">New unique ID</label>
+                  <input type="text" class="form-control col-md-8" id="edit_document_unique_id"
+                    aria-describedby="emailHelp">
                 </div>
-                <div class="col-md-6 editDocModal">
-                  <form>
-                    <div class="form-group">
-                      <label for="edit_document_unique_id">Enter new unique ID</label>
-                      <input type="email" class="form-control" id="edit_document_unique_id"
-                        aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                      <label for="edit_document_start_date">Enter new start date
-                      </label>
-                      <input type="text" class="form-control" id="edit_document_start_date" />
-                    </div>
-                    <div class="form-group">
-                      <label for="edit_document_end_date">Enter new end date
-                      </label>
-                      <input type="text" class="form-control" id="edit_document_end_date" />
-                    </div>
-                    <div class="form-group">
-                      <label for="edit_document_file">Select new doc
-                      </label>
-                      <input type="file" class="form-control-file" id="edit_document_file" />
-                    </div>
-                  </form>
+                <div class="form-group row">
+                  <label for="edit_document_start_date" class="col-md-4">New start date
+                  </label>
+                  <input type="date" class="form-control col-md-8" id="edit_document_start_date" />
                 </div>
-              </div>
+                <div class="form-group row">
+                  <label for="edit_document_end_date" class="col-md-4">New end date
+                  </label>
+                  <input type="date" class="form-control col-md-8" id="edit_document_end_date" />
+                </div>
+                <div class="form-group row">
+                  <label for="edit_document_file" class="col-md-4">Select new doc
+                  </label>
+                  <input type="file" class="form-control-file col-md-8" id="edit_document_file" />
+                </div>
+              </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -149,9 +139,9 @@
       </div>
 
       <!-- popup for adding documents -->
-      <div class="modal fade bd-example-modal-xl" id="vehicleAddDoc" tabindex="-1" role="dialog"
+      <div class="modal fade bd-example-modal" id="vehicleAddDoc" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-dialog modal-dialog-centered modal" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">
@@ -162,50 +152,43 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <img class="addDocPopup" src="images/add_doc.png" height="300" alt="" />
+              <form>
+                <div class="form-group row">
+                  <label class="col-md-4" for="add_document_unique_id">Enter unique ID</label>
+                  <input type="email" class="form-control col-md-8" id="add_document_unique_id"
+                    aria-describedby="emailHelp" placeholder="Enter new unique ID" />
                 </div>
-                <div class="col-md-6 addDocModal">
-                  <form>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Enter new unique ID</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Enter new unique ID" />
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Enter new start date
-                      </label>
-                      <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Enter new end date
-                      </label>
-                      <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                    </div>
-                    <div class="form-group">
-                      <label for="add_document_type">Select document</label>
-                      <select id="add_document_type" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlFile1">Select new doc
-                      </label>
-                      <input type="file" class="form-control-file" id="exampleFormControlFile1" />
-                    </div>
-                  </form>
+                <div class="form-group row">
+                  <label class="col-md-4" for="add_document_start_date">Enter start date
+                  </label>
+                  <input type="date" class="form-control col-md-8" id="add_document_start_date"
+                    placeholder="Password" />
                 </div>
-              </div>
+                <div class="form-group row">
+                  <label class="col-md-4" for="add_document_end_date">Enter end date
+                  </label>
+                  <input type="date" class="form-control col-md-8" id="add_document_end_date" placeholder="Password" />
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4" for="add_document_type">Select document type</label>
+                  <select id="add_document_type" class="form-control col-md-8"></select>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4" for="exampleFormControlFile1">Select document
+                  </label>
+                  <input type="file" class="form-control-file col-md-8" id="exampleFormControlFile1" />
+                </div>
+              </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Submit</button>
+              <button type="button" onclick="add_new_document()" class="btn btn-primary">Submit</button>
             </div>
           </div>
         </div>
       </div>
-
       <!-- delete vehicle popup -->
       <div class="modal fade" id="vehicleDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
@@ -226,7 +209,7 @@
               <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 No
               </button>
-              <button onclick="delete_data_by_id()" type="button" class="btn btn-primary">Yes</button>
+              <button onclick="delete_vehicle_popup()" type="button" class="btn btn-primary">Yes</button>
             </div>
           </div>
         </div>
@@ -295,6 +278,27 @@
       <div class="container">
         <div class="vehicleInspectDetails">
           <div class="card data_card">
+            <div class="dropdown">
+              <button class="btn threeDots" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <input type="checkbox" class="custom" />
+                <div class="dots">
+                  <span class="dot one"></span>
+                  <span class="dot two"></span>
+                  <span class="dot three"></span>
+                </div>
+                <!-- <hr> -->
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a type="button" class="btn dropdown-item editDetail" data-toggle="modal"
+                  data-target="#vehicleEditDetail">
+                  Edit details
+                </a>
+                <a type="button" class="btn dropdown-item editDetail" data-toggle="modal" data-target="#vehicleDelete">
+                  Delete Vehicle
+                </a>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-5 col-12">
                 <div class="vehicleDetails">
@@ -319,28 +323,6 @@
               <div class="col-md-7 col-12">
                 <!-- <button type="button" class="btn vehicleDataEdit"></button>
                     <button type="button" class="btn vehicleDataEdit"></button> -->
-                <div class="dropdown">
-                  <button class="btn threeDots" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <input type="checkbox" class="custom" />
-                    <div class="dots">
-                      <span class="dot one"></span>
-                      <span class="dot two"></span>
-                      <span class="dot three"></span>
-                    </div>
-                    <!-- <hr> -->
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a type="button" class="btn dropdown-item editDetail" data-toggle="modal"
-                      data-target="#vehicleEditDetail">
-                      Edit details
-                    </a>
-                    <a type="button" class="btn dropdown-item editDetail" data-toggle="modal"
-                      data-target="#vehicleDelete">
-                      Delete Vehicle
-                    </a>
-                  </div>
-                </div>
               </div>
               <div class="vehicleCompany">
                 <p id="vehicle_company"></p>
@@ -393,7 +375,7 @@
           for (var i = 0; i < vehicle_data.message.documents.length; i++) {
             $("#certificates").append(`
           <div class="col-md-4">
-              <div class="card">
+              <div class="card mb-3">
                 <div class="box">
                   <p>${vehicle_data.message.documents[i].document_type}</p>
                   <a type="button" class="btn editDoc" onclick = "modify_document(${vehicle_data.message.documents[i].id})" data-toggle="modal" data-target="#vehicleEditDoc">
@@ -404,26 +386,26 @@
                   </a>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-lg-6 col-md-6 col-6">
                     <p>Unique ID</p>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-lg-6 col-md-6 col-6">
                     <p id="certificate_uniqueID_${vehicle_data.message.documents[i].id}"> ${vehicle_data.message.documents[i].unique_id}</p>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-lg-6 col-md-6 col-6">
                     <p>Start Date</p>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-lg-6 col-md-6 col-6">
                     <p id="certificate_startdate_${vehicle_data.message.documents[i].id}"> ${vehicle_data.message.documents[i].start_date}</p>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
+                <div class="row mb-3">
+                  <div class="col-lg-6 col-md-6 col-6">
                     <p>End Date</p>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-lg-6 col-md-6 col-6">
                     <p id="certificate_enddate_${vehicle_data.message.documents[i].id}"> ${vehicle_data.message.documents[i].end_date}</p>
                   </div>
                 </div>
@@ -485,6 +467,7 @@
           $("#edit_vehicle_name").val(vehicle_data.message.name);
           $("#edit_vehicle_number").val(vehicle_data.message.vehicle_number);
           $("#edit_vehicle_company").val(vehicle_data.message.company);
+
         } else {
           window.location.replace("vehicles.html");
         }
@@ -560,9 +543,19 @@
         }
       });
       // *********************************************delete data by id*********************************************
-      // function delete_data_by_id() {
-
-      // }
+      function delete_vehicle_popup() {
+        // id = card_id;
+        console.log(id);
+        data = {
+          id: id,
+        }
+        var response = delete_data_by_id('vehicle', id, data);
+        if (response.error == false) {
+          window.location.replace("vehicles.html")
+        } else {
+          console.log(data.message);
+        }
+      }
       // ***********************************************************************************************************      
       // *********************************************modify document***********************************************
       function modify_document(id) {
@@ -570,7 +563,7 @@
         // console.log(id);
         // modify_document_by_id(temp_document_id);
         $("#edit_document_unique_id").val($("#certificate_uniqueID_" + id).html());
-        $("#edit_document_start_date").val($("#certificate_startdate_" + id).html());
+        $("#edit_document_start_date").val("2020 - 12 - 12");
         $("#edit_document_end_date").val($("#certificate_enddate_" + id).html());
         $("edit_document_file").val($("#certificate_attachment_" + id).html());
         // $("#edit_document_button").val(id);
@@ -579,22 +572,28 @@
       // ******************************************modify document by id********************************************
       function modify_document_by_id() {
         id = temp_document_id;
+        // var start_date = $("#edit_document_start_date").val();
+        // var start_newdate = start_date.split("-").reverse().join("-");
+        // var end_date = $("#edit_document_end_date").val();
+        // var end_newdate = end_date.split("-").reverse().join("-");
         data = {
           unique_id: $("#edit_document_unique_id").val(),
           start_date: $("#edit_document_start_date").val(),
           end_date: $("#edit_document_end_date").val(),
-          attachment: $("#edit_document_file").val(),
+          attachment: file64,
         };
-        // console.log(file64);
+        console.log(data);
         if (file64 != "") {
           data["attachment"] = file64;
         }
         // console.log(data);
         var response = modify_data_by_id("vehicle_document", id, data);
-        console.log(response.error);
+        // console.log(response.error);
 
         if (response.error == false) {
           window.location.reload();
+        } else {
+          console.log(response.message);
         }
       }
       // ***********************************************************************************************************     
@@ -604,7 +603,7 @@
           unique_id: $("#add_document_unique_id").val(),
           vehicle_id: id,
           document_type: $("#add_document_type").val(),
-          attachment: file64,
+          attachment: null,
           start_date: $("#add_document_start_date").val(),
           end_date: $("#add_document_end_date").val(),
         };
@@ -615,6 +614,8 @@
 
         if (response.error == false) {
           window.location.reload();
+        } else {
+          console.log(response.error);
         }
       }
       // ***********************************************************************************************************

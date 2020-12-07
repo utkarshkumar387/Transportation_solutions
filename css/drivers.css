@@ -1,6 +1,6 @@
 .card {
   background-color: #424242;
-  height: 470px;
+  min-height: 470px;
   border: 2px solid #909090;
   border-radius: 15px;
   width: 100%;
@@ -38,7 +38,7 @@
   height: 312px;
   width: 80%;
   display: flex;
-  padding: 90px 45px 0 45px;
+  padding: 90px 20px 0 20px;
   flex-direction: column;
 }
 .driver_detail_box p {
@@ -60,14 +60,14 @@
 .card a{
   color: #FFFFF1 !important;
   display: flex;
+  justify-content: center;
   height: 40px;
   border-radius: 15px;
-  padding: 6px 0 0 25px;
+  /* padding: 6px 0 0 25px; */
   border: none;
   font-weight: 500;
-  background: #272727;
-box-shadow:  5px 5px 10px #202020, 
-             -5px -5px 10px #2e2e2e;
+  background: #424242;
+  box-shadow: 6px 6px 12px #373737, -6px -6px 12px #4d4d4d;
 }
 .card a:hover {
   background: #272727;
@@ -82,4 +82,8 @@ box-shadow: inset 5px 5px 10px #202020,
 .driver_header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+@media only screen and (max-width:600px){
+  
 }

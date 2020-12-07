@@ -1,0 +1,19 @@
+.add_tripform{
+    /* width: 50%; */
+    display: flex;
+    justify-content: center;
+}
+#add_tripform{
+    width: 50%;
+}
+.trip_form h4{
+    color: white;
+}
+.add_tripform .btn{
+    float: right;
+    padding: 10px 30px;
+    background-color: #F56A00;
+    color: white;
+    font-weight: 500;
+    border-radius: 50px;
+}

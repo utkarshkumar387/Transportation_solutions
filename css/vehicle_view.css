@@ -275,7 +275,20 @@ label:focus,
 
 }
 @media only screen and (max-width:600px){
-  .card{
+  .data_card{
     height: 80vh;
+  }
+  .cardImg{
+    box-shadow: 0 0 0 0;
+    margin: 50px 10px 10px 10px;
+  }
+  .grid{
+    margin: 0 0 10px 25px;
+    width: 87.5vw;
+    height: 60px;
+
+  }
+  .vehicleDetailsInner{
+    padding: 0 40px 55px 0;
   }
 }
