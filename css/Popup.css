@@ -3,10 +3,14 @@
 }
 .form-control {
   height: 55px;
+  /* width: 70%; */
   border-radius: 15px;
-  background-color: #181818;
+  background-color: #f5f5f5;
   border: none;
   /* box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5); */
+}
+.form-control:hover{
+  background-color: #fafafa;
 }
 .editDocPopup {
   margin: 80px 10px 20px 10px;
@@ -18,10 +22,10 @@
   border-top: 1px solid #999999;
 }
  .modal-dialog .modal-content {
-    background-color: #272727;
+    background-color: #ffffff;
   }
   #vehicleEditDoc .modal-dialog .modal-content .modal-title {
-    color: white;
+    color: #272727;
   }
   .vehicleDataEdit {
     float: right;
@@ -40,7 +44,7 @@
     padding: 30px 60px 30px 60px;
   }
   #vehicleAddDoc h5 {
-      color: white;
+      color: #272727;
   }
 
   #vehicleAddDoc .addDocPopup {
@@ -60,6 +64,7 @@
   }
   .cardImgEdit .cardImgEditType input {
     display: none;
+    background-color: #E1E3E6 !important;
   }
   .cardImgEdit .cardImgEditType label {
     display: inline-block;
@@ -68,7 +73,7 @@
     height: 50px;
     margin-bottom: 0;
     border-radius: 100%;
-    background: #ffffff;
+    background: #272727;
     border: 1px solid transparent;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
     cursor: pointer;

@@ -2,9 +2,6 @@
     display: flex;
     justify-content: center;
 }
-/* .addVehicleForm input[type=text]{
-    width: 500px;
-} */
 .vehicle_row {
     width: 30rem;
 }
@@ -53,14 +50,8 @@
     padding: 0px;
   }
   
-  input#number {
-    text-align: center;
-    border: none;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    margin: 0px;
-    width: 40px;
-    height: 40px;
+  .part_quantity {
+      width: 30px;
   }
   
   input[type=number]::-webkit-inner-spin-button,

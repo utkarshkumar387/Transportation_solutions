@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="css/vehicle_view.css" />
   <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
-  <link rel="stylesheet" type="text/css" href="css/inspectPopup.css" />
+  <link rel="stylesheet" type="text/css" href="css/Popup.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="vehicle.js"></script>
   <title>View</title>
@@ -25,7 +25,7 @@
     <nav id="sidebar">
       <div class="sidebar-header">
         <span>
-          <h3>Trucks</h3>
+          <img src="images/truck.png" alt="" height="35" />
         </span>
         <strong>TOT</strong>
       </div>
@@ -85,9 +85,6 @@
               <i class="fa fa-bars" aria-hidden="true"></i>
             </button>
           </span>
-          <span>
-            <img src="images/truck.png" alt="" height="35" />
-          </span>
         </div>
       </nav>
 
@@ -124,7 +121,8 @@
                 <div class="form-group row">
                   <label for="edit_document_file" class="col-md-4">Select new doc
                   </label>
-                  <input type="file" class="form-control-file col-md-8" id="edit_document_file" />
+                  <input type="file" onchange="attachmentData(this)" class="form-control-file col-md-8"
+                    id="edit_document_file" />
                 </div>
               </form>
             </div>
@@ -176,7 +174,8 @@
                 <div class="form-group row">
                   <label class="col-md-4" for="exampleFormControlFile1">Select document
                   </label>
-                  <input type="file" class="form-control-file col-md-8" id="exampleFormControlFile1" />
+                  <input type="file" onchange="attachmentData(this)" class="form-control-file col-md-8"
+                    id="exampleFormControlFile1" />
                 </div>
               </form>
             </div>
@@ -487,8 +486,6 @@
           FR.addEventListener("load", function (e) {
             image64 = e.target.result;
             $("#edit_vehicle_image").attr("src", e.target.result);
-            // document.getElementById("img").src = e.target.result;
-            // document.getElementById("b64").innerHTML = e.target.result;
           });
 
           FR.readAsDataURL(this.files[0]);
@@ -503,48 +500,14 @@
           company: $("#edit_vehicle_company").val(),
           category: $("#edit_vehicle_category").val(),
         };
-        if (image64 != "") {
-          data["image"] = image64;
-        }
         var response = modify_data_by_id("vehicle", id, data);
 
         if (response.error == false) {
           window.location.reload();
         }
       }
-
-      $("#edit_document_file").change(function () {
-        file64 = "";
-
-        if (this.files && this.files[0]) {
-          var FR = new FileReader();
-
-          FR.addEventListener("load", function (e) {
-            file64 = e.target.result;
-            console.log(file64);
-          });
-
-          FR.readAsDataURL(this.files[0]);
-        }
-      });
-
-      $("#add_document_file").change(function () {
-        file64 = "";
-
-        if (this.files && this.files[0]) {
-          var FR = new FileReader();
-
-          FR.addEventListener("load", function (e) {
-            file64 = e.target.result;
-            console.log(file64);
-          });
-
-          FR.readAsDataURL(this.files[0]);
-        }
-      });
       // *********************************************delete data by id*********************************************
       function delete_vehicle_popup() {
-        // id = card_id;
         console.log(id);
         data = {
           id: id,
@@ -560,13 +523,10 @@
       // *********************************************modify document***********************************************
       function modify_document(id) {
         temp_document_id = id;
-        // console.log(id);
-        // modify_document_by_id(temp_document_id);
         $("#edit_document_unique_id").val($("#certificate_uniqueID_" + id).html());
-        $("#edit_document_start_date").val("2020 - 12 - 12");
+        $("#edit_document_start_date").val($("#certificate_startdate_" + id).html());
         $("#edit_document_end_date").val($("#certificate_enddate_" + id).html());
         $("edit_document_file").val($("#certificate_attachment_" + id).html());
-        // $("#edit_document_button").val(id);
       }
       // ***********************************************************************************************************      
       // ******************************************modify document by id********************************************
@@ -582,7 +542,6 @@
           end_date: $("#edit_document_end_date").val(),
           attachment: file64,
         };
-        console.log(data);
         if (file64 != "") {
           data["attachment"] = file64;
         }
@@ -603,11 +562,13 @@
           unique_id: $("#add_document_unique_id").val(),
           vehicle_id: id,
           document_type: $("#add_document_type").val(),
-          attachment: null,
+          attachment: file64,
           start_date: $("#add_document_start_date").val(),
           end_date: $("#add_document_end_date").val(),
         };
-
+        if (file64 != "") {
+          data["attachment"] = file64;
+        }
         var response = add_data("vehicle_document", data);
 
         console.log(response);
@@ -616,6 +577,18 @@
           window.location.reload();
         } else {
           console.log(response.error);
+        }
+      }
+      function attachmentData(input) {
+        if (input.files && input.files[0]) {
+          var FR = new FileReader();
+
+          FR.addEventListener("load", function (e) {
+            file64 = e.target.result;
+            console.log(file64);
+          });
+
+          FR.readAsDataURL(input.files[0]);
         }
       }
       // ***********************************************************************************************************

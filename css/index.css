@@ -80,6 +80,9 @@ body {
   animation: moveInBottom 0.3s ease-out;
   animation-fill-mode: backwards;
 }
+.sidebar-header span img {
+  position: fixed;
+}
 
 @keyframes moveInBottom {
   0% {

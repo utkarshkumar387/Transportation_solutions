@@ -1,6 +1,7 @@
 /* dashboard sidebar start */
 .navbar{
     background: #272727 !important;
+    /* position: sticky; */
     /* width: 100%; */
     /* z-index: 999; */
   }
@@ -84,7 +85,7 @@ span {
 }
 
 #sidebar.active ul li a {
-    padding: 20px 0;
+    padding: 13px 0;
     text-align: center;
     font-size: 0.85em;
 }
@@ -120,8 +121,13 @@ span {
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
+    padding: 12px 0;
     border-bottom: 1px solid #47748b;
+    position: fixed;
+    width: 15%;
+}
+#sidebar.active ul.components{
+    width: 5%;
 }
 
 #sidebar ul li a {
