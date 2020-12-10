@@ -38,7 +38,7 @@
           </a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li>
-              <a href="vehicles.html">
+              <a href="index.html">
                 <i class="fa fa-truck" aria-hidden="true"></i>
                 vehicles
               </a>
@@ -105,9 +105,9 @@
         </div>
       </nav>
       <div class="container">
-        <div class="modal fade bd-example-modal-xl" id="vehicleEditDoc" tabindex="-1" role="dialog"
+        <div class="modal fade bd-example-modal" id="vehicleEditDoc" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+          <div class="modal-dialog modal-dialog-centered modal" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">
@@ -209,9 +209,9 @@
         </div>
 
         <!-- edit driver details -->
-        <div class="modal fade bd-example-modal-lg" id="vehicleEditDetail" tabindex="-1" role="dialog"
+        <div class="modal fade bd-example-modal" id="vehicleEditDetail" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+          <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">
@@ -321,7 +321,7 @@
           <div class="driver_document">
             <div class="driver_documentheader">
               <div class="driver_documentdata">
-                <h3>Vehicle Documents</h3>
+                <h3>Driver Documents</h3>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#driverAddDoc">Add documents</button>
               </div>
             </div>
@@ -369,41 +369,37 @@
         if (driver_data.error == false) {
           $('#driver').append(`
           <div class="card">
-              <div class="row">
-                <div class="dropdown">
-                    <button class="btn threeDots" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      <input type="checkbox" class="custom" />
-                      <div class="dots">
-                        <span class="dot one"></span>
-                        <span class="dot two"></span>
-                        <span class="dot three"></span>
-                      </div>
-                      <!-- <hr> -->
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a type="button" class="btn dropdown-item editDoc" data-toggle="modal"
-                        data-target="#vehicleAddDoc">
-                        Add document
-                      </a>
-                      <a type="button" class="btn dropdown-item editDetail" data-toggle="modal"
-                        data-target="#vehicleEditDetail">
-                        Edit details
-                      </a>
-                      <a type="button" class="btn dropdown-item editDetail" data-toggle="modal"
-                        data-target="#vehicleDelete">
-                        Delete Vehicle
-                      </a>
-                    </div>
+            <div class="dropdown">
+                <button class="btn threeDots" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <input type="checkbox" class="custom" />
+                  <div class="dots">
+                    <span class="dot one"></span>
+                    <span class="dot two"></span>
+                    <span class="dot three"></span>
                   </div>
-                <div class="col-lg-5 col-md-5 col-12">
-                  <div class="driver_details">
-                    <div class="driver_imagecard">
-                      <img id="driver_image" src="${driver_data.message.image}"
-                        alt="" />
-                    </div>
+                  <!-- <hr> -->
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a type="button" class="btn dropdown-item editDetail" data-toggle="modal"
+                    data-target="#vehicleEditDetail">
+                    Edit details
+                  </a>
+                  <a type="button" class="btn dropdown-item editDetail" data-toggle="modal"
+                    data-target="#vehicleDelete">
+                    Delete Vehicle
+                  </a>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-lg-5 col-md-5 col-12">
+                <div class="driver_details">
+                  <div class="driver_imagecard">
+                    <img id="driver_image" src="${driver_data.message.image}"
+                      alt="" />
                   </div>
                 </div>
+              </div>
                 <div class="col-lg-7 col-md-7 col-12">
                   <div class="driver_data">
                     <h4>Driver details</h4>
@@ -475,6 +471,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           `)
           // ********************************************************************************************

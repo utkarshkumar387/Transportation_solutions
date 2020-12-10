@@ -37,7 +37,7 @@
           </a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li>
-              <a href="vehicles.html">
+              <a href="index.html">
                 <i class="fa fa-truck" aria-hidden="true"></i>
                 vehicles
               </a>
@@ -468,7 +468,7 @@
           $("#edit_vehicle_company").val(vehicle_data.message.company);
 
         } else {
-          window.location.replace("vehicles.html");
+          window.location.replace("index.html");
         }
       });
       // if(vehicle_document.error == false){
@@ -514,7 +514,7 @@
         }
         var response = delete_data_by_id('vehicle', id, data);
         if (response.error == false) {
-          window.location.replace("vehicles.html")
+          window.location.replace("index.html")
         } else {
           console.log(data.message);
         }
