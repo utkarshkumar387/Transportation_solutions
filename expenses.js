@@ -21,33 +21,18 @@ function call_ajax(type, url, data, status) {
 
     return { "error": error, "message": message };
 }
-
-function inventory_data(sub_url, type, data, status) {
-    if (sub_url != 'inventory') {
-        sub_url = 'inventory/' + sub_url;
+function expenses_data(sub_url, type, data, status) {
+    if (sub_url != 'trip') {
+        sub_url = 'trip/' + sub_url;
     }
+
     var type = type;
     var url = main_url + sub_url + '/';
     var data = data;
     var status = status;
     return call_ajax(type, url, data, status);
 }
-function inventory_data_delete(sub_url, type, id, status) {
-    if (sub_url != 'inventory') {
-        sub_url = 'inventory/' + sub_url;
-    }
-    var type = type;
-    var url = main_url + sub_url + "/" + id + "/";
-    var data = data;
-    var status = status;
-    return call_ajax(type, url, data, status);
-}
+
 function fetch_data(sub_url) {
-    return inventory_data(sub_url, "get", {}, 200);
-}
-function add_data(sub_url, data) {
-    return inventory_data(sub_url, "post", data, 201);
-}
-function delete_item_by_id(sub_url, id) {
-    return inventory_data_delete(sub_url, "delete", id, 204);
+    return expenses_data(sub_url, "get", {}, 200);
 }

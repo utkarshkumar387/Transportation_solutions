@@ -5,7 +5,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
   <title>Add vehicle</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
@@ -55,7 +54,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="services.html">
             <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
             Services
           </a>
@@ -103,9 +102,9 @@
       </nav>
       <div class="container">
         <div class="driver">
-          <div class="driver_header">
+          <div class="driver_header top_header">
             <h3>Drivers</h3>
-            <a class="btn button_add" href="add_driver_form.html"><i class="fa fa-plus" aria-hidden="true"></i>
+            <a class="button_add" href="add_driver_form.html"><i class="fa fa-plus" aria-hidden="true"></i>
               Driver</a>
           </div>
           <hr style="background-color: #424242" />
@@ -115,15 +114,17 @@
       </div>
     </div>
     <script>
+      //store driver data
       var temp;
       $(document).ready(function () {
+        //fetch driver data
         var driver = fetch_data("driver");
         console.log(driver.message);
         if (driver.error == false) {
           for (var i = 0; i < driver.message.data.length; i++) {
-            // console.log(driver.message[i].name);
             temp = driver.message.data[i];
             console.log(temp);
+            //append all drivers
             $("#driver_data").append(
               '<div class="col-md-4"><div class="card"><div class="driver_detail"><div class="driver_img"><img src="https://transportations.herokuapp.com' +
               temp.image +

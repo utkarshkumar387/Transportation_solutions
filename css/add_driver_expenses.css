@@ -8,10 +8,19 @@
     margin-top: 50px;
     display: flex;
 }
-.driverexpenses_header h4{
+.driver_expenses_header h4{
     color: white;
+    text-transform: uppercase;
 }
-.driverexpenses_header{
+.driver_expenses_header{
+    display: flex;
+    justify-content: space-between;
+}
+.vehicle_expenses_header h4{
+    color: white;
+    text-transform: uppercase;
+}
+.vehicle_expenses_header{
     display: flex;
     justify-content: space-between;
 }
@@ -22,22 +31,46 @@
 .card_data{
     padding: 20px;
 }
-.driverexpenses table{
+.driver_expenses table{
     margin: 15px;
 }
 .driver_expenses_buttons{
-    display: flex;
-    justify-content: flex-end;
+    background-color: #272727;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: block;
+    padding: 1%;
 
+}
+.driver_expenses_buttons button{
+    float: right;
 }
 .table {
     background-color: #424242;
     border-radius: 10px;
     color: white;
+    margin-bottom: 10%;
 }
 .table-hover tbody tr:hover{
     color: white;
 }
-.table td, .table th{
+tbody td:nth-child(3){
+    width: 20%;
+}
+.driver_expenses tr {
+    color: #909090;
+}
+.vehicle_expenses tr {
+    color: #909090;
+}
+.table thead th {
     border: none;
+}
+#driverexpenses_form{
+    padding: 0 1%;
+}
+#tbody tr td:nth-child(3){
+    width: 15%;
 }

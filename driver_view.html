@@ -14,7 +14,7 @@
   <link rel="stylesheet" type="text/css" href="css/add.css" />
   <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
   <link rel="stylesheet" type="text/css" href="css/driver_view.css" />
-  <link rel="stylesheet" type="text/css" href="css/inspectPopup.css" />
+  <link rel="stylesheet" type="text/css" href="css/Popup.css" />
   <!-- <link rel="stylesheet" type="text/css" href="css/addVehicleForm.css" /> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="driver.js"></script>
@@ -58,7 +58,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="services.html">
             <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
             Services
           </a>
@@ -87,7 +87,7 @@
             </button>
           </span>
         </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Page</a>
@@ -102,9 +102,10 @@
               <a class="nav-link" href="#">Page</a>
             </li>
           </ul>
-        </div>
+        </div> -->
       </nav>
       <div class="container">
+        <!-- document update popup -->
         <div class="modal fade bd-example-modal" id="vehicleEditDoc" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal" role="document">
@@ -119,15 +120,16 @@
               </div>
               <div class="modal-body">
                 <form>
-                  <div class="form-group">
-                    <label for="driver_edit_document_uniqueid">Enter new unique ID</label>
-                    <input type="email" class="form-control" id="driver_edit_document_uniqueid"
+                  <div class="form-group row">
+                    <label class="col-md-5" for="driver_edit_document_uniqueid">Enter new unique ID</label>
+                    <input type="email" class="form-control col-md-7" id="driver_edit_document_uniqueid"
                       aria-describedby="emailHelp" placeholder="Enter new unique ID" />
                   </div>
-                  <div class="form-group">
-                    <label for="edit_document_file">Select new doc
+                  <div class="form-group row">
+                    <label class="col-md-5" for="edit_document_file">Select new doc
                     </label>
-                    <input type="file" class="form-control-file" id="edit_document_file" />
+                    <input type="file" onchange="attachmentData(this)" class="form-control-file col-md-7"
+                      id="edit_document_file" />
                   </div>
                 </form>
               </div>
@@ -163,12 +165,14 @@
                   </div>
                   <div class="form-group row">
                     <label class="col-md-5" for="add_document_type">Select document type</label>
-                    <select class="form-control col-md-7" id="add_document_type" class="form-control"></select>
+                    <select class="form-control col-md-7" onblur="selected_document_type_id(this)"
+                      id="add_document_type" class="form-control"></select>
                   </div>
                   <div class="form-group row">
                     <label class="col-md-5" for="certificate_document">Select document
                     </label>
-                    <input type="file" class="form-control-file col-md-7" id="certificate_document" />
+                    <input type="file" onchange="attachmentData(this)" class="form-control-file col-md-7"
+                      id="certificate_document" />
                   </div>
                 </form>
               </div>
@@ -222,16 +226,13 @@
                 </button>
               </div>
               <div class="modal-body">
-                <!-- <div class="vehicle_row"> -->
-                <div class="vehicle_col_1">
-                  <div class="vehicle_upload upload">
-                    <div class="vehicle-edit edit">
-                      <input id="inpp" type="file" name="image" accept=".png, .jpg, .jpeg" />
-                      <label for="inpp"><i class="fa fa-plus" aria-hidden="true"></i></label>
-                    </div>
-                    <div class="vehicle-upload-preview upload-preview">
-                      <div id="vehicle_imagePreview" style="background-image: url(../images/truck.png)"></div>
-                    </div>
+                <div class="avatar-upload">
+                  <div class="avatar-edit">
+                    <input type='file' onchange="imageURL(this)" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                    <label for="imageUpload"></label>
+                  </div>
+                  <div class="avatar-preview" style="border: 6px solid #fefefe;">
+                    <img id="imagePreview" />
                   </div>
                 </div>
                 <div class="row">
@@ -239,13 +240,13 @@
                     <div class="form-group">
                       <label for="driver_name">Full Name</label>
                       <input type="text" class="form-control" id="driver_name" name="driver_name"
-                        aria-describedby="nameHelp" placeholder="Jhon doe" />
+                        aria-describedby="nameHelp" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="driver_age">Age</label>
-                      <input type="text" class="form-control" id="driver_age" name="driver_age" placeholder="25" />
+                      <input type="text" class="form-control" id="driver_age" name="driver_age" />
                     </div>
                   </div>
                 </div>
@@ -303,7 +304,6 @@
                   <input type="text" class="form-control" id="driver_salary" name="driver_salary"
                     placeholder="20,000" />
                 </div>
-                <!-- </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -314,22 +314,22 @@
             </div>
           </div>
         </div>
-
-        <div class="container">
-          <div class="driver" id="driver">
+        <!-- <div class="container"> -->
+        <div class="driver" id="driver">
+        </div>
+        <div class="driver_document">
+          <div class="driver_documentheader">
+            <div class="driver_documentdata">
+              <h3>Driver Documents</h3>
+              <button class="button_add" data-toggle="modal" data-target="#driverAddDoc"><i class="fa fa-plus"
+                  aria-hidden="true"></i> Documents</button>
+            </div>
           </div>
-          <div class="driver_document">
-            <div class="driver_documentheader">
-              <div class="driver_documentdata">
-                <h3>Driver Documents</h3>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#driverAddDoc">Add documents</button>
-              </div>
-            </div>
-            <hr style="background-color: #424242" />
-            <div id="certificates" class="row">
-            </div>
+          <hr style="background-color: #424242" />
+          <div id="certificates" class="row">
           </div>
         </div>
+        <!-- </div> -->
       </div>
     </div>
     <!-- Popper.JS -->
@@ -340,32 +340,42 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
       integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
       crossorigin="anonymous"></script>
-
     <script type="text/javascript">
-      var driver_data;                                             //variable to get data by id
-      var driver_document_data;                                    //variable to get driver document
-      var temp_id;                                                 //variable to store each certificate id
+      //variable to get data by id
+      var driver_data;
+      //variable to get driver document
+      var driver_document_data;
+      //variable to store each certificate id
+      var temp_id;
+      //variable to store driver id
       var card_id;
+      //variable to store image path
+      var image64;
+      //variable to store file path
+      var file64;
+      //var to store each document id
+      var doc_id;
       $(document).ready(function () {
-        id = window.location.href.split("=")[1];                   //get id from here
+        //get id from here
+        id = window.location.href.split("=")[1];
         card_id = id;
-        driver_data = get_data_by_id("driver", id);                //pass sub url and id to driver.js to get data by id
-        driver_document_data = fetch_data("driver_document");      //pass sub url to fetch driver document
+        //pass sub url and id to driver.js to get data by id
+        driver_data = get_data_by_id("driver", id);
+        //pass sub url to fetch driver document
+        driver_document_data = fetch_data("driver_document");
+        //pass sub url to fetch driver document type
         var driver_document_type = fetch_data("driver_document_type");
-        // console.log(driver_document_type.message.data);
-        // console.log(driver_data.message.length);
+        //appending document type in add document popup
         if (driver_document_type.error == false) {
-          console.log(driver_document_type.message.data.length);
           for (var i = 0; i < driver_document_type.message.data.length; i++) {
-            // console.log(driver_document_type.message.data[i].title);
             $('#add_document_type').append(
-              `<option>${driver_document_type.message.data[i].title}</option>`
+              `<option id="document_type_id_${driver_document_type.message.data[i].id}">${driver_document_type.message.data[i].title}</option>`
             )
           }
         } else {
           console.log(driver_document_type.message);
         }
-        // *********************************driver data card start*************************************
+        //appending driver data on card
         if (driver_data.error == false) {
           $('#driver').append(`
           <div class="card">
@@ -474,9 +484,7 @@
             </div>
             </div>
           `)
-          // ********************************************************************************************
-          // *********************************driver certificates start**********************************
-          // console.log(driver_document_data.message.data[0].driver_id);
+          //*appending driver certificates
           for (var i = 0; i < driver_data.message.documents.length; i++) {
             $("#certificates").append(`
               <div class="col-md-4">
@@ -502,22 +510,46 @@
               </div>
               `)
           }
-          // ********************************************************************************************
+          //appended driver details in driver edit modal*
+          $("#imagePreview").attr("src", driver_data.message.image);
+          $("#driver_name").val(driver_data.message.name);
+          $("#driver_age").val(driver_data.message.age);
+          $("#driver_number_1").val(driver_data.message.phone_no1);
+          $("#driver_number_2").val(driver_data.message.phone_no2);
+          $("#driver_address_1").val(driver_data.message.address_line1);
+          $("#driver_address_2").val(driver_data.message.address_line2);
+          $("#driver_village").val(driver_data.message.village)
+          $("#driver_district").val(driver_data.message.district);
+          $("#driver_state").val(driver_data.message.state);
+          $("#driver_salary").val(driver_data.message.salary);
+        } else {
+          console.log(driver_data.message.error)
         }
-      })
-      // *****************************modify document of driver popup********************************
-      function certificate_edit_popup(id) {                                     //data will be shown in popup
+        //collapsing sidebar
+        $("#sidebarCollapse").on("click", function () {
+          $("#sidebar").toggleClass("active");
+        });
+      });
+      //display data on certificate update modal
+      function certificate_edit_popup(id) {
+        //get id of each certificate
         temp_id = id;
         $("#driver_edit_document_uniqueid").val($("#driver_certificate_uniqueid_" + id).html());
       }
-      function modify_certificate_data() {                                     //data will be edited with the help of popup
+      //modify certificate
+      function modify_certificate_data() {
+        //store id of each certificate
         id = temp_id;
-        console.log(id);
         data = {
           unique_id: $("#driver_edit_document_uniqueid").val(),
+          attachment: file64,
         }
-        var response = modify_data_by_id("driver_document", id, data);       //data will be sent to driver.js for modification
-
+        //check whether file is existing or not
+        if (file64 != "") {
+          data["attachment"] = file64;
+        }
+        //data will be sent to driver.js for modification
+        var response = modify_data_by_id("driver_document", id, data);
         if (response.error == false) {
           window.location.reload();
         } else {
@@ -525,43 +557,98 @@
         }
 
       }
-      //*********************************************************************************************
+      function attachmentData(input) {
+        if (input.files && input.files[0]) {
+          var FR = new FileReader();
+
+          FR.addEventListener("load", function (e) {
+            file64 = e.target.result;
+            console.log(file64);
+          });
+
+          FR.readAsDataURL(input.files[0]);
+        }
+      }
+      //add certificates
       function add_certificate() {
+        //id of card is stored
         id = card_id;
         data = {
           unique_id: $("#certificate_id").val(),
-          document_type: $("#add_document_type").val(),
-          attachment: "/media/driver_documents/2fb54ae0-140a-4084-b4bd-43e629bcd649_LZse3FD.pdf",
+          document_type: doc_id,
+          attachment: file64,
           driver_id: id
         }
-        console.log(data);
+        //check whether file is existing or not
+        if (file64 != "") {
+          data["attachment"] = file64;
+        }
+        //send data of certificate to driver.js
         var response = add_data("driver_document", data);
         if (response.error == false) {
           window.location.reload();
         } else {
-          console.log(response.error);
+          console.log(response.message);
         }
       }
-      //*******************************************delete driver*************************************
+      //get id of selected document type option
+      function selected_document_type_id(select) {
+        //get the value of the selected option
+        var document_type_name = $("#add_document_type").val();
+        //get the id sttribute of the selected option
+        var document_type_id = select[select.selectedIndex].id;
+        //extract id from the selected attribute
+        doc_id = document_type_id.slice(17);
+      }
+      //delete driver
       function delete_driver_popup() {
+        //store the driver id
         id = card_id;
-        console.log(id);
-        data = {
-          id: id,
-        }
-        var response = delete_driver_by_id('driver', id, data);
+        //send data and id to delete driver to driver.js
+        var response = delete_driver_by_id('driver', id);
         if (response.error == false) {
           window.location.replace("drivers.html")
         } else {
-          console.log(data.message);
+          console.log(response.message);
         }
       }
-      // sidebar collapse
-      $(document).ready(function () {
-        $("#sidebarCollapse").on("click", function () {
-          $("#sidebar").toggleClass("active");
-        });
-      });
+      //Edit driver details
+      function change_vehicle_data() {
+        data = {
+          image: image64,
+          name: $("#driver_name").val(),
+          age: $("#driver_age").val(),
+          phone_no1: $("#driver_number_1").val(),
+          phone_no2: $("#driver_number_2").val(),
+          address_line1: $("#driver_address_1").val(),
+          address_line2: $("#driver_address_2").val(),
+          village: $("#driver_village").val(),
+          district: $("#driver_district").val(),
+          state: $("#driver_state").val(),
+          salary: $("#driver_salary").val(),
+        }
+        //send url,id and data to driver.js
+        var response = modify_data_by_id("driver", id, data)
+        if (response.error == false) {
+          window.location.reload();
+        } else {
+          console.log(response.message);
+        }
+      }
+      //convert image to bse64 and show preview
+      function imageURL(input) {
+        image64 = "";
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            image64 = e.target.result;
+            $('#imagePreview').attr('src', e.target.result);
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
     </script>
 </body>
 

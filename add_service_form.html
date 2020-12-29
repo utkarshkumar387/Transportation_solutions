@@ -24,7 +24,7 @@
     <!-- jquery -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
     <!-- external javascript -->
-    <script src="trip.js"></script>
+    <script src="services.js"></script>
 </head>
 <style>
     #trip_next {
@@ -105,7 +105,7 @@
                         <img src="images/truck.png" alt="" height="35" />
                     </span>
                 </div>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Page</a>
@@ -120,42 +120,37 @@
                             <a class="nav-link" href="#">Page</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
             </nav>
             <div class="container-fluid">
                 <div class="trip_form">
                     <div class="add_tripform">
                         <form id="add_tripform" method="POST" enctype="multipart/form-data">
-                            <h4>Fill trip details</h4>
+                            <h4>Fill servicing details</h4>
                             <hr style="background-color: #424242" />
-                            <div class="trip_row mt-5">
+                            <div class="service_row mt-5">
                                 <div class="form-group">
-                                    <label for="driver_name">Select driver</label>
-                                    <select class="form-control" id="driver_name" onblur="selected_driverid(this)">
+                                    <label for="service_vehicle_number">Select vehicle</label>
+                                    <select class="form-control" onblur="select_vehicle(this)"
+                                        id="service_vehicle_number">
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="vehicle_number">Select vehicle</label>
-                                    <select class="form-control" onblur="check_vehicledata(this)" id="vehicle_number">
-                                    </select>
+                                    <label for="service_invoice_id">Invoice ID</label>
+                                    <input type="text" class="form-control" id="service_invoice_id"
+                                        name="service_invoice_id" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="trip_departure">Departure location</label>
-                                    <select class="form-control" onblur="select_departure(this)" id="trip_departure">
-                                    </select>
+                                    <label for="service_date">Servicicng date</label>
+                                    <input type="date" class="form-control" id="service_date" name="service_date" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="trip_destination">Destination location</label>
-                                    <select class="form-control" onblur="select_destination(this)"
-                                        id="trip_destination">
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="trip_date">Journey date</label>
-                                    <input type="date" class="form-control" id="trip_date" name="trip_date" />
+                                    <label for="servcie_attachment">Attachment</label>
+                                    <input type="file" onchange="attachmentData(this)" class="form-control"
+                                        id="servcie_attachment" name="servcie_attachment" />
                                 </div>
                             </div>
-                            <button onclick="send_trip_data()" type="button" class="btn mt-3 mb-5">Submit</button>
+                            <button onclick="send_service_data()" type="button" class="btn mt-3 mb-5">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -163,140 +158,59 @@
         </div>
     </div>
     <script type="text/javascript">
-        //to get all data temporarily of vehicle
-        var temp_vehicle;
-        //to get all data temporarily of driver
-        var temp_driver;
-        //to store id temporarily   
-        var temp_id;
-        //to store driver id 
-        var driver_id;
-        //to store vehicle id
         var vehicle_id;
-        //to store departure selected location id
-        var dep_id;
-        //to store destination selected location id
-        var dest_id;
-        //action taken when jumped on the page
+        var file64;
         $(document).ready(function () {
-            //fetch driver data
-            var driver = get_data("driver");
-            //fetch vehicle data
-            var vehicle = get_data("vehicle");
-            //fetch cities data
-            var city = fetch_data("cities");
-            //storing driver data
-            temp_driver = driver.message.data;
-            //storing vehicle data
-            temp_vehicle = vehicle.message.data;
-            //storing cities data
-            var temp_cities = city.message.data;
-            //appended all drivers from database
-            if (driver.error == false) {
-                for (var i = 0; i < temp_driver.length; i++) {
-                    var temp_driver_data = temp_driver[i]
-                    $("#driver_name").append(
-                        `<option id="driver_name_${temp_driver_data.id}">${temp_driver_data.name}</option>`
-                    )
-                }
-            }
-            //appended all vehicle number from database
+            var vehicle = get_vehicle("vehicle");
+            // console.log(vehicle);
             if (vehicle.error == false) {
-                for (var i = 0; i < temp_vehicle.length; i++) {
-                    temp_vehicle_data = temp_vehicle[i];
-                    $("#vehicle_number").append(
-                        `<option id="vehicle_number_${temp_vehicle_data.id}">${temp_vehicle_data.vehicle_number}</option>`
-                    )
-                }
-            }
-            //appended all cities from database
-            if (city.error == false) {
-                for (var i = 0; i < temp_cities.length; i++) {
-                    var temp_cities_data = temp_cities[i];
-                    console.log(temp_cities_data);
-                    $("#trip_departure").append(
-                        `<option id="departure_city_${temp_cities_data.id}">${temp_cities_data.name}</option>`
-                    )
-                    $("#trip_destination").append(
-                        `<option id="destination_city_${temp_cities_data.id}">${temp_cities_data.name}</option>`
-                    )
+                for (var i = 0; i < vehicle.message.data.length; i++) {
+                    // console.log(vehicle.message.data[i]);
+                    var temp_vehicle = vehicle.message.data[i];
+                    $("#service_vehicle_number").append(`
+                    <option id="vehicle_number_${temp_vehicle.id}">${temp_vehicle.vehicle_number}</option>
+                    `)
                 }
             } else {
-                console.log(city.error);
+                console.log(vehicle.message);
             }
             //collapsing of sidebar
             $("#sidebarCollapse").on("click", function () {
                 $("#sidebar").toggleClass("active");
             });
         });
-        //Extracting driver id of selected option
-        function selected_driverid(s) {
-            //getting driver name of selected option
-            var driver_name = $("#driver_name").val();
-            //getting id attribute of selected driver
-            var driver_name_id = s[s.selectedIndex].id;
-            //getting id of selected driver
-            driver_id = driver_name_id.slice(12);
-        }
-        //verifying driver with name and mobile number
-        // function check_driverdata() {
-        //     var driver_data = temp_driver;
-        //     var temp_driverid = driver_id;
-        //     var driver_number = $("#driver_number").val();
-        //     console.log(driver_data.length);
-        //     for (var i = 0; i < driver_data.length; i++) {
-        //         if (driver_data[i].id == temp_driverid) {
-        //             var temp_driver_number1 = driver_data[i].phone_no1;
-        //             var temp_driver_number2 = driver_data[i].phone_no2;
-        //             if (driver_number == temp_driver_number1 || driver_number == temp_driver_number2) {
-        //                 console.log("approved");
-        //                 // var driver_data_by_id = 
-        //             } else {
-        //                 alert("Not in record");
-        //             }
-        //         }
-        //     }
-        // }
-        //Extracting vehicle id of selected option
-        function check_vehicledata(s) {
-            //getting selected vehicle number
-            var vehicle_number = $("#vehicle_number").val();
-            //getting id attribute of selected option
+        function select_vehicle(s) {
+            var vehicle_number = $("#service_vehicle_number").val();
             var vehicle_number_id = s[s.selectedIndex].id;
-            //getting id of selected option
             vehicle_id = vehicle_number_id.slice(15);
+            // console.log(vehicle_id);
         }
-        //Extracting destination id of selected option
-        function select_destination(s) {
-            //getting selected destination
-            var destination = $("#trip_destination").val();
-            //getting id attribute of selected option
-            var destination_id = s[s.selectedIndex].id;
-            //getting id of selected option
-            dest_id = destination_id.slice(17);
+        function attachmentData(input) {
+            if (input.files && input.files[0]) {
+                var FR = new FileReader();
+
+                FR.addEventListener("load", function (e) {
+                    file64 = e.target.result;
+                    console.log(file64);
+                });
+
+                FR.readAsDataURL(input.files[0]);
+            }
         }
-        //Extracting departure id of selected option
-        function select_departure(s) {
-            //getting selected departure
-            var departure = $("#trip_departure").val();
-            //getting id attribute of selected option
-            var departure_id = s[s.selectedIndex].id;
-            //getting id of selected option
-            dep_id = departure_id.slice(15);
-        }
-        //sending post request to add trip
-        function send_trip_data() {
+        function send_service_data() {
             var data = {
-                date: $("#trip_date").val(),
                 vehicle_id: vehicle_id,
-                driver_id: driver_id,
-                from_place: dep_id,
-                to_place: dest_id,
-            };
-            //sending url to trip.js
-            var response = add_data("trip", data);
+                invoice_id: $("#service_invoice_id").val(),
+                date: $("#service_date").val(),
+                attachment: file64,
+            }
+            if (file64 != "") {
+                data["attachment"] = file64;
+            }
+            console.log(data);
+            var response = post_data("service", data);
             if (response.error == false) {
-                window.location.replace(`add_driver_expenses.html?id=${response.message.id}`);
+                window.location.reload()
             } else {
                 console.log(response.message);
             }

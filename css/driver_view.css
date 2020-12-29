@@ -129,59 +129,10 @@ p {
     border-radius: 10px;
     margin-bottom: 50px;
   }
-  .box {
-    position: relative;
-    width: auto;
-    margin-left: -20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px 0 10px 30px;
-    line-height: 40px;
-    background-color: #dc1b20;
-    color: #000;
-    display: flex;
-    align-items: center;
-  }
-  .box a {
-    position: absolute;
-    /* margin-left: 70%; */
-    border-radius: 50%;
-    border: none;
-    background: #dc1b20;
-    box-shadow: 4px 4px 6px #bb171b, -4px -4px 6px#ff2025;
-  }
-  .box .viewDoc {
-    margin-left: 64%;
-  }
-  .box .editDoc {
-    margin-left: 78%;
-  }
-  .box a:focus {
-    outline: none !important;
-    border: none;
-  }
-  .box a:active {
-    box-shadow: inset 6px 6px 12px #b7161b, inset -6px -6px 12px #ff2025;
-  }
-  .box p {
-    color: white;
-  }
   .driver_document .row {
     padding: 10px 20px 0 20px;
     /* border-bottom: 1px solid white; */
   }
-  /* .driver_document .row .col-md-6 {
-    border-bottom: 1px solid #999999;
-  } */
-  .box::before {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    border-bottom: 25px solid transparent;
-    border-right: 20px solid #be0c04;
-  }
-  
   .vehicleCompany p {
     position: absolute;
     color: #272727;
@@ -192,68 +143,6 @@ p {
     font-weight: 800;
     margin-right: 10px;
     /* transform: rotate(-90deg); */
-  }
-  .docAdd p {
-    display: flex;
-    text-align: center;
-    padding: 20px;
-  }
-  .custom {
-    position: absolute;
-    opacity: 0;
-    margin: 0;
-    width: 70%;
-    height: 70%;
-    z-index: 1;
-    cursor: pointer;
-  }
-  
-  .dots {
-    position: relative;
-    top: -8px;
-    display: flex;
-    width: 45px;
-    justify-content: space-between;
-    cursor: pointer;
-  }
-  
-  .dots .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #272727;
-  }
-  
-  .dots.one {
-    position: absolute;
-    left: 0;
-    top: 0px;
-  }
-  
-  .dots.two {
-    position: absolute;
-    left: 8px;
-    top: 0;
-    width: 16px;
-    height: 16px;
-    box-sizing: border-box;
-    background-color: #272727;
-    transform-origin: center;
-    border: 3px solid #272727;
-    opacity: 1;
-  }
-  
-  .dots.three {
-    position: absolute;
-    left: 16px;
-    top: 0;
-  }
-  .threeDots {
-    position: absolute;
-    right: 0;
-    top: 20px;
-    display: inline-block;
-  
   }
   .driver_data {
       padding: 40px;

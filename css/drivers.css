@@ -75,16 +75,3 @@
 box-shadow: inset 5px 5px 10px #202020, 
             inset -5px -5px 10px #2e2e2e;
 }
-.driver_header h3 {
-  color: #fafafa;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.driver_header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-@media only screen and (max-width:600px){
-  
-}

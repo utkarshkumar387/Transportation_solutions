@@ -9,71 +9,41 @@
     margin-bottom: 70px;
     display: flex;
   }
-  .trip_from {
+  .service_date {
     border: 1px solid #909090;
     margin: 10px 0 0 40px;
     border-radius: 12px 0 0 12px;
     height: 120px;
     padding: 20px;
   }
-  .trip_from strong {
-      font-size: 20px;
+  .service_date strong {
+      font-size: 25px;
       text-transform: uppercase;
       color: #FAFAFA;
   }
-  .trip_from span {
+  .service_date span {
       display: block;
       color: #909090; 
   }
   .col-md-4, .col-md-1, .col-md-3, .col-md-2{
       padding: 0;
   }
-  .trip_to {
+  .service_invoice {
       margin: 10px 0 40px 0;
       border: 1px solid #909090;
       height: 120px;
       padding: 20px;
   }
-  .trip_to span {
+  .service_invoice span {
       display: block;
       color: #909090;
   }
-  .trip_to strong {
+  .service_invoice strong {
       font-size: 20px;
       text-transform: uppercase;
       color: #FAFAFA;
   }
-  .trip_date {
-    margin: 10px 0 40px 0;
-    border: 1px solid #909090;
-    height: 120px;
-    padding: 20px;
-}
-.trip_date>span {
-    display: block;
-    color: #909090;
-}
-.trip_date strong {
-    font-size: 20px;
-    text-transform: uppercase;
-    color: #FAFAFA;
-}
-.trip_with {
-    margin: 10px 0 40px 0;
-    border: 1px solid #909090;
-    height: 120px;
-    padding: 20px;
-}
-.trip_with span {
-    display: block;
-    color: #909090;
-}
-.trip_with strong {
-    font-size: 20px;
-    text-transform: uppercase;
-    color: #FAFAFA;
-}
-  .trip_by {
+.service_vehicle {
         border: 1px solid #909090;
         margin: 10px 40px 0 0;
         border-radius: 0 12px 12px 0;
@@ -82,34 +52,34 @@
         /* padding: 10px 0 0 10px; */
     
   }
-  .trip_by span{
+  .service_vehicle span{
     display: block;
   }
-  .trip_by span:nth-child(2) {
+  .service_vehicle span:nth-child(2) {
       font-size: 20px;
   }
-  .trip_by strong {
+  .service_vehicle strong {
       font-size: 20px;
   }
-  .trip_sr {
+  .service_sr {
     margin: 28px 0 0 40px;
     font-size: 20px;
   }
-  .trip_buttons {
+  .service_buttons {
     display: flex;
     justify-content: flex-end;
     margin: 10px 25px 0 0;
   }
-  .trip_buttons a{
+  .service_buttons a{
       margin: 5px;
   }
-  .trip_sr span{
+  .service_sr span{
     color: #FAFAFA;
   }
-  .trip_by b{
+  .service_vehicle b{
       color: #909090;
   }
-  .trip_by span:nth-child(2){
+  .service_vehicle span:nth-child(2){
       color: #FAFAFA;
   }
   .card a{
@@ -130,22 +100,38 @@ box-shadow:  5px 5px 10px #353535,
 box-shadow: inset 5px 5px 10px #353535, 
             inset -5px -5px 10px #4f4f4f;
   }
-  .trip_header h3 {
+  .service_header h3 {
     color: #fafafa;
     text-transform: uppercase;
     font-weight: 700;
   }
-  .trip_header {
+  .service_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  /* .inventory_buttons{
-      display: flex;
-      justify-content: space-between;
-  } */
-  .trip_top {
+  .service_top {
       display: flex;
       justify-content: space-between;
   }
-  
+  .vehiclePlate {
+    display: inline-flex;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    background-color: #ffce34;
+    position: relative;
+    color: #000;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    text-shadow: 0 0 12px #000;
+    box-shadow: 0 1px 8px #181818;
+  }
+  .vehiclePlate span{
+      color: #000;
+  }
+  .vehiclePlateNumber {
+    padding: 4px 6px 4px 6px;
+    box-shadow: inset 0 0 2px #000000;
+    color: #000;
+  }

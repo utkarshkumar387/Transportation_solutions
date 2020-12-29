@@ -57,7 +57,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="services.html">
             <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
             Services
           </a>
@@ -151,7 +151,7 @@
             </div>
             <div class="modal-body">
               <form>
-                <div class="form-group row">
+                <div class="form-group row ">
                   <label class="col-md-4" for="add_document_unique_id">Enter unique ID</label>
                   <input type="email" class="form-control col-md-8" id="add_document_unique_id"
                     aria-describedby="emailHelp" placeholder="Enter new unique ID" />
@@ -232,10 +232,12 @@
                 <div class="col-md-6">
                   <div class="cardImgEdit">
                     <div class="cardImgEditType">
-                      <input type="file" id="inpp" name="image" accept=".png, .jpg, .jpeg" />
-                      <label for="inpp"><i class="fa fa-plus" aria-hidden="true"></i></label>
+                      <input type='file' onchange="imageURL(this)" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                      <label for="imageUpload"></label>
                     </div>
-                    <img id="edit_vehicle_image" class="cardImgEditPreview" src="images/vehicle_add.png">
+                    <div class="avatar-preview">
+                      <img id="edit_vehicle_image" class="cardImgEditPreview" />
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-6 editDocModal">
@@ -302,8 +304,7 @@
               <div class="col-md-5 col-12">
                 <div class="vehicleDetails">
                   <div class="cardImg">
-                    <img id="vehicle_image" src="https://c1.staticflickr.com/3/2711/4350276437_60cafe56b9_b.jpg"
-                      alt="" />
+                    <img id="vehicle_image" alt="" />
                   </div>
                   <div class="vehicleDetailsInner">
                     <h4 class="mb-3" style="color: white" id="vehicle_name"></h4>
@@ -332,7 +333,8 @@
         <div class="vehicle_document">
           <div class="vehicle_documentHeader">
             <h3>Vehicle Documents</h3>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#vehicleAddDoc">Add Documents</button>
+            <button class="button_add" data-toggle="modal" data-target="#vehicleAddDoc"><i class="fa fa-plus"
+                aria-hidden="true"></i> Documents</button>
           </div>
           <hr style="background-color: #424242" />
           <div id="certificates" class="row">
@@ -347,31 +349,74 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"></script>
     <script type="text/javascript">
+      //get data of vehicle from api
       var vehicle_data;
+      //gat category of vehicle from api
       var vehicle_category_data;
+      //get document type of certificates from api
       var vehicle_document_type_data;
-      var category_name;
-      var category_id;
-      var vehicle_document;
+      //     var category_name;
+      //     var category_id;
+      //     var vehicle_document;
+      //get all documents from api
       var all_documents = {};
+      //store data to send for post request
       var data;
+      //store id of vehicle
       var id;
-      var doc_id;
+      //store image location
       var image64;
+      //store attachment location
       var file64;
-      var all_vehicle_document = {};
+      //store individual document id
       var temp_document_id;
+
       $(document).ready(function () {
         id = window.location.href.split("=")[1];
         vehicle_data = get_data_by_id("vehicle", id);
         vehicle_category_data = fetch_data("vehicle_category");
         vehicle_document_type_data = fetch_data("vehicle_document_type");
-        vehicle_document = get_data_by_id("vehicle_document", id);
 
         // console.log(file64);
         if (vehicle_data.error == false) {
           // ***************************************appended certificates******************************************
           for (var i = 0; i < vehicle_data.message.documents.length; i++) {
+            //start date
+            var start_date = vehicle_data.message.documents[i].start_date.split("-");
+            var start_date_month = start_date[1];
+            var start_date_day = start_date[2];
+            var start_date_year = start_date[0];
+            var start_date_list = [];
+            var start_date_string = start_date_month.toString();
+            for (var j = 0, len = start_date_string.length; j < len; j += 1) {
+              start_date_list.push(+start_date_string.charAt(j));
+            }
+            if (start_date_list[0] == "0") {
+              start_date_month = start_date_list[1];
+            } else {
+              start_date_month = start_date[1];
+            }
+            var start_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            var start_month_name = start_month[start_date_month - 1];
+            console.log(start_month_name);
+
+            //end date
+            var end_date = vehicle_data.message.documents[i].end_date.split("-");
+            var end_date_month = end_date[1];
+            var end_date_day = end_date[2];
+            var end_date_year = end_date[0];
+            var end_date_list = [];
+            var end_date_string = end_date_month.toString();
+            for (var k = 0, len = end_date_string.length; k < len; k += 1) {
+              end_date_list.push(+end_date_string.charAt(k));
+            }
+            if (end_date_list[0] == "0") {
+              end_date_month = end_date_list[1];
+            } else {
+              end_date_month = end_date[1];
+            }
+            var end_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            var end_month_name = end_month[end_date_month - 1];
             $("#certificates").append(`
           <div class="col-md-4">
               <div class="card mb-3">
@@ -397,7 +442,7 @@
                     <p>Start Date</p>
                   </div>
                   <div class="col-lg-6 col-md-6 col-6">
-                    <p id="certificate_startdate_${vehicle_data.message.documents[i].id}"> ${vehicle_data.message.documents[i].start_date}</p>
+                    <p class="${vehicle_data.message.documents[i].start_date}" id="certificate_startdate_${vehicle_data.message.documents[i].id}">${start_date_day} ${start_month_name} ${start_date_year}</p>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -405,7 +450,7 @@
                     <p>End Date</p>
                   </div>
                   <div class="col-lg-6 col-md-6 col-6">
-                    <p id="certificate_enddate_${vehicle_data.message.documents[i].id}"> ${vehicle_data.message.documents[i].end_date}</p>
+                    <p class="${vehicle_data.message.documents[i].end_date}" id="certificate_enddate_${vehicle_data.message.documents[i].id}">${end_date_day} ${end_month_name} ${end_date_year}</p>
                   </div>
                 </div>
               </div>
@@ -415,22 +460,9 @@
           // ******************************************************************************************************
           // **********************************appended vehicle category in form***********************************
           for (var i = 0; i < vehicle_category_data.message.data.length; i++) {
-            if (
-              vehicle_category_data.message.data[i].id ==
-              vehicle_data.message.category
-            ) {
-              category_id = vehicle_category_data.message.data[i].id;
-              category_name = vehicle_category_data.message.data[i].name;
+            {
               $("#edit_vehicle_category").append(
-                '<option selected value="' +
-                vehicle_category_data.message.data[i].id +
-                '" >' +
-                vehicle_category_data.message.data[i].name +
-                "</option>"
-              );
-            } else {
-              $("#edit_vehicle_category").append(
-                '<option selected value="' +
+                '<option value="' +
                 vehicle_category_data.message.data[i].id +
                 '" >' +
                 vehicle_category_data.message.data[i].name +
@@ -460,7 +492,7 @@
           $("#vehicle_name").text(vehicle_data.message.name);
           $("#vehicle_number").text(vehicle_data.message.vehicle_number);
           $("#vehicle_company").text(vehicle_data.message.company);
-          $("#vehicle_category").text(category_name);
+          // $("#vehicle_category").text(category_name);
           // **************************************appending data to edit popup***********************************
           $("#edit_vehicle_image").attr("src", vehicle_data.message.image);
           $("#edit_vehicle_name").val(vehicle_data.message.name);
@@ -474,49 +506,44 @@
       // if(vehicle_document.error == false){
       //     console.log(vehicle_document.message);
       //   }
-
-
-
-      $("#inpp").change(function () {
-        image64 = "";
-
-        if (this.files && this.files[0]) {
-          var FR = new FileReader();
-
-          FR.addEventListener("load", function (e) {
-            image64 = e.target.result;
-            $("#edit_vehicle_image").attr("src", e.target.result);
-          });
-
-          FR.readAsDataURL(this.files[0]);
-        }
-      });
       // *************************************change vehicle data*************************************************
       function change_vehicle_data() {
-        console.log(image64);
         data = {
+          image: image64,
           name: $("#edit_vehicle_name").val(),
           vehicle_number: $("#edit_vehicle_number").val(),
           company: $("#edit_vehicle_company").val(),
           category: $("#edit_vehicle_category").val(),
         };
+        console.log(data);
         var response = modify_data_by_id("vehicle", id, data);
 
         if (response.error == false) {
+          console.log(response.message)
           window.location.reload();
+        }
+      }
+      function imageURL(input) {
+        image64 = "";
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            image64 = e.target.result;
+            $('#edit_vehicle_image').attr('src', e.target.result);
+            $('#edit_vehicle_image').hide();
+            $('#edit_vehicle_image').fadeIn(650);
+          }
+          reader.readAsDataURL(input.files[0]);
         }
       }
       // *********************************************delete data by id*********************************************
       function delete_vehicle_popup() {
         console.log(id);
-        data = {
-          id: id,
-        }
-        var response = delete_data_by_id('vehicle', id, data);
+        var response = delete_data_by_id('vehicle', id);
         if (response.error == false) {
           window.location.replace("index.html")
         } else {
-          console.log(data.message);
+          console.log(response.message);
         }
       }
       // ***********************************************************************************************************      
@@ -524,18 +551,15 @@
       function modify_document(id) {
         temp_document_id = id;
         $("#edit_document_unique_id").val($("#certificate_uniqueID_" + id).html());
-        $("#edit_document_start_date").val($("#certificate_startdate_" + id).html());
-        $("#edit_document_end_date").val($("#certificate_enddate_" + id).html());
-        $("edit_document_file").val($("#certificate_attachment_" + id).html());
+        $("#edit_document_start_date").val($("#certificate_startdate_" + id).attr("class"));
+        $("#edit_document_end_date").val($("#certificate_enddate_" + id).attr("class"));
+        $("#edit_document_file").val($("#certificate_attachment_" + id).html());
       }
       // ***********************************************************************************************************      
       // ******************************************modify document by id********************************************
       function modify_document_by_id() {
         id = temp_document_id;
-        // var start_date = $("#edit_document_start_date").val();
-        // var start_newdate = start_date.split("-").reverse().join("-");
-        // var end_date = $("#edit_document_end_date").val();
-        // var end_newdate = end_date.split("-").reverse().join("-");
+        console.log(id);
         data = {
           unique_id: $("#edit_document_unique_id").val(),
           start_date: $("#edit_document_start_date").val(),
@@ -545,7 +569,7 @@
         if (file64 != "") {
           data["attachment"] = file64;
         }
-        // console.log(data);
+        console.log(data);
         var response = modify_data_by_id("vehicle_document", id, data);
         // console.log(response.error);
 

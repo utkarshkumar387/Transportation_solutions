@@ -65,7 +65,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="services.html">
                         <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
                         Services
                     </a>
@@ -169,14 +169,17 @@
         </div>
     </div>
     <script>
-        //**********************************action taken when jumped on the page********************************
+        //action taken when jumped on the page
         $(document).ready(function () {
+            //fetching quantity types from api
             var quantity_type = fetch_data("quantity_type");
+            //fetching inventory category from the api
             var inventory_category = fetch_data("inventory_category");
-            //********************************appending quantity type in option*********************************
+            //appending quantity type in option
             if (quantity_type.error == false) {
                 var temp_quantity_type = quantity_type.message.data;
                 for (var i = 0; i < temp_quantity_type.length; i++) {
+                    //get id of quantity types
                     quantity_type_id = temp_quantity_type[i].id
                     $("#quantity_type").append(
                         `<option id="quantity_type_${temp_quantity_type[i].id}">${temp_quantity_type[i].title}</option>`
@@ -188,7 +191,7 @@
                     console.log(quantity_type.message[i]);
                 }
             }
-            //******************************appending inventory category in option******************************
+            //appending inventory category in option
             if (inventory_category.error == false) {
                 var temp_inventory_category = inventory_category.message.data;
                 for (var i = 0; i < temp_inventory_category.length; i++) {
@@ -202,29 +205,48 @@
                     console.log(inventory_category.message[i]);
                 }
             }
+            //collapsing of sidebar
+            $("#sidebarCollapse").on("click", function () {
+                $("#sidebar").toggleClass("active");
+            });
         });
-        //*******************************************************************************************************
+        //function to increase the value
         function increaseValue() {
+            //parses string to integer from input field
             var value = parseInt(document.getElementById('part_quantity').value, 10);
+            //tests the value whether number is legal or not
             value = isNaN(value) ? 0 : value;
+            //value increment
             value++;
+            //update the value
             document.getElementById('part_quantity').value = value;
         }
-
+        //function to decrease the value
         function decreaseValue() {
+            //parses string to integer from input field
             var value = parseInt(document.getElementById('part_quantity').value, 10);
+            //tests the value whether number is legal or not
             value = isNaN(value) ? 0 : value;
+            //check whether number is negative or not
             value < 1 ? value = 1 : '';
+            //decrement value
             value--;
+            //update the value
             document.getElementById('part_quantity').value = value;
         }
+        //function to add part by sending post request to api
         function add_part() {
-            var q_id = $("#quantity_type").find('option:selected').attr('id');
-            var i_id = $("#part_category").find('option:selected').attr('id');
-            category_id = i_id.slice(19);
-            quantity_id = q_id.slice(14);
+            //select id attribute of quantity type
+            var quantity_attr_id = $("#quantity_type").find('option:selected').attr('id');
+            //select id attribute of category
+            var category_attr_id = $("#part_category").find('option:selected').attr('id');
+            //get id through selected category
+            category_id = category_attr_id_id.slice(19);
+            //get id through selected quantity type
+            quantity_id = quantity_attr_id.slice(14);
+            //select quantity
             var quantity = $("#part_quantity").val();
-            console.log(quantity);
+            //convert quantity integer into float
             var quantity_float = parseFloat(quantity).toFixed(1);
             var data = {
                 image: null,
@@ -243,60 +265,6 @@
             }
         }
     </script>
-    <!-- <script type="text/javascript">
-      var temp;
-      var image64= "";
-
-      function send_vehicle_data(){
-          var data = add_data('vehicle', 
-              {
-                  image: image64,
-                  name: $('#name').val(),
-                  vehicle_number: $('#vehicle_number').val(),
-                  category: $('#vehicle_category').val(),
-                  company: $('#company').val()
-              }
-          );
-
-          if( data.error == false ){
-              window.location.replace("views.html?id=" + data.message.id);
-          }
-          else{
-              console.log(data.message);
-          }
-          // console.log(data);
-
-      }
-
-      $('#inpp').change(function() {
-          image64 = "";
-
-          if (this.files && this.files[0]) {
-
-              var FR = new FileReader();
-
-              FR.addEventListener("load", function(e) {
-                  image64 = e.target.result;
-                  // document.getElementById("img").src = e.target.result;
-                  // document.getElementById("b64").innerHTML = e.target.result;
-              });
-
-              FR.readAsDataURL(this.files[0]);
-          }
-
-      });
-
-      function demo(){
-          window.location.replace("views.html?id=");// + data.message.id);
-      }
-
-  </script> -->
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <!-- <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script> -->
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
@@ -305,14 +273,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#sidebarCollapse").on("click", function () {
-                $("#sidebar").toggleClass("active");
-            });
-        });
-    </script>
 </body>
 
 </html>

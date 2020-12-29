@@ -1,0 +1,7 @@
+.services_expenses_header{
+    display: flex;
+    justify-content: space-between;
+}
+.services_expenses_header h4{
+    color:#fff;
+}

@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
-    <link rel="stylesheet" type="text/css" href="css/trip.css" />
+    <link rel="stylesheet" type="text/css" href="css/services.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="trip.js"></script>
+    <script src="services.js"></script>
 </head>
 
 <body>
@@ -108,15 +108,14 @@
                 </div> -->
             </nav>
             <div class="container">
-                <div class="trip">
-                    <div class="trip_header">
-                        <h3>trips</h3>
-                        <a class="btn button_add" href="add_trip_form.html"><i class="fa fa-plus"
-                                aria-hidden="true"></i>
-                            Trip</a>
+                <div class="service">
+                    <div class="service_header">
+                        <h3>Services</h3>
+                        <a class="button_add" href="add_service_form.html"><i class="fa fa-plus" aria-hidden="true"></i>
+                            Service</a>
                     </div>
                     <hr style="background-color: #424242" />
-                    <div id="trip_data">
+                    <div id="service_data">
                     </div>
                 </div>
             </div>
@@ -124,103 +123,75 @@
     </div>
     <script>
         var temp;
+        var vehicle_id;
         $(document).ready(function () {
-            var trip = fetch_data("trip");
-            console.log(trip.message);
-            if (trip.error == false) {
-                for (var i = 0; i < trip.message.data.length; i++) {
-                    temp = trip.message.data[i];
-                    var temp_driver = temp.driver_id.name;
-                    var temp_vehicle = temp.vehicle_id.vehicle_number;
+            var service = fetch_data("service");
+            console.log(service.message);
+            if (service.error == false) {
+                for (var i = 0; i < service.message.data.length; i++) {
+                    vehicle_id = service.message.data[i].vehicle_id.id;
+                    // console.log(vehicle_id);
+                    temp = service.message.data[i];
                     // console.log(temp_driver);
-                    var trip_date = temp.date.split("-");
-                    var trip_date_month = trip_date[1];
-                    var trip_date_day = trip_date[2];
-                    var trip_date_year = trip_date[0];
-                    var trip_year = trip_date_year.slice(2);
-                    var trip_date_list = [];
-                    var trip_date_string = trip_date_month.toString();
-                    for (var j = 0, len = trip_date_string.length; j < len; j += 1) {
-                        trip_date_list.push(+trip_date_string.charAt(j));
+                    var service_date = temp.date.split("-");
+                    var service_date_month = service_date[1];
+                    var service_date_day = service_date[2];
+                    var service_date_year = service_date[0];
+                    var service_year = service_date_year.slice(2);
+                    var service_date_list = [];
+                    var service_date_string = service_date_month.toString();
+                    for (var j = 0, len = service_date_string.length; j < len; j += 1) {
+                        service_date_list.push(+service_date_string.charAt(j));
                     }
-                    if (trip_date_list[0] == "0") {
-                        trip_date_month = trip_date_list[1];
+                    if (service_date_list[0] == "0") {
+                        service_date_month = service_date_list[1];
                     } else {
-                        trip_date_month = trip_date[1];
+                        service_date_month = service_date[1];
                     }
-                    var trip_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                    var trip_month_name = trip_month[trip_date_month - 1];
+                    var service_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var service_month_name = service_month[service_date_month - 1];
                     // console.log(trip_month_name);
-                    $("#trip_data").append(
-                        `<div class="card">
-                            <div class="trip_top">
-                            <div class="trip_sr">
-                                        <span><b>
-                                            ${i + 1}.
-                                            </b></span>
-                                    </div>
-                            <div class="trip_buttons">
-                                <a href="expenses.html?id=`+ temp.id + `" class="btn">Expenses</a>
-                                <a href="vehicle_view.html?id=`+
-                        temp.vehicle_id.id +
-                        `" class="btn">Vehicle</a>
-                                <a href="driver_view.html?id=`+
-                        temp.driver_id.id +
-                        `" class="btn">Driver</a>
-                                <a type="button" class="btn" data-toggle="modal" data-target="#">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </a>
-                            </div>
+                    $('#service_data').append(`
+                    <div class="card">
+                            <div class="service_top">
+                                <div class="service_sr">
+                                    <span><b>${i + 1}.
+                                        </b></span>
+                                </div>
+                                <div class="service_buttons">
+                                    <a href="services_expenses.html?id=${temp.id}" class="btn">Expenses</a>
+                                    <a href="vehicle_view.html?id=${vehicle_id}" class="btn">Vehicle</a>
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <div class="trip_from">
-                                        <span><b>From,</b></span>
-                                        <strong>`+
-                        temp.from_place +
-                        `</strong>
+                                <div class="col-md-4">
+                                    <div class="service_date">
+                                        <span><b>Done on</b></span><span>
+                                            <strong>${service_date_day} </strong>${service_month_name} ${service_year}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="trip_to">
-                                        <span><b>To,</b></span>
-                                        <strong>`+
-                        temp.to_place +
-                        `</strong>
+                                <div class="col-md-4">
+                                    <div class="service_invoice">
+                                        <span><b>Invoive ID</b></span>
+                                        <strong>${temp.invoice_id}</strong>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="trip_with">
-                                        <span><b>Driven by</b></span>
-                                        <strong>`+
-                        temp_driver +
-                        `</strong>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="trip_date">
-                                        <span><b>On</b></span>
-                                        <span><strong>`+ trip_date_day +
-                        `</strong>` + ` ` +
-                        trip_month_name + ` ` + trip_year + `</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="trip_by">
-                                        <span><b>Vehicle no.</b></span>
-                                        <div class="vehiclePlate mt-1"><span class="vehiclePlateNumber">`+ temp_vehicle + `
-            </span></div>
+                                <div class="col-md-4">
+                                    <div class="service_vehicle">
+                                        <span><b>vehicle no.</b></span>
+                                        <div class="vehiclePlate mt-1"><span class="vehiclePlateNumber">${temp.vehicle_id.vehicle_number}
+                                            </span></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>`
-                    );
+                        </div>
+                    `)
+
                 }
             }
             else {
-                for (var i = 0; i < trip.message.length; i++) {
-                    console.log(trip.message[i]);
-                }
+                console.log(service.error)
+                console.log(service.message);
             }
         });
     </script>

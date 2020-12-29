@@ -43,6 +43,16 @@ function select_data(sub_url, type, data, status) {
     var status = status;
     return call_ajax(type, url, data, status);
 }
+function trip_data_by_id(sub_url, type, id, data, status) {
+    if (sub_url != 'trip') {
+        sub_url = 'trip/' + sub_url;
+    }
+    var type = type;
+    var url = main_url + sub_url + "/" + id + "/";
+    var data = data;
+    var status = status;
+    return call_ajax(type, url, data, status);
+}
 function fetch_data(sub_url) {
     return trip_data(sub_url, "get", {}, 200);
 }
@@ -51,4 +61,7 @@ function add_data(sub_url, data) {
 }
 function get_data(sub_url) {
     return select_data(sub_url, "get", {}, 200);
+}
+function fetch_data_by_id(sub_url, id) {
+    return trip_data_by_id(sub_url, "get", id, {}, 200);
 }

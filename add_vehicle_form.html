@@ -15,8 +15,8 @@
   <!-- external stylesheets -->
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
-  <link rel="stylesheet" type="text/css" href="css/add.css" />
   <link rel="stylesheet" type="text/css" href="css/form.css" />
+  <link rel="stylesheet" type="text/css" href="css/add.css" />
   <!-- ajax jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- jquery -->
@@ -63,7 +63,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="services.html">
             <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
             Services
           </a>
@@ -92,7 +92,7 @@
             </button>
           </span>
         </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Page</a>
@@ -107,7 +107,7 @@
               <a class="nav-link" href="#">Page</a>
             </li>
           </ul>
-        </div>
+        </div> -->
       </nav>
       <div class="container-fluid">
         <div class="addVehicleForm">
@@ -158,21 +158,28 @@
     </div>
   </div>
   <script type="text/javascript">
-    var temp;
+    //store vehicle category data
+    var temp_vehicle_category;
     $(document).ready(function () {
+      //fetch vehicle category from api
       var data = fetch_data('vehicle_category');
       if (data.error == false) {
+        //append vehicle category in option
         for (var i = 0; i < data.message.data.length; i++) {
-          temp = data.message.data[i];
-          $('#vehicle_category').append('<option value="' + temp.id + '">' + temp.name + '</option>');
-          console.log('---------');
+          temp_vehicle_category = data.message.data[i];
+          $('#vehicle_category').append('<option value="' + temp_vehicle_category.id + '">' + temp_vehicle_category.name + '</option>');
         }
       } else {
         for (var i = 0; i < data.message.length; i++) {
           console.log(data.message[i]);
         }
       }
+      //collapsing sidebar
+      $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
+      });
     });
+    //send post request to store vehicle data
     function send_vehicle_data() {
       var data = add_data('vehicle', {
         image: image64,
@@ -187,7 +194,9 @@
         console.log(data.message);
       }
     }
+    //image is converted to base64 and preview of image is seen
     function imageURL(input) {
+      //image location is stored here
       image64 = "";
       if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -200,11 +209,6 @@
         reader.readAsDataURL(input.files[0]);
       }
     }
-    $(document).ready(function () {
-      $("#sidebarCollapse").on("click", function () {
-        $("#sidebar").toggleClass("active");
-      });
-    });
   </script>
   <!-- Popper.JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"

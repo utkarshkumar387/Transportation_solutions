@@ -78,6 +78,7 @@ span {
 
 #sidebar.active .sidebar-header strong {
     display: block;
+    position: fixed;
 }
 
 #sidebar ul li a {
@@ -121,10 +122,10 @@ span {
 }
 
 #sidebar ul.components {
-    padding: 12px 0;
-    border-bottom: 1px solid #47748b;
     position: fixed;
-    width: 15%;
+    padding: 12px 0;
+    min-width: 190px;
+    max-width: 190px;
 }
 #sidebar.active ul.components{
     width: 5%;
