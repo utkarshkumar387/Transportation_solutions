@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="css/trip.css" />
+    <link rel="stylesheet" type="text/css" href="css/Popup.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="trip.js"></script>
 </head>
@@ -24,11 +25,11 @@
             <div class="sidebar-header">
                 <!-- <button type="button" id="sidebarCollapse" class="btn btn_toggle">
             <i class="fa fa-bars" aria-hidden="true"></i>
-          </button>
-          <span>
-            <h3>Trucks</h3>
-          </span>
-          <strong>TOT</strong> -->
+          </button> -->
+                <span>
+                    <img src="images/truck.png" alt="" height="35" />
+                </span>
+                <strong>SM</strong>
             </div>
             <ul class="list-unstyled components mt-4 mx-2">
                 <li class="active mt-1">
@@ -86,9 +87,6 @@
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </button>
                     </span>
-                    <span>
-                        <img src="images/truck.png" alt="" height="35" />
-                    </span>
                 </div>
                 <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
@@ -107,6 +105,54 @@
                     </ul>
                 </div> -->
             </nav>
+            <div class="modal fade bd-example-modal" id="trip_edit" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                Edit trip
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body trip_edit_body">
+                            <form>
+                                <div class="form-group row ">
+                                    <label class="col-md-4" for="trip_edit_driver">Select Driver</label>
+                                    <select type="text" class="form-control col-md-8" id="trip_edit_driver">
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4" for="trip_edit_vehicle">Select vehicle
+                                    </label>
+                                    <select type="text" class="form-control col-md-8" id="trip_edit_vehicle"></select>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4" for="trip_edit_date">Trip date
+                                    </label>
+                                    <input type="date" class="form-control col-md-8" id="trip_edit_date" />
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4" for="trip_edit_departure">Departure</label>
+                                    <select id="trip_edit_departure" class="form-control col-md-8"></select>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4" for="trip_edit_destination">Destination</label>
+                                    <select id="trip_edit_destination" class="form-control col-md-8"></select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="container">
                 <div class="trip">
                     <div class="trip_header">
@@ -126,13 +172,18 @@
         var temp;
         $(document).ready(function () {
             var trip = fetch_data("trip");
-            console.log(trip.message);
+            var vehicle = get_data("vehicle");
+            var driver = get_data("driver");
+            var cities = fetch_data("cities");
+            // console.log(cities);
+            // console.log(driver);
+            // console.log(trip.message);
             if (trip.error == false) {
                 for (var i = 0; i < trip.message.data.length; i++) {
                     temp = trip.message.data[i];
                     var temp_driver = temp.driver_id.name;
                     var temp_vehicle = temp.vehicle_id.vehicle_number;
-                    // console.log(temp_driver);
+                    console.log(trip.message.data[i]);
                     var trip_date = temp.date.split("-");
                     var trip_date_month = trip_date[1];
                     var trip_date_day = trip_date[2];
@@ -157,59 +208,59 @@
                             <div class="trip_sr">
                                         <span><b>
                                             ${i + 1}.
-                                            </b></span>
+                                        </b></span>
                                     </div>
                             <div class="trip_buttons">
-                                <a href="expenses.html?id=`+ temp.id + `" class="btn">Expenses</a>
+                                <a href="expenses.html?id=`+ temp.id + `" class="btn"><i class="fa fa-money" aria-hidden="true"></i><span>Expenses</span></a>
                                 <a href="vehicle_view.html?id=`+
                         temp.vehicle_id.id +
-                        `" class="btn">Vehicle</a>
+                        `" class="btn"><i class="fa fa-bus" aria-hidden="true"></i><span>Vehicle</span></a>
                                 <a href="driver_view.html?id=`+
                         temp.driver_id.id +
-                        `" class="btn">Driver</a>
-                                <a type="button" class="btn" data-toggle="modal" data-target="#">
+                        `" class="btn"><i class="fa fa-address-card" aria-hidden="true"></i><span>Driver</span></a>
+                                <a type="button" class="btn" onclick="trip_edit_popup(${trip.message.data[i].id}, ${temp.vehicle_id.id}, ${temp.driver_id.id})" data-toggle="modal" data-target="#trip_edit">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </a>
                             </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-6 col-md-6 col-lg-3">
                                     <div class="trip_from">
                                         <span><b>From,</b></span>
-                                        <strong>`+
+                                        <strong id="trip_from_${trip.message.data[i].id}">` +
                         temp.from_place +
                         `</strong>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-6 col-md-6 col-lg-2">
                                     <div class="trip_to">
                                         <span><b>To,</b></span>
-                                        <strong>`+
+                                        <strong id="trip_to_${trip.message.data[i].id}">` +
                         temp.to_place +
                         `</strong>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-6 col-md-4 col-lg-2">
                                     <div class="trip_with">
                                         <span><b>Driven by</b></span>
-                                        <strong>`+
+                                        <strong id="trip_with_${trip.message.data[i].id}">` +
                         temp_driver +
                         `</strong>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-6 col-md-4 col-lg-2">
                                     <div class="trip_date">
                                         <span><b>On</b></span>
-                                        <span><strong>`+ trip_date_day +
+                                        <span><strong class="${trip.message.data[i].date}" id="trip_date_${trip.message.data[i].id}">` + trip_date_day +
                         `</strong>` + ` ` +
                         trip_month_name + ` ` + trip_year + `</span>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-4 col-lg-3">
                                     <div class="trip_by">
                                         <span><b>Vehicle no.</b></span>
-                                        <div class="vehiclePlate mt-1"><span class="vehiclePlateNumber">`+ temp_vehicle + `
-            </span></div>
+                                        <div class="vehiclePlate mt-1"><span class="vehiclePlateNumber" id="trip_by_${trip.message.data[i].id}">` + temp_vehicle + `
+                                    </span></div>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +273,56 @@
                     console.log(trip.message[i]);
                 }
             }
+            if (vehicle.error == false) {
+                // console.log(vehicle.message.data);
+                var vehicle_data = vehicle.message.data;
+                for (var i = 0; i < vehicle_data.length; i++) {
+                    $("#trip_edit_vehicle").append(`
+                        <option value="${vehicle_data[i].id}">${vehicle_data[i].vehicle_number}</option>
+                    `)
+                }
+            } else {
+                console.log(vehicle.message);
+            }
+            if (driver.error == false) {
+                // console.log(driver.message);
+                var driver_data = driver.message.data;
+                for (var i = 0; i < driver_data.length; i++) {
+                    $("#trip_edit_driver").append(`
+                        <option value="${driver_data[i].id}">${driver_data[i].name}</option>
+                    `)
+                }
+
+            } else {
+                console.log(driver.message);
+            }
+            if (driver.error == false) {
+                var cities_data = cities.message.data;
+                for (var i = 0; i < cities_data.length; i++) {
+                    $("#trip_edit_destination").append(`
+                        <option value="${cities_data[i].id}">${cities_data[i].name}</option>
+                    `)
+                    $("#trip_edit_departure").append(`
+                        <option value="${cities_data[i].id}">${cities_data[i].name}</option>
+                    `)
+                }
+            } else {
+                console.log(cities.message);
+            }
+            $("#sidebarCollapse").on("click", function () {
+                $("#sidebar").toggleClass("active");
+            });
         });
+        function trip_edit_popup(id, vehicle_id, driver_id) {
+            console.log([id, vehicle_id, driver_id]);
+            var date = $("#trip_date_" + id).attr("class");
+            console.log(date);
+            $("#trip_edit_vehicle").val($("#trip_by_" + id).html());
+            $("#trip_edit_driver").val($("#trip_with_" + id).html());
+            $("#trip_edit_date").val($("#trip_date_" + id).attr("class"));
+            $("#trip_edit_departure").val($("#trip_from_" + id).html());
+            $("#trip_edit_destination").val($("#trip_to_" + id).html());
+        }
     </script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
@@ -232,14 +332,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#sidebarCollapse").on("click", function () {
-                $("#sidebar").toggleClass("active");
-            });
-        });
-    </script>
 </body>
 
 </html>

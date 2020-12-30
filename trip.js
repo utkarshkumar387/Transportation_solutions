@@ -9,9 +9,9 @@ function call_ajax(type, url, data, status) {
         url: url,
         data: data,
         success: function (data, textStatus, jqXHR) {
-            message = data;
             if (jqXHR.status === status) {
                 error = false;
+                message = data;
             }
         },
         error: function (xhr, status, error) {
@@ -34,9 +34,24 @@ function trip_data(sub_url, type, data, status) {
     return call_ajax(type, url, data, status);
 }
 function select_data(sub_url, type, data, status) {
-    if (sub_url != 'driver') {
-        sub_url = 'vehicle';
+    switch (sub_url) {
+        case 'driver':
+            sub_url = 'driver';
+            break;
+        case 'vehicle':
+            sub_url = 'vehicle';
+            break;
+        case 'cities':
+            sub_url = 'cities';
+            break;
+        default:
+            console.log('Sorry.');
     }
+    // if (sub_url != 'driver') {
+    //     sub_url = 'vehicle';
+    // } else {
+    //     sub_url = 'driver';
+    // }
     var type = type;
     var url = main_url + sub_url + '/';
     var data = data;

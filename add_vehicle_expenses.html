@@ -136,7 +136,7 @@
                     </form>
                 </div>
                 <div class="driver_expenses_buttons">
-                    <button type="button" class="form_button" onclick="send_driver_expenses()">Next</button>
+                    <button type="submit" class="form_button" onclick="send_driver_expenses()">Next</button>
                 </div>
             </div>
         </div>
@@ -156,15 +156,15 @@
          <p>${counter}</p> 
          </td>
                      <td><input type="text" class="form-control" id="expense_name${counter}" name="expense_name"
-                                        aria-describedby="nameHelp" placeholder="Tea" /></td>
+                                        aria-describedby="nameHelp" placeholder="Spended on" required/></td>
                      <td><input type="text" class="form-control" id="expense_amount${counter}" name="expense_amount"
-                                        aria-describedby="nameHelp" placeholder="Amount" /></td>
+                                        aria-describedby="nameHelp" placeholder="Amount" required/></td>
                      <td><input type="text" class="form-control" id="expense_invoice${counter}" name="dexpense_invoice"
-                                        aria-describedby="nameHelp" placeholder="34543234" /></td>
+                                        aria-describedby="nameHelp" placeholder="Invoice ID" value="Not available"/></td>
                      <td><input type="file" class="form-control" id="expense_attachment${counter}" name="expense_attachment"
                                         aria-describedby="nameHelp"/></td>
                      <td><textarea class="form-control" id="expense_description${counter}" name="expense_description" 
-                                        aria-describedby="nameHelp" placeholder="Description"></textarea></td>
+                                        aria-describedby="nameHelp" placeholder="Description" required></textarea></td>
                                         <td><button type="button" id="removebtn" class="btn btn-primary remove"><i class="fa fa-minus"></i></button></td>
                      </tr>`);
                 return false;

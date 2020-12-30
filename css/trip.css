@@ -1,8 +1,7 @@
 .card {
     background-color: #424242;
-    max-height: 250px;
+    min-height: 250px;
     height: auto;
-    /* border: 2px solid #909090; */
     border-radius: 15px;
     width: 100%;
     position: relative;
@@ -25,7 +24,7 @@
       display: block;
       color: #909090; 
   }
-  .col-md-4, .col-md-1, .col-md-3, .col-md-2{
+  .col-md-4, .col-md-1, .col-md-3, .col-md-2, .col-md-6{
       padding: 0;
   }
   .trip_to {
@@ -79,7 +78,6 @@
         border-radius: 0 12px 12px 0;
         height: 120px;
         padding: 20px;
-        /* padding: 10px 0 0 10px; */
     
   }
   .trip_by span{
@@ -102,6 +100,9 @@
   }
   .trip_buttons a{
       margin: 5px;
+  }
+  .trip_buttons a i{
+      margin-top: 5px;
   }
   .trip_sr span{
     color: #FAFAFA;
@@ -140,12 +141,76 @@ box-shadow: inset 5px 5px 10px #353535,
     justify-content: space-between;
     align-items: center;
   }
-  /* .inventory_buttons{
-      display: flex;
-      justify-content: space-between;
-  } */
   .trip_top {
       display: flex;
       justify-content: space-between;
+  }
+  .trip_edit_body{
+      padding: 20px 40px;
+  }
+  @media (min-width: 768px){
+        .trip_buttons a i{
+            display: none;
+        }
+        .trip_buttons a:nth-child(4) i{
+            display: block;
+          }
+  }
+  @media (max-width: 768px){
+    .trip_from {
+        margin: 10px 0 0 40px;
+        border-radius: 12px 0 0 0;
+      }
+      .trip_to {
+        margin: 10px 40px 0 0;
+        border-radius: 0 12px 0 0;
+      }
+      .trip_date {
+        margin: 0 0 40px 0;
+      }
+    .trip_with {
+        border-radius: 0 0 0 12px;
+        margin: 0 0 0 40px;
+        }
+    .trip_by {
+        margin: 0 40px 0 0;
+        border-radius: 0 0 12px 0;
+        
+      }
+      .trip_buttons a i{
+        display: none;
+    }
+    .trip_buttons a:nth-child(4) i{
+        display: block;
+      }
+
+  }
+  @media (max-width: 576px){
+    .trip_from {
+        margin: 10px 0 0 40px;
+        border-radius: 12px 0 0 0;
+      }
+      .trip_to {
+        margin: 10px 40px 0 0;
+        border-radius: 0 12px 0 0;
+      }
+      .trip_date {
+        margin: 0 40px 0 0;
+      }
+    .trip_with {
+        border-radius: 0;
+        margin: 0 0 0 40px;
+        }
+    .trip_by {
+        margin: 0 40px 40px 40px;
+        border-radius: 0 0 12px 12px;
+        
+      }
+      .trip_buttons a i{
+        display: block;
+    }
+      .trip_buttons a span{
+          display: none;
+      }
   }
   

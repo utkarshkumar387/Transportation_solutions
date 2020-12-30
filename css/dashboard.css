@@ -128,6 +128,12 @@ span {
     max-width: 190px;
 }
 #sidebar.active ul.components{
+    position: fixed;
+    /* padding: 12px 10px; */
+    min-width: 70px;
+    max-width: 70px;
+}
+#sidebar.active ul.components{
     width: 5%;
 }
 
@@ -281,6 +287,12 @@ a.article:hover {
     }
     #sidebarCollapse span {
         display: none;
+    }
+    #sidebar ul.components {
+        position: fixed;
+        padding: 12px 0;
+        min-width: 80px;
+        max-width: 80px;
     }
 }
 @media only screen and (max-width:600px){

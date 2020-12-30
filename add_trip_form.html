@@ -105,7 +105,7 @@
                         <img src="images/truck.png" alt="" height="35" />
                     </span>
                 </div>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Page</a>
@@ -120,7 +120,7 @@
                             <a class="nav-link" href="#">Page</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
             </nav>
             <div class="container-fluid">
                 <div class="trip_form">
@@ -131,31 +131,38 @@
                             <div class="trip_row mt-5">
                                 <div class="form-group">
                                     <label for="driver_name">Select driver</label>
-                                    <select class="form-control" id="driver_name" onblur="selected_driverid(this)">
+                                    <select class="form-control" id="driver_name" name="status"
+                                        onblur="selected_driverid(this)" required>
+                                        <option selected disabled value="">Select driver...</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="vehicle_number">Select vehicle</label>
-                                    <select class="form-control" onblur="check_vehicledata(this)" id="vehicle_number">
+                                    <select class="form-control" onblur="check_vehicledata(this)" name="status"
+                                        id="vehicle_number" required>
+                                        <option selected disabled value="">Select vehicle...</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="trip_departure">Departure location</label>
-                                    <select class="form-control" onblur="select_departure(this)" id="trip_departure">
+                                    <select class="form-control" onblur="select_departure(this)" name="status"
+                                        id="trip_departure" required>
+                                        <option selected disabled value="">Departure...</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="trip_destination">Destination location</label>
-                                    <select class="form-control" onblur="select_destination(this)"
-                                        id="trip_destination">
+                                    <select class="form-control" onblur="select_destination(this)" name="status"
+                                        id="trip_destination" required>
+                                        <option selected disabled value="">Destination...</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="trip_date">Journey date</label>
-                                    <input type="date" class="form-control" id="trip_date" name="trip_date" />
+                                    <input type="date" required class="form-control" name="date" id="trip_date" />
                                 </div>
                             </div>
-                            <button onclick="send_trip_data()" type="button" class="btn mt-3 mb-5">Submit</button>
+                            <button onclick="send_trip_data()" type="submit" class="btn mt-3 mb-5">Submit</button>
                         </form>
                     </div>
                 </div>
