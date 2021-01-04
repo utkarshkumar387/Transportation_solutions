@@ -162,7 +162,7 @@
                                     <input type="date" required class="form-control" name="date" id="trip_date" />
                                 </div>
                             </div>
-                            <button onclick="send_trip_data()" type="submit" class="btn mt-3 mb-5">Submit</button>
+                            <button onclick="send_trip_data()" type="button" class="btn mt-3 mb-5">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -244,6 +244,7 @@
             var driver_name_id = s[s.selectedIndex].id;
             //getting id of selected driver
             driver_id = driver_name_id.slice(12);
+            console.log(driver_id);
         }
         //verifying driver with name and mobile number
         // function check_driverdata() {
@@ -293,21 +294,25 @@
         }
         //sending post request to add trip
         function send_trip_data() {
+            console.log(['vehicle_id', 'driver_id', 'dep_id', 'dest_id']);
             var data = {
                 date: $("#trip_date").val(),
                 vehicle_id: vehicle_id,
                 driver_id: driver_id,
                 from_place: dep_id,
                 to_place: dest_id,
-            };
+            }
+            // console.log(data);
             //sending url to trip.js
             var response = add_data("trip", data);
+            // console.log(response.message);
             if (response.error == false) {
+                console.log(response.messgae)
                 window.location.replace(`add_driver_expenses.html?id=${response.message.id}`);
             } else {
                 console.log(response.message);
             }
-        }
+        };
     </script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"

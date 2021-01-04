@@ -213,10 +213,10 @@
                 }
                 total_expense.push(expense);
             }
-            console.log(total_expense);
-            var response = add_data("trip_driver_expense", total_expense);
+            var expenses = JSON.stringify(total_expense);
+            var response = add_data("trip_driver_expense", expense);
             if (response.error == false) {
-                console.log(total_expense);
+                console.log(response.message);
                 window.location.replace("trip.html");
             } else {
                 console.log(response.error);

@@ -119,8 +119,7 @@
                   <label for="imageUpload"></label>
                 </div>
                 <div class="avatar-preview">
-                  <div id="imagePreview"
-                    style="background-image: url(https://thumbs.dreamstime.com/b/taxi-driver-vector-illustration-yellow-street-passenger-cab-worker-icon-transport-service-travel-male-people-city-75410495.jpg);">
+                  <div id="imagePreview" style="background-image: url(images/dp.jpg);">
                   </div>
                 </div>
               </div>
@@ -151,7 +150,7 @@
                 </select>
               </div>
             </div>
-            <button onclick="send_vehicle_data()" type="submit" class="btn mt-3">Next</button>
+            <button onclick="send_vehicle_data()" type="button" class="btn mt-3">Next</button>
           </form>
         </div>
       </div>
@@ -160,6 +159,8 @@
   <script type="text/javascript">
     //store vehicle category data
     var temp_vehicle_category;
+    //image path is stored
+    var image64;
     $(document).ready(function () {
       //fetch vehicle category from api
       var data = fetch_data('vehicle_category');

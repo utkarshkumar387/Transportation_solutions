@@ -5,6 +5,7 @@ function call_ajax(type, url, data, status) {
     let message = "";
     $.ajax({
         type: type,
+        contentType: 'application/json',
         async: false,
         url: url,
         data: data,
