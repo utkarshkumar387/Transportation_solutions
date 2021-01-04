@@ -132,8 +132,8 @@
                     vehicle_id = service.message.data[i].vehicle_id.id;
                     // console.log(vehicle_id);
                     temp = service.message.data[i];
-                    // console.log(temp_driver);
-                    var service_date = temp.date.split("-");
+                    console.log(temp);
+                    var service_date = temp.date ? temp.date.split("-") : ["", "", ""];
                     var service_date_month = service_date[1];
                     var service_date_day = service_date[2];
                     var service_date_year = service_date[0];

@@ -1,4 +1,5 @@
-let main_url = "https://transportations.herokuapp.com/";
+// let main_url = "https://transportations.herokuapp.com/";
+let main_url = "http://127.0.0.1:8000/";
 
 function call_ajax(type, url, data, status) {
     let error = true;
