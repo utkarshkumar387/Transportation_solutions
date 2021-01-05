@@ -204,22 +204,24 @@
             for (var i = 0; i < cnt; i++) {
                 var expense =
                 {
-                    attachment: null,
+                    attachment: "",
                     name: $(`#expense_name${i + 1}`).val(),
                     description: $(`#expense_description${i + 1}`).val(),
                     amount: $(`#expense_amount${i + 1}`).val(),
                     invoice_id: $(`#expense_invoice${i + 1}`).val(),
-                    trip_id: id,
+                    trip_id: parseInt(id),
                 }
                 total_expense.push(expense);
             }
-            var expenses = JSON.stringify(total_expense);
-            var response = add_data("trip_driver_expense", expense);
+            console.log(total_expense);
+            total_expense = { data: JSON.stringify(total_expense) }
+            var response = add_data("trip_driver_expense", total_expense);
             if (response.error == false) {
                 console.log(response.message);
                 window.location.replace("trip.html");
             } else {
                 console.log(response.error);
+                console.log(response.message);
             }
         }
     </script>

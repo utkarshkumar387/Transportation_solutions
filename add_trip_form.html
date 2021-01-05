@@ -220,7 +220,7 @@
             if (city.error == false) {
                 for (var i = 0; i < temp_cities.length; i++) {
                     var temp_cities_data = temp_cities[i];
-                    console.log(temp_cities_data);
+                    // console.log(temp_cities_data);
                     $("#trip_departure").append(
                         `<option id="departure_city_${temp_cities_data.id}">${temp_cities_data.name}</option>`
                     )
@@ -294,7 +294,7 @@
         }
         //sending post request to add trip
         function send_trip_data() {
-            console.log(['vehicle_id', 'driver_id', 'dep_id', 'dest_id']);
+            // console.log(['vehicle_id', 'driver_id', 'dep_id', 'dest_id']);
             var data = {
                 date: $("#trip_date").val(),
                 vehicle_id: vehicle_id,
@@ -302,8 +302,11 @@
                 from_place: dep_id,
                 to_place: dest_id,
             }
-            // console.log(data);
+            //console.log(data);
             //sending url to trip.js
+            console.log(data);
+            // var trip_data = JSON.parse(data);
+            // console.log(trip_data);
             var response = add_data("trip", data);
             // console.log(response.message);
             if (response.error == false) {

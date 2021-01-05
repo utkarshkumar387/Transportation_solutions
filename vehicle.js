@@ -24,14 +24,14 @@ function call_ajax(type, url, data, status) {
         async: false,
         url: url,
         data: data,
-        success: function(data, textStatus, jqXHR) {
-            message = data;
+        success: function (data, textStatus, jqXHR) {
             // console.log(message);
             if (jqXHR.status == status) {
                 error = false;
+                message = data;
             }
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             message = xhr.responseText;
         }
     });

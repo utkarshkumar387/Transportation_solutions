@@ -119,7 +119,7 @@
     $(document).ready(function () {
       var vehicle = fetch_data("vehicle");
       var display_image;
-      // console.log(vehicle.message);
+      console.log(vehicle);
       if (vehicle.error == false) {
         for (var i = 0; i < vehicle.message.data.length; i++) {
           temp = vehicle.message.data[i];
@@ -134,9 +134,7 @@
           );
         }
       } else {
-        for (var i = 0; i < vehicle.message.length; i++) {
-          console.log(vehicle.message[i]);
-        }
+        console.log(vehicle.message);
       }
     });
 
