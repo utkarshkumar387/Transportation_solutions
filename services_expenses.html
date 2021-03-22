@@ -116,8 +116,8 @@
                 <div class="services">
                     <div class="top_header mt-5">
                         <h3>Servicing expenses</h3>
-                        <button class="button_add" id="addform"><i class="fa fa-plus" aria-hidden="true"></i>
-                            Expenses</button>
+                        <a class="button_add" id="add_expenses_service"><i class="fa fa-plus" aria-hidden="true"></i>
+                            Expenses</a>
                     </div>
                     <hr style="background-color: #424242" />
                     <table class="table table-hover vehicle_expenses table-dark">
@@ -189,6 +189,7 @@
                 $("#sidebar").toggleClass("active");
             });
         });
+        document.getElementById('add_expenses_service').setAttribute('href', 'add_service_expenses.html?id=' + service_id);
     </script>
 </body>
 

@@ -12,12 +12,13 @@
 .cardImg {
   display: flex;
   /* justify-content: center; */
-    position: absolute;
+    /* position: absolute; */
+    margin: 8px 10px;
     height: 182px;
     width: 183px;
     overflow: hidden;
     background-color: aliceblue;
-    box-shadow: 0 0 0 17px #424242;
+    /* box-shadow: 0 0 0 17px #424242; */
     border-radius: 9px;
     z-index: 1;
     
@@ -42,8 +43,13 @@ box-shadow:  6px 6px 12px #373737,
              -6px -6px 12px #4d4d4d;
 }
 .card a:hover {
-  background: #424242;
-  box-shadow: inset 5px 5px 10px #353535, inset -5px -5px 10px #4f4f4f;
+  box-shadow:  6px -6px 12px #373737, 
+             -6px 6px 12px #4d4d4d;
+}
+.card a:active{
+  box-shadow: inset 5px 5px 10px #353535, 
+              inset -5px -5px 10px #4f4f4f;
+
 }
 .cardDetails p{
   font-size: 1rem;

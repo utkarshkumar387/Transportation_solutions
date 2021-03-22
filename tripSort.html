@@ -157,37 +157,29 @@
                 <div class="trip">
                     <div class="trip_header">
                         <h3>trips</h3>
-                        <div class="header_button d-flex">
-                            <a class="filter_button mr-4" type="button" data-toggle="collapse"
-                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                <i class="fa fa-sliders" aria-hidden="true"></i>
-                            </a>
-                            <a class="btn button_add" href="add_trip_form.html"><i class="fa fa-plus"
-                                    aria-hidden="true"></i>
-                                Trip</a>
-                        </div>
+                        <a class="btn button_add" href="add_trip_form.html"><i class="fa fa-plus"
+                                aria-hidden="true"></i>
+                            Trip</a>
                     </div>
                     <hr style="background-color: #424242" />
-                    <div class="collapse" id="collapseExample">
-                        <div class="search d-flex mb-4">
-                            <select id="search_tripDep" class="form-control">
-                                <option disabled selected value>Select departure...</option>
-                            </select>
-                            <select id="search_tripDest" class="form-control">
-                                <option disabled selected value>Select destination...</option>
-                            </select>
-                            <select id="search_tripVehicleNo" class="form-control">
-                                <option disabled selected value>Select vehicle number...</option>
-                            </select>
-                            <select id="search_tripDriverName" class="form-control">
-                                <option ddisabled selected value>Select driver name...</option>
-                            </select>
-                            <input type="date" id="search_tripDate" class="form-control" />
-                            <button onclick="search_tripDetails()" type="button" class="button_top"><i
-                                    class="fa fa-search" aria-hidden="true"></i></button>
-                            <button type="button" class="button_top"><i class="fa fa-refresh"
-                                    aria-hidden="true"></i></button>
-                        </div>
+                    <div class="search d-flex mb-4">
+                        <select id="search_tripDep" class="form-control">
+                            <option disabled selected value>Search by departure...</option>
+                        </select>
+                        <select id="search_tripDest" class="form-control">
+                            <option disabled selected value>Search by destination...</option>
+                        </select>
+                        <select id="search_tripVehicleNo" class="form-control">
+                            <option disabled selected value>Search by vehicle number...</option>
+                        </select>
+                        <select id="search_tripDriverName" class="form-control">
+                            <option ddisabled selected value>Search by driver name...</option>
+                        </select>
+                        <input type="date" id="search_tripDate" class="form-control" />
+                        <button onclick="search_tripDetails()" type="button" class="button_top"><i class="fa fa-search"
+                                aria-hidden="true"></i></button>
+                        <button onclick="search_refresh()" type="button" class="button_top"><i class="fa fa-refresh"
+                                aria-hidden="true"></i></button>
                     </div>
                     <div id="trip_data">
                     </div>
@@ -198,14 +190,28 @@
     <script>
         var temp;
         var id;
+        var trip;
         $(document).ready(function () {
-            var trip = fetch_data("trip");
+            trip = fetch_data("trip");
             var vehicle = get_data("vehicle");
             var driver = get_data("driver");
             var cities = fetch_data("cities");
-            // console.log(cities);
-            // console.log(driver);
-            console.log(trip);
+
+            var tripQuery = new Array();
+            if (tripQuery.length == 0) {
+                var params = window.location.search.split('?')[1].split('&');
+                console.log(params);
+                for (var i = 0; i < params.length; i++) {
+                    var key = params[i].split('=')[0];
+                    var value = decodeURIComponent(params[i].split('=')[1]);
+                    tripQuery[key] = value;
+                }
+            }
+            console.log(tripQuery);
+            if (tripQuery["driver"] != null || tripQuery["vehicle"] != null || tripQuery["dep"] != null || tripQuery["dest"] != null || tripQuery["date"] != null) {
+                console.log("hello jiiii");
+                console.log(trip.message);
+            }
             if (trip.error == false) {
                 for (var i = 0; i < trip.message.data.length; i++) {
                     temp = trip.message.data[i];
@@ -221,7 +227,7 @@
                     var trip_date_list = [];
                     var trip_date_string = trip_date_month.toString();
                     for (var j = 0, len = trip_date_string.length; j < len; j += 1) {
-                        trip_date_list.push(trip_date_string.charAt(j));
+                        trip_date_list.push(+trip_date_string.charAt(j));
                     }
                     if (trip_date_list[0] == "0") {
                         trip_date_month = trip_date_list[1];
@@ -298,7 +304,9 @@
                 }
             }
             else {
-                console.log(trip.message);
+                for (var i = 0; i < trip.message.length; i++) {
+                    console.log(trip.message[i]);
+                }
             }
             if (vehicle.error == false) {
                 // console.log(vehicle.message.data);
@@ -381,15 +389,18 @@
             }
 
         }
-        // function search_tripDetails() {
-        //     var vehicle_id = document.getElementById('search_tripVehicleNo').value;
-        //     var driver_id = document.getElementById('search_tripDriverName').value;
-        //     var dep_id = document.getElementById('search_tripDep').value;
-        //     var dest_id = document.getElementById('search_tripDest').value;
-        //     var date = document.getElementById('search_tripDate').value;
+        function search_tripDetails() {
+            var vehicle_id = document.getElementById('search_tripVehicleNo').value;
+            var driver_id = document.getElementById('search_tripDriverName').value;
+            var dep_id = document.getElementById('search_tripDep').value;
+            var dest_id = document.getElementById('search_tripDest').value;
+            var date = document.getElementById('search_tripDate').value;
+            window.location.replace("tripSort.html?vehicle=" + encodeURIComponent(vehicle_id) + "&driver=" + encodeURIComponent(driver_id) + "&dep=" + encodeURIComponent(dep_id) + "&dest=" + encodeURIComponent(dest_id) + "&date=" + encodeURIComponent(date));
 
-        //     window.location.replace("tripSort.html?vehicle=" + encodeURIComponent(vehicle_id) + "&driver=" + encodeURIComponent(driver_id) + "&dep=" + encodeURIComponent(dep_id) + "&dest=" + encodeURIComponent(dest_id) + "&date=" + encodeURIComponent(date));
-        // }
+        }
+        function search_refresh() {
+            window.location.replace('trip.html');
+        }
     </script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"

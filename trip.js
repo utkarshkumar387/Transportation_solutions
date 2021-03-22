@@ -6,7 +6,6 @@ function call_ajax(type, url, data, status) {
     let message = "";
     $.ajax({
         type: type,
-        contentType: 'application/json',
         async: false,
         url: url,
         data: data,
@@ -47,13 +46,8 @@ function select_data(sub_url, type, data, status) {
             sub_url = 'cities';
             break;
         default:
-            console.log('Sorry.');
+            console.log('Sorry...');
     }
-    // if (sub_url != 'driver') {
-    //     sub_url = 'vehicle';
-    // } else {
-    //     sub_url = 'driver';
-    // }
     var type = type;
     var url = main_url + sub_url + '/';
     var data = data;
@@ -81,4 +75,7 @@ function get_data(sub_url) {
 }
 function fetch_data_by_id(sub_url, id) {
     return trip_data_by_id(sub_url, "get", id, {}, 200);
+}
+function edit_data_by_id(sub_url, id, data) {
+    return trip_data_by_id(sub_url, "patch", id, data, 200);
 }

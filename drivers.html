@@ -126,20 +126,20 @@
             console.log(temp);
             //append all drivers
             $("#driver_data").append(
-              '<div class="col-md-4"><div class="card"><div class="driver_detail"><div class="driver_img"><img src="https://transportations.herokuapp.com' +
-              temp.image +
-              '" alt=""></div><div class="driver_detail_box"><p class="driver_name">' +
-              temp.name +
-              '</p><p class="driver_number mt-3"><i class="fa fa-phone" aria-hidden="true"></i>' +
-              temp.phone_no1 +
-              '</p><p class="driver_address"><i class="fa fa-address-book" aria-hidden="true"></i>' +
-              temp.village +
-              ', <span>' +
-              temp.state +
-              '</span></p><p class="driver_age"><i class="fa fa-calendar-o" aria-hidden="true"></i>' +
-              temp.age +
-              '</p><a href="driver_view.html?id=' +
-              temp.id + '" class="btn">View</a></div></div></div></div>'
+              `<div class="col-md-5">
+                <div class="card">
+                  <div class="driver_detail">
+                    <div class="driver_img"><img src="https://transportations.herokuapp.com${temp.image}" alt="driver image"></div>
+                    <div class="driver_detail_box">
+                      <div class="driver_detail_box_in">
+                        <p class="driver_name">${temp.name}</p>
+                        <p class="driver_number"><i class="fa fa-phone" aria-hidden="true"></i>${temp.phone_no1}</p>
+                        <a class="driver_view mt-3" href="driver_view.html?id=${temp.id}">View</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div > `
             );
           }
         }

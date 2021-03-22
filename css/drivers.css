@@ -1,27 +1,23 @@
 .card {
   background-color: #424242;
-  min-height: 470px;
-  border: 2px solid #909090;
   border-radius: 15px;
   width: 100%;
-  position: relative;
   margin-top: 40px;
   display: flex;
+  padding: 20px;
 }
 .driver_img {
-  position: absolute;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   overflow: hidden;
   background-color: aliceblue;
   z-index: 1;
   border-radius: 100px;
-  margin: -75px 0 0 0;
   border: 2px solid #909090;
 }
 .driver_img img {
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   object-fit: cover;
 }
 .card i{
@@ -29,49 +25,56 @@
 }
 .driver_detail{
   display: flex;
-  justify-content: center;
-  margin: 80px 0 0 0;
+  align-items:center;
   
 }
-.driver_detail_box {
-  background: #272727;
-  border-radius: 15px 15px 15px 15px;
-  height: 312px;
-  width: 80%;
+.driver_detail_box{
+  margin: 0 20px;
   display: flex;
-  padding: 90px 20px 0 20px;
-  flex-direction: column;
+  align-items: flex-end;
 }
-.driver_detail_box p {
-  color: #FAFAFA;
+.driver_name {
+  
+
 
 }
 .driver_detail_box .fa {
   margin-right: 10px;
   color: #909090;
-  font-size: 20px;
+  font-size: 18px;
 }
 .driver_detail_box .btn {
   margin-top: 1.875em;
 }
 .driver_name {
+  color: #FFFFF1 ;
   text-align: left;
-  font-size: 24px;
+  font-size: 20px;
+  margin: 0;
+}
+.driver_number{
+  color: #909090;
+  font-size: 16px;
+  margin: 0;
 }
 .card a{
   color: #FFFFF1 !important;
   display: flex;
   justify-content: center;
   height: 40px;
+  width: 120px;
   border-radius: 15px;
-  /* padding: 6px 0 0 25px; */
+  padding: 6px 0 0 3px;
   border: none;
   font-weight: 500;
   background: #424242;
   box-shadow: 6px 6px 12px #373737, -6px -6px 12px #4d4d4d;
 }
 .card a:hover {
-  background: #272727;
-box-shadow: inset 5px 5px 10px #202020, 
-            inset -5px -5px 10px #2e2e2e;
+  box-shadow:  6px -6px 12px #373737, 
+             -6px 6px 12px #4d4d4d;
+}
+.card a:active{
+  box-shadow: inset 5px 5px 10px #353535, inset -5px -5px 10px #4f4f4f;
+
 }

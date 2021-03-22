@@ -8,7 +8,7 @@ vehicle_document_type: "id": { "type": "integer", "required": false, "read_only"
 vehicle_document: "id": { "type": "integer", "required": false, "read_only": true, "label": "ID" }, "attachment": { "type": "file upload", "required": true, "read_only": false, "label": "Attachment" }, "unique_id": { "type": "string", "required": true, "read_only": false, "label": "Unique id", "max_length": 40 }, "start_date": { "type": "date", "required": true, "read_only": false, "label": "Start date" }, "end_date": { "type": "date", "required": true, "read_only": false, "label": "End date" }, "document_type": { "type": "field", "required": true, "read_only": false, "label": "Document type" }, "vehicle_id": { "type": "field", "required": true, "read_only": false, "label": "Vehicle id" }
 
 */
-var main_url1 = "https://transportations.herokuapp.com";
+// var main_url1 = "https://transportations.herokuapp.com";
 var main_url = "https://transportations.herokuapp.com/";
 // var main_url = "http://127.0.0.1:8000/";
 
@@ -92,7 +92,7 @@ function get_data_by_id(sub_url, id) {
 }
 
 function modify_data_by_id(sub_url, id, data) {
-    return get_put_delete(sub_url, "put", id, data, 200);
+    return get_put_delete(sub_url, "patch", id, data, 200);
 }
 
 function delete_data_by_id(sub_url, id) {

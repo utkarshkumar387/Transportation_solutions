@@ -112,6 +112,8 @@
       <div class="container-fluid">
         <div class="addVehicleForm">
           <form id="addVehicleForm" method="POST" enctype="multipart/form-data">
+            <h4 style="color: #fff;">Fill Vehicle details</h4>
+            <hr style="background-color: #424242" />
             <div class="vehicle_row">
               <div class="avatar-upload">
                 <div class="avatar-edit">
@@ -182,6 +184,9 @@
     });
     //send post request to store vehicle data
     function send_vehicle_data() {
+      if (image64 == undefined) {
+        image64 = null;
+      }
       var data = add_data('vehicle', {
         image: image64,
         name: $('#name').val(),
@@ -189,6 +194,7 @@
         category: $('#vehicle_category').val(),
         company: $('#company').val()
       });
+      console.log(data);
       if (data.error == false) {
         window.location.replace("vehicle_view.html?id=" + data.message.id);
       } else {

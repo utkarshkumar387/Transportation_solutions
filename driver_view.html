@@ -361,6 +361,7 @@
         card_id = id;
         //pass sub url and id to driver.js to get data by id
         driver_data = get_data_by_id("driver", id);
+        console.log(driver_data);
         //pass sub url to fetch driver document
         driver_document_data = fetch_data("driver_document");
         //pass sub url to fetch driver document type

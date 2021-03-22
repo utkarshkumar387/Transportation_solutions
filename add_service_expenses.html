@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Add driver expenses</title>
+    <title>Add Servicing expenses</title>
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
@@ -111,9 +111,9 @@
             <div class="container-fluid">
                 <div class="driverexpenses">
                     <div class="driverexpenses_header top_header">
-                        <h3>Add vehicle expenses during trip</h3>
+                        <h3>Add Servicing expenses</h3>
                         <button class="button_add" id="addBtn"><i class="fa fa-plus" aria-hidden="true"></i>
-                            Add</button>
+                            More</button>
                     </div>
                     <hr style="background-color: #424242" />
                     <form action="" id="driverexpenses_form">
@@ -125,14 +125,13 @@
                                         <th scope="col">Spended on</th>
                                         <th scope="col">Amount spended</th>
                                         <th scope="col">Invoice No.</th>
-                                        <th scope="col">Description</th>
                                         <th scope="col">Attachment</th>
+                                        <th scope="col">Description</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody">
                                 </tbody>
                             </table>
-                            <div id="texception"></div>
                         </div>
                     </form>
                 </div>
@@ -154,40 +153,20 @@
             $('#addBtn').on('click', function () {
                 $('#tbody').append(`<tr id="appended_row${++counter}">
                 <td class="row-index text-center"> 
-                <p>${counter}</p> 
-                </td>
-                     <td>
-                        <input type="text" class="form-control" id="expense_name${counter}" name="expense_name"
-                                        aria-describedby="nameHelp" placeholder="Tea" />
-                     </td>
-                     <td>
-                        <input type="text" class="form-control" id="expense_amount${counter}" name="expense_amount"
-                                        aria-describedby="nameHelp" placeholder="Utkarsh" />
-                     </td>
-                     <td>
-                        <input type="text" class="form-control" id="expense_invoice${counter}" name="dexpense_invoice"
-                                        aria-describedby="nameHelp" placeholder="34543234" />
-                     </td>
-                     <td>
-                        <textarea class="form-control" id="expense_description${counter}" name="expense_description" 
-                                        aria-describedby="nameHelp" placeholder="Description">
-                        </textarea>
-                     </td>
-                     <td>
-                        <label class="mt-2" for="expense_attachment${counter}">
-                            <span class="btn btn-success" type="button">
-                                Attachment
-                            </span>
-                            <input type="file" style="display: none;" id="expense_attachment${counter}" name="expense_attachment"
-                                        aria-describedby="nameHelp"/>
-                        </label>
-                     </td>
-                     <td>
-                        <button type="button" id="removebtn" class="btn btn-primary remove mt-2">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                     </td>
-                    </tr>`);
+         <p>${counter}</p> 
+         </td>
+                     <td><input type="text" class="form-control" id="expense_name${counter}" name="expense_name"
+                                        aria-describedby="nameHelp" placeholder="Tea" /></td>
+                     <td><input type="text" class="form-control" id="expense_amount${counter}" name="expense_amount"
+                                        aria-describedby="nameHelp" placeholder="Utkarsh" /></td>
+                     <td><input type="text" class="form-control" id="expense_invoice${counter}" name="dexpense_invoice"
+                                        aria-describedby="nameHelp" placeholder="34543234" /></td>
+                     <td><input type="file" class="form-control" id="expense_attachment${counter}" name="expense_attachment"
+                                        aria-describedby="nameHelp"/></td>
+                     <td><textarea class="form-control" id="expense_description${counter}" name="expense_description" 
+                                        aria-describedby="nameHelp" placeholder="Description"></textarea></td>
+                                        <td><button type="button" id="removebtn" class="btn btn-primary remove"><i class="fa fa-minus"></i></button></td>
+                     </tr>`);
                 return false;
             })
             //To remove the appended row and adjust the index of the row
@@ -212,6 +191,7 @@
                 //decrease the index
                 counter--;
             })
+            //collapsing of navbar on click
             $("#sidebarCollapse").on("click", function () {
                 $("#sidebar").toggleClass("active");
             });
@@ -236,9 +216,10 @@
             console.log(total_expense);
             total_expense = { data: JSON.stringify(total_expense) }
             var response = add_data("trip_vehicle_expense", total_expense);
+            console.log(total_expense);
             if (response.error == false) {
                 console.log(response.message);
-                window.location.replace("trip.html");
+                // window.location.replace("trip.html");
             } else {
                 console.log(response.error);
                 console.log(response.message);

@@ -36,13 +36,17 @@
   }
   
   form #decrease {
+    height: 55px;
     margin-right: -4px;
     border-radius: 8px 0 0 8px;
+    z-index: 1;
   }
   
   form #increase {
+    height: 55px;
     margin-left: -4px;
     border-radius: 0 8px 8px 0;
+    z-index: 1;
   }
   
   form #input-wrap {

@@ -138,3 +138,6 @@ label {
 label input:focus {
   border-color: black !important;
 }
+#part_quantity{
+  /* width: 50px; */
+}
