@@ -203,9 +203,6 @@
             var vehicle = get_data("vehicle");
             var driver = get_data("driver");
             var cities = fetch_data("cities");
-            // console.log(cities);
-            // console.log(driver);
-            console.log(trip);
             if (trip.error == false) {
                 for (var i = 0; i < trip.message.data.length; i++) {
                     temp = trip.message.data[i];
