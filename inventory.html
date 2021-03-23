@@ -201,10 +201,10 @@
                 for (let i = 0; i < inventory.message.data.length; i++) {
                     temp = inventory.message.data[i];
                     item_id = temp.id;
-                    // console.log(item_id);
-                    if (temp.category == "Spare part") {
+                    console.log('category of an inventory ', temp.category);
+                    if (temp.category == "spare part") {
                         part = "images/spare.png"
-                    } else if (temp.category == "Scrap") {
+                    } else if (temp.category == "scrap part") {
                         part = "images/scrap.png"
                     }
                     $("#inventory_parts").append(
@@ -212,7 +212,7 @@
                                 <div class="card">
                                     <img src="https://media.torque.com.sg/public/2018/06/18990368_m-e1530161429828.jpg"
                                     class="card-img-top" alt="inventory part" />
-                                    <img class="inventory_tags" id="inventory_tag" src = "`+ part + `" alt="inventory tag" />
+                                    <img class="inventory_tags" id="inventory_tag" src = "${part}" alt="inventory tag" />
                                     <div class="card-body">
                                         <h5 class="card-title">`+
                         temp.name +
