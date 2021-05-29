@@ -15,6 +15,11 @@
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <link rel="stylesheet" type="text/css" href="css/Popup.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Xu8uTe5AzHnckOerfcPTl760ZnC8c3w&callback=initMap">
+    </script>
+  <!-- AIzaSyAJHUuWe284kLKJzubyRLr9NeXkY1zxVFw -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js"></script>
   <script src="vehicle.js"></script>
   <title>View</title>
 </head>
@@ -320,9 +325,12 @@
                   <div class="grid"></div>
                 </div>
               </div>
-              <div class="col-md-7 col-12">
-                <!-- <button type="button" class="btn vehicleDataEdit"></button>
-                    <button type="button" class="btn vehicleDataEdit"></button> -->
+              <div class="col-md-7 col-12" style="padding: 30px 50px 0 0;">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d29309.278018313493!2d85.2814622!3d23.3281007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1622265790278!5m2!1sen!2sin"
+                  style="border:0;height: 100%; width: 100%; background-color: #0000;" allowfullscreen=""
+                  loading="lazy"></iframe>
+                <!-- <div id="map" style="height: 100%;"></div> -->
               </div>
               <div class="vehicleCompany">
                 <p id="vehicle_company"></p>
@@ -339,6 +347,15 @@
           </div>
           <hr style="background-color: #424242" />
           <div id="certificates" class="row">
+          </div>
+        </div>
+        <div class="vehicle_graph">
+          <div class="vehicle_documentHeader">
+            <h3>Graph</h3>
+          </div>
+          <hr style="background-color: #424242" />
+          <div class="mb-4">
+            <canvas id="myChart"></canvas>
           </div>
         </div>
       </div>
@@ -381,85 +398,97 @@
         vehicle_category_data = fetch_data("vehicle_category");
         vehicle_document_type_data = fetch_data("vehicle_document_type");
 
-        // console.log(file64);
+        console.log(vehicle_data);
         if (vehicle_data.error == false) {
-          // ***************************************appended certificates******************************************
-          for (var i = 0; i < vehicle_data.message.documents.length; i++) {
-            //start date
-            var start_date = vehicle_data.message.documents[i].start_date.split("-");
-            var start_date_month = start_date[1];
-            var start_date_day = start_date[2];
-            var start_date_year = start_date[0];
-            var start_date_list = [];
-            var start_date_string = start_date_month.toString();
-            for (var j = 0, len = start_date_string.length; j < len; j += 1) {
-              start_date_list.push(+start_date_string.charAt(j));
-            }
-            if (start_date_list[0] == "0") {
-              start_date_month = start_date_list[1];
-            } else {
-              start_date_month = start_date[1];
-            }
-            var start_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            var start_month_name = start_month[start_date_month - 1];
-            console.log(start_month_name);
+          if (vehicle_data.message.documents.length != 0) {
+            // ***************************************appended certificates******************************************
+            for (var i = 0; i < vehicle_data.message.documents.length; i++) {
+              //start date
+              var start_date = vehicle_data.message.documents[i].start_date.split("-");
+              var start_date_month = start_date[1];
+              var start_date_day = start_date[2];
+              var start_date_year = start_date[0];
+              var start_date_list = [];
+              var start_date_string = start_date_month.toString();
+              for (var j = 0, len = start_date_string.length; j < len; j += 1) {
+                start_date_list.push(+start_date_string.charAt(j));
+              }
+              if (start_date_list[0] == "0") {
+                start_date_month = start_date_list[1];
+              } else {
+                start_date_month = start_date[1];
+              }
+              var start_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              var start_month_name = start_month[start_date_month - 1];
+              console.log(start_month_name);
 
-            //end date
-            var end_date = vehicle_data.message.documents[i].end_date.split("-");
-            var end_date_month = end_date[1];
-            var end_date_day = end_date[2];
-            var end_date_year = end_date[0];
-            var end_date_list = [];
-            var end_date_string = end_date_month.toString();
-            for (var k = 0, len = end_date_string.length; k < len; k += 1) {
-              end_date_list.push(+end_date_string.charAt(k));
-            }
-            if (end_date_list[0] == "0") {
-              end_date_month = end_date_list[1];
-            } else {
-              end_date_month = end_date[1];
-            }
-            var end_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            var end_month_name = end_month[end_date_month - 1];
-            $("#certificates").append(`
-          <div class="col-md-4">
-              <div class="card mb-3">
-                <div class="box">
-                  <p>${vehicle_data.message.documents[i].document_type}</p>
-                  <a type="button" class="btn editDoc" onclick = "modify_document(${vehicle_data.message.documents[i].id})" data-toggle="modal" data-target="#vehicleEditDoc">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                  </a>
-                  <a id="certificate_attachment_${vehicle_data.message.documents[i].id}" href="${vehicle_data.message.documents[i].attachment}" target="_blank" type="button" class="btn viewDoc">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                  </a>
-                </div>
-                <div class="row">
-                  <div class="col-lg-6 col-md-6 col-6">
-                    <p>Unique ID</p>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-6">
-                    <p id="certificate_uniqueID_${vehicle_data.message.documents[i].id}"> ${vehicle_data.message.documents[i].unique_id}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-6 col-md-6 col-6">
-                    <p>Start Date</p>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-6">
-                    <p class="${vehicle_data.message.documents[i].start_date}" id="certificate_startdate_${vehicle_data.message.documents[i].id}">${start_date_day} ${start_month_name} ${start_date_year}</p>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <div class="col-lg-6 col-md-6 col-6">
-                    <p>End Date</p>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-6">
-                    <p class="${vehicle_data.message.documents[i].end_date}" id="certificate_enddate_${vehicle_data.message.documents[i].id}">${end_date_day} ${end_month_name} ${end_date_year}</p>
+              //end date
+              var end_date = vehicle_data.message.documents[i].end_date.split("-");
+              var end_date_month = end_date[1];
+              var end_date_day = end_date[2];
+              var end_date_year = end_date[0];
+              var end_date_list = [];
+              var end_date_string = end_date_month.toString();
+              for (var k = 0, len = end_date_string.length; k < len; k += 1) {
+                end_date_list.push(+end_date_string.charAt(k));
+              }
+              if (end_date_list[0] == "0") {
+                end_date_month = end_date_list[1];
+              } else {
+                end_date_month = end_date[1];
+              }
+              var end_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              var end_month_name = end_month[end_date_month - 1];
+              $("#certificates").append(`
+                <div class="col-md-4">
+                  <div class="card mb-3">
+                    <div class="box">
+                      <p>${vehicle_data.message.documents[i].document_type}</p>
+                      <a type="button" class="btn editDoc" onclick = "modify_document(${vehicle_data.message.documents[i].id})" data-toggle="modal" data-target="#vehicleEditDoc">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </a>
+                      <a id="certificate_attachment_${vehicle_data.message.documents[i].id}" href="${vehicle_data.message.documents[i].attachment}" target="_blank" type="button" class="btn viewDoc">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-6">
+                        <p>Unique ID</p>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-6">
+                        <p id="certificate_uniqueID_${vehicle_data.message.documents[i].id}"> ${vehicle_data.message.documents[i].unique_id}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-6">
+                        <p>Start Date</p>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-6">
+                        <p class="${vehicle_data.message.documents[i].start_date}" id="certificate_startdate_${vehicle_data.message.documents[i].id}">${start_date_day} ${start_month_name} ${start_date_year}</p>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-lg-6 col-md-6 col-6">
+                        <p>End Date</p>
+                      </div>
+                    <div class="col-lg-6 col-md-6 col-6">
+                      <p class="${vehicle_data.message.documents[i].end_date}" id="certificate_enddate_${vehicle_data.message.documents[i].id}">${end_date_day} ${end_month_name} ${end_date_year}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          `)
+              `)
+            }
+          } else {
+            console.log('No certificates');
+            $("#certificates").append(`
+              <div class="d-flex justify-content-center w-100 py-4" style="color: #fff">
+                <div class="d-flex flex-column align-items-center">
+                <h6>No documents inserted</h6>
+                <h6 class="small"><i>Click on documents to insert documents</i></h6>  
+                </div>
+              </div>
+            `)
           }
           // ******************************************************************************************************
           // **********************************appended vehicle category in form***********************************
@@ -632,6 +661,176 @@
           $("#sidebar").toggleClass("active");
         });
       });
+
+      //added google map
+      function initMap() {
+        // Styles a map in night mode.
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 40.674, lng: -73.945 },
+          zoom: 12,
+          styles: [
+            { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+            { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+            { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+            {
+              featureType: "administrative.locality",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }],
+            },
+            {
+              featureType: "poi",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }],
+            },
+            {
+              featureType: "poi.park",
+              elementType: "geometry",
+              stylers: [{ color: "#263c3f" }],
+            },
+            {
+              featureType: "poi.park",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#6b9a76" }],
+            },
+            {
+              featureType: "road",
+              elementType: "geometry",
+              stylers: [{ color: "#38414e" }],
+            },
+            {
+              featureType: "road",
+              elementType: "geometry.stroke",
+              stylers: [{ color: "#212a37" }],
+            },
+            {
+              featureType: "road",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#9ca5b3" }],
+            },
+            {
+              featureType: "road.highway",
+              elementType: "geometry",
+              stylers: [{ color: "#746855" }],
+            },
+            {
+              featureType: "road.highway",
+              elementType: "geometry.stroke",
+              stylers: [{ color: "#1f2835" }],
+            },
+            {
+              featureType: "road.highway",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#f3d19c" }],
+            },
+            {
+              featureType: "transit",
+              elementType: "geometry",
+              stylers: [{ color: "#2f3948" }],
+            },
+            {
+              featureType: "transit.station",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }],
+            },
+            {
+              featureType: "water",
+              elementType: "geometry",
+              stylers: [{ color: "#17263c" }],
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#515c6d" }],
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.stroke",
+              stylers: [{ color: "#17263c" }],
+            },
+          ],
+        });
+      }
+
+      //graph
+      const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ];
+      const report = {
+        labels: labels,
+        datasets: [{
+          label: 'Profit Earned',
+          data: [65000, 59000, 80000, 81000, 56000, 55000, 40000, 72000, 30000, 25000, 100000, 62000],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+          ],
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+          ],
+          borderWidth: 1
+        },
+        {
+          label: 'Money Invested',
+          data: [36000, 20000, 40000, 38000, 30000, 50000, 60000, 40000, 50000, 60000, 60000, 30000],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+          ],
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+          ],
+          borderWidth: 1
+        }
+        ]
+      };
+      const config = {
+        type: 'bar',
+        data: report,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        },
+      };
+      var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
     </script>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
