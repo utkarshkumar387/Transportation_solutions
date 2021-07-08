@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="css/add_driver_expenses.css">
     <!-- ajax jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js"></script>
     <!-- jquery -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
     <!-- external javascript -->
@@ -43,7 +44,7 @@
                 <li class="active mt-1">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fa fa-th-large" aria-hidden="true"></i>
-                        Dashboard
+                        Fleet Assets
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
@@ -67,6 +68,10 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="dashboard.html">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Dasboard
+                    </a>
                     <a href="services.html">
                         <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
                         Services
@@ -144,22 +149,6 @@
                         </button>
                     </span>
                 </div>
-                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                    </ul>
-                </div> -->
             </nav>
             <div class="container-fluid">
                 <div class="expenses">
@@ -205,6 +194,24 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="vehicle_graph">
+                    <div class="vehicle_documentHeader">
+                        <h3 style="color: #fff;">GRAPH</h3>
+                    </div>
+                    <hr style="background-color: #424242" />
+                    <div class="row p-2">
+                        <div class="col-md-6 w-100">
+                            <div class="card p-4" style="height: 400px;">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6 w-100">
+                            <div class="card p-4" style="height: 400px;">
+                                <canvas id="myChartCosts"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -225,6 +232,18 @@
 
     <script type="text/javascript">
         var trip_id;
+        let totalVehicleCosts = 0;
+        let totalDriverCosts = 0;
+        let pieBackgroundColor;
+        const recordCosts = {
+            labels: [],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [],
+                backgroundColor: [],
+                hoverOffset: 4
+            }]
+        };
         $(document).ready(function () {
             trip_id = window.location.href.split("=")[1];
             var trip = fetch_data_by_id("trip", trip_id);
@@ -325,6 +344,11 @@
                                 <td><a type="button" target="_blank" onclick="no_file()" href="https://transportations.herokuapp.com${driver_expenses[i].attachment}" class="btn btn-success">Receipt</a></td>
                                 </tr >
                         `)
+                    totalDriverCosts += driver_expenses[i].amount;
+                    recordCosts.labels.push(driver_expenses[i].name);
+                    pieBackgroundColor = random_rgb();
+                    recordCosts['datasets'][0]['backgroundColor'].push(pieBackgroundColor);
+                    recordCosts['datasets'][0]['data'].push(driver_expenses[i].amount);
                 }
                 for (var i = 0; i < vehicle_expenses.length; i++) {
                     $("#vehicle_expenses").append(`
@@ -337,6 +361,12 @@
                                 <td><a type="button" target="_blank" href="https://transportations.herokuapp.com${vehicle_expenses[i].attachment}" class="btn btn-success">Receipt</a></td>
                                 </tr>
                         `)
+                    totalVehicleCosts += vehicle_expenses[i].amount;
+                    recordCosts.labels.push(vehicle_expenses[i].name);
+                    pieBackgroundColor = random_rgb();
+                    recordCosts['datasets'][0]['backgroundColor'].push(pieBackgroundColor);
+                    recordCosts['datasets'][0]['data'].push(vehicle_expenses[i].amount);
+
                 }
             } else {
                 console.log(trip.error);
@@ -348,6 +378,54 @@
 
             document.getElementById('add_expenses_driver').setAttribute('href', 'add_driver_expenses.html?id=' + trip_id);
             document.getElementById('add_expenses_vehicle').setAttribute('href', 'add_vehicle_expenses.html?id=' + trip_id);
+            function random_rgb() {
+                var r = Math.round, g = Math.random, b = 255;
+                return 'rgb(' + r(g() * b) + ',' + r(g() * b) + ',' + r(g() * b) + ')';
+            }
+            //graph
+            //vehicle and driver expenses combined
+            const record = {
+                labels: [
+                    'Spended on vehicle',
+                    'Spended by driver'
+                ],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [totalVehicleCosts, totalDriverCosts],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+            console.log(record.datasets[0].data);
+            const config = {
+                type: 'pie',
+                data: record,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            };
+
+            //vehicle and driver expenses individually
+            const configCost = {
+                type: 'pie',
+                data: recordCosts,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            };
+            var myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+            var myChartCosts = new Chart(
+                document.getElementById('myChartCosts'),
+                configCost
+            );
         });
     </script>
 </body>

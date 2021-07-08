@@ -46,7 +46,7 @@
                 <li class="active mt-1">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fa fa-th-large" aria-hidden="true"></i>
-                        Dashboard
+                        Fleet Assets
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
@@ -70,6 +70,10 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="dashboard.html">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Dasboard
+                    </a>
                     <a href="services.html">
                         <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
                         Services
@@ -155,6 +159,16 @@
                                     <label for="trip_date">Journey date</label>
                                     <input type="date" required class="form-control" name="date" id="trip_date" />
                                 </div>
+                                <div class="form-group">
+                                    <label for="trip_amount_earned">Amount Earned</label>
+                                    <input type="number" required class="form-control" placeholder="10000" name="date"
+                                        id="trip_amount_earned" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="trip_distance_covered">Total distance covered</label>
+                                    <input type="number" required class="form-control" placeholder="12.5" name="date"
+                                        id="trip_distance_covered" />
+                                </div>
                             </div>
                             <button onclick="send_trip_data()" type="button" class="btn mt-3 mb-5">Submit</button>
                         </form>
@@ -232,11 +246,8 @@
         });
         //Extracting driver id of selected option
         function selected_driverid(s) {
-            //getting driver name of selected option
             var driver_name = $("#driver_name").val();
-            //getting id attribute of selected driver
             var driver_name_id = s[s.selectedIndex].id;
-            //getting id of selected driver
             driver_id = driver_name_id.slice(12);
             console.log(driver_id);
         }
@@ -261,29 +272,20 @@
         // }
         //Extracting vehicle id of selected option
         function check_vehicledata(s) {
-            //getting selected vehicle number
             var vehicle_number = $("#vehicle_number").val();
-            //getting id attribute of selected option
             var vehicle_number_id = s[s.selectedIndex].id;
-            //getting id of selected option
             vehicle_id = vehicle_number_id.slice(15);
         }
         //Extracting destination id of selected option
         function select_destination(s) {
-            //getting selected destination
             var destination = $("#trip_destination").val();
-            //getting id attribute of selected option
             var destination_id = s[s.selectedIndex].id;
-            //getting id of selected option
             dest_id = destination_id.slice(17);
         }
         //Extracting departure id of selected option
         function select_departure(s) {
-            //getting selected departure
             var departure = $("#trip_departure").val();
-            //getting id attribute of selected option
             var departure_id = s[s.selectedIndex].id;
-            //getting id of selected option
             dep_id = departure_id.slice(15);
         }
         //sending post request to add trip
@@ -295,6 +297,8 @@
                 driver_id: driver_id,
                 from_place: dep_id,
                 to_place: dest_id,
+                charges: $('#trip_amount_earned').val(),
+                total_km: $('#trip_distance_covered').val(),
             }
             //console.log(data);
             //sending url to trip.js

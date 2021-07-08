@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <!-- font-awesome cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- external css -->
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="css/add.css" />
+    <link rel="stylesheet" type="text/css" href="css/card.css" />
+    <!-- Jquery ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js"></script>
+    <!-- javascript -->
+    <script src="dashboard.js"></script>
+    <title>Your Vehicles</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <span>
+                    <img src="images/truck.png" alt="" height="35" />
+                </span>
+                <strong>SM</strong>
+            </div>
+            <ul class="list-unstyled components mt-4 mx-2">
+                <li class="active mt-1">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Fleet Assets
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="index.html">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                vehicles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="drivers.html">
+                                <i class="fa fa-id-card" aria-hidden="true"></i>
+                                Drivers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="inventory.html">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                Inventory
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Dasboard
+                    </a>
+                    <a href="services.html">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Services
+                    </a>
+                    <a href="trip.html">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Trips
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-question mt-3" aria-hidden="true"></i>
+                        Help
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-sign-out mt-3" aria-hidden="true"></i>
+                        Log out
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-light">
+                <div class="dashHeader">
+                    <span>
+                        <button type="button" id="sidebarCollapse" class="btn btn_toggle">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" style="color: #fff;" href="#">Utkarsh Kumar</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <div class="organization">
+                    <div class="row">
+                        <div class="organizationGain col-md-4">
+                            <div class="org">
+                                <h4 class="d-flex align-items-center"><img class="mr-1" src="./images/indian-rupee.png"
+                                        height="18"><span id="amount_earned">
+                                        10000
+                                    </span>
+                                </h4>
+                                <h6 class="small"><b>Amount Earned</b></h6>
+                            </div>
+                        </div>
+                        <div class="organizationExpenses col-md-4">
+                            <div class="org">
+                                <h4 class="d-flex align-items-center"><img class="mr-1" src="./images/indian-rupee.png"
+                                        height="18"><span id="total_investment">
+                                        10000
+                                    </span>
+
+                                </h4>
+                                <h6 class="small"><b>Total Investment</b></h6>
+                            </div>
+                        </div>
+                        <div class="organizationProfit col-md-4">
+                            <div class="org">
+                                <h4 class="d-flex align-items-center"><img class="mr-1" src="./images/indian-rupee.png"
+                                        height="18">
+                                    <spn id="net_profit">
+                                        10000
+                                    </spn>
+                                </h4>
+                                <h6 class="small"><b>Net Profit</b></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="color: #FAFAFA !important;">
+                        <div class="col-md-7">
+                            <div class="card p-4">
+                                <h6 class="mb-3">Organization Cash Flows</h6>
+                                <canvas id="myChartBar"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="card p-4">
+                                <h6 class="mb-3">Net Profit</h6>
+                                <canvas id="myChartLine"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        let dashboard = fetch_data('dashboard');
+        let labels = [];
+        //pie graph
+        const report = {
+            labels: labels,
+            datasets: [{
+                label: 'Amount Earned',
+                data: [],
+                backgroundColor: [
+                    'rgba(153, 102, 255, 0.4)',
+                ],
+                borderColor: [
+                    'rgb(153, 102, 255)',
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'Total investment',
+                data: [],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.4)',
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'Net Profit',
+                data: [],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.4)',
+                ],
+                borderColor: [
+                    'rgb(75, 192, 192)',
+                ],
+                borderWidth: 1,
+            }
+            ]
+        };
+        //lie graph
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Net Profit',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+        console.log(dashboard);
+        if (dashboard.error == false) {
+            let amountEarned = dashboard.message.all_gain.charges__sum;
+            let totalInvestment = dashboard.message.all_expense_drive.amount__sum + dashboard.message.all_expense_service.amount__sum + dashboard.message.all_expense_vehicle.amount__sum;
+            let netProfit = amountEarned - totalInvestment;
+            $('#amount_earned').html(amountEarned);
+            $('#total_investment').html(totalInvestment);
+            $('#net_profit').html(netProfit);
+        }
+        //bar graph
+        let monthlyDataLength = Object.keys(dashboard.message.monthly_data).length;
+        // console.log(Object.values(dashboard.message.monthly_data)[0].net_profit);
+        for (let i = 0; i < monthlyDataLength; i++) {
+            let allMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            let monthsDate = Object.keys(dashboard.message.monthly_data)[i]
+            // console.log(parseInt(monthsDate.split('-')[1]) + 1);
+            let month = allMonths[parseInt(monthsDate.split('-')[1]) - 1];
+            console.log(month);
+            let amountEarned = Object.values(dashboard.message.monthly_data)[i].total_charges;
+            let totalInvestment = Object.values(dashboard.message.monthly_data)[i].total_expense;
+            let netProfit = Object.values(dashboard.message.monthly_data)[i].net_profit;
+            labels.push(month);
+            report.datasets[0].data.push(amountEarned);
+            report.datasets[1].data.push(totalInvestment);
+            report.datasets[2].data.push(netProfit);
+            data.datasets[0].data.push(netProfit);
+
+        }
+        labels.reverse();
+        report.datasets[0].data.reverse();
+        report.datasets[1].data.reverse();
+        report.datasets[2].data.reverse();
+        data.datasets[0].data.reverse();
+        // console.log('Amount Earned :', report.datasets[0].data, 'Total Investment :', report.datasets[1].data, 'Net Profit :', report.datasets[2].data)
+        // console.log(labels)
+        // Chart.defaults.global.defaultFontColor = 'red';
+        const configBar = {
+            type: 'bar',
+            data: report,
+            options: {
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {   // To format the scale Lebel
+                            display: true,
+                            labelString: 'X axe name',
+                            fontColor: '#000000',
+                            fontSize: 10
+                        },
+                        ticks: {
+                            fontColor: "black", // To format the ticks, coming on the axis/lables which we are passing.
+                            fontSize: 14
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Y axe name',
+                            fontColor: '#000000',
+                            fontSize: 10
+                        },
+                        ticks: {
+                            fontColor: "black",
+                            fontSize: 14
+                        }
+                    }]
+                }
+            },
+        };
+        var myChart = new Chart(
+            document.getElementById('myChartBar'),
+            configBar
+        );
+        const configLine = {
+            type: 'line',
+            data: data,
+        };
+        var myChart = new Chart(
+            document.getElementById('myChartLine'),
+            configLine
+        );
+    </script>
+</body>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+
+</html>

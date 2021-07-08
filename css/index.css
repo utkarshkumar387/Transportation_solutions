@@ -269,6 +269,12 @@ button{
 .button_add .fa-truck{
   display: none;
 }
+.org{
+  min-height: 80px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+}
 @media only screen and (max-width:600px){
   .vehicleTable{
     padding: 0;
@@ -293,3 +299,4 @@ button{
     display: none;
   }
 }
+

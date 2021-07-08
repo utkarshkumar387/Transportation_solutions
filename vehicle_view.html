@@ -15,9 +15,9 @@
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <link rel="stylesheet" type="text/css" href="css/Popup.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script async
+  <!-- <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Xu8uTe5AzHnckOerfcPTl760ZnC8c3w&callback=initMap">
-    </script>
+    </script> -->
   <!-- AIzaSyAJHUuWe284kLKJzubyRLr9NeXkY1zxVFw -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js"></script>
   <script src="vehicle.js"></script>
@@ -38,7 +38,7 @@
         <li class="active mt-1">
           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             <i class="fa fa-th-large" aria-hidden="true"></i>
-            Dashboard
+            Fleet Assets
           </a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li>
@@ -62,6 +62,10 @@
           </ul>
         </li>
         <li>
+          <a href="dashboard.html">
+            <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+            Dasboard
+          </a>
           <a href="services.html">
             <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
             Services
@@ -326,10 +330,10 @@
                 </div>
               </div>
               <div class="col-md-7 col-12" style="padding: 30px 50px 0 0;">
-                <iframe
+                <!-- <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d29309.278018313493!2d85.2814622!3d23.3281007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1622265790278!5m2!1sen!2sin"
                   style="border:0;height: 100%; width: 100%; background-color: #0000;" allowfullscreen=""
-                  loading="lazy"></iframe>
+                  loading="lazy"></iframe> -->
                 <!-- <div id="map" style="height: 100%;"></div> -->
               </div>
               <div class="vehicleCompany">
@@ -354,7 +358,9 @@
             <h3>Graph</h3>
           </div>
           <hr style="background-color: #424242" />
-          <div class="mb-4">
+          <div id="expensesAlert">
+          </div>
+          <div class="card mb-4 p-4">
             <canvas id="myChart"></canvas>
           </div>
         </div>
@@ -390,56 +396,52 @@
       var temp_document_id;
 
       let imgDis;
+      id = window.location.href.split("=")[1];
+      vehicle_data = get_data_by_id("vehicle", id);
+      console.log(vehicle_data);
+      vehicle_category_data = fetch_data("vehicle_category");
+      vehicle_document_type_data = fetch_data("vehicle_document_type");
+      if (vehicle_data.error == false) {
+        if (vehicle_data.message.documents.length != 0) {
+          // ***************************************appended certificates******************************************
+          for (var i = 0; i < vehicle_data.message.documents.length; i++) {
+            //start date
+            var start_date = vehicle_data.message.documents[i].start_date.split("-");
+            var start_date_month = start_date[1];
+            var start_date_day = start_date[2];
+            var start_date_year = start_date[0];
+            var start_date_list = [];
+            var start_date_string = start_date_month.toString();
+            for (var j = 0, len = start_date_string.length; j < len; j += 1) {
+              start_date_list.push(+start_date_string.charAt(j));
+            }
+            if (start_date_list[0] == "0") {
+              start_date_month = start_date_list[1];
+            } else {
+              start_date_month = start_date[1];
+            }
+            var start_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            var start_month_name = start_month[start_date_month - 1];
+            console.log(start_month_name);
 
-      $(document).ready(function () {
-        id = window.location.href.split("=")[1];
-        vehicle_data = get_data_by_id("vehicle", id);
-        console.log(vehicle_data);
-        vehicle_category_data = fetch_data("vehicle_category");
-        vehicle_document_type_data = fetch_data("vehicle_document_type");
-
-        console.log(vehicle_data);
-        if (vehicle_data.error == false) {
-          if (vehicle_data.message.documents.length != 0) {
-            // ***************************************appended certificates******************************************
-            for (var i = 0; i < vehicle_data.message.documents.length; i++) {
-              //start date
-              var start_date = vehicle_data.message.documents[i].start_date.split("-");
-              var start_date_month = start_date[1];
-              var start_date_day = start_date[2];
-              var start_date_year = start_date[0];
-              var start_date_list = [];
-              var start_date_string = start_date_month.toString();
-              for (var j = 0, len = start_date_string.length; j < len; j += 1) {
-                start_date_list.push(+start_date_string.charAt(j));
-              }
-              if (start_date_list[0] == "0") {
-                start_date_month = start_date_list[1];
-              } else {
-                start_date_month = start_date[1];
-              }
-              var start_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-              var start_month_name = start_month[start_date_month - 1];
-              console.log(start_month_name);
-
-              //end date
-              var end_date = vehicle_data.message.documents[i].end_date.split("-");
-              var end_date_month = end_date[1];
-              var end_date_day = end_date[2];
-              var end_date_year = end_date[0];
-              var end_date_list = [];
-              var end_date_string = end_date_month.toString();
-              for (var k = 0, len = end_date_string.length; k < len; k += 1) {
-                end_date_list.push(+end_date_string.charAt(k));
-              }
-              if (end_date_list[0] == "0") {
-                end_date_month = end_date_list[1];
-              } else {
-                end_date_month = end_date[1];
-              }
-              var end_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-              var end_month_name = end_month[end_date_month - 1];
-              $("#certificates").append(`
+            //end date
+            var end_date = vehicle_data.message.documents[i].end_date.split("-");
+            var end_date_month = end_date[1];
+            var end_date_day = end_date[2];
+            var end_date_year = end_date[0];
+            var end_date_list = [];
+            var end_date_string = end_date_month.toString();
+            for (var k = 0, len = end_date_string.length; k < len; k += 1) {
+              end_date_list.push(+end_date_string.charAt(k));
+            }
+            if (end_date_list[0] == "0") {
+              end_date_month = end_date_list[1];
+            } else {
+              end_date_month = end_date[1];
+            }
+            var end_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            var end_month_name = end_month[end_date_month - 1];
+            $("#certificates").append(`
                 <div class="col-md-4">
                   <div class="card mb-3">
                     <div class="box">
@@ -478,10 +480,10 @@
                 </div>
               </div>
               `)
-            }
-          } else {
-            console.log('No certificates');
-            $("#certificates").append(`
+          }
+        } else {
+          console.log('No certificates');
+          $("#certificates").append(`
               <div class="d-flex justify-content-center w-100 py-4" style="color: #fff">
                 <div class="d-flex flex-column align-items-center">
                 <h6>No documents inserted</h6>
@@ -489,59 +491,59 @@
                 </div>
               </div>
             `)
-          }
-          // ******************************************************************************************************
-          // **********************************appended vehicle category in form***********************************
-          for (var i = 0; i < vehicle_category_data.message.data.length; i++) {
-            {
-              $("#edit_vehicle_category").append(
-                '<option value="' +
-                vehicle_category_data.message.data[i].id +
-                '" >' +
-                vehicle_category_data.message.data[i].name +
-                "</option>"
-              );
-            }
-          }
-          // *****************************************************************************************************
-          // *************************************appendend document type in form*********************************
-          for (
-            var i = 0;
-            i < vehicle_document_type_data.message.data.length;
-            i++
-          ) {
-            all_documents[vehicle_document_type_data.message.data[i].id] =
-              vehicle_document_type_data.message.data[i];
-            $("#add_document_type").append(
+        }
+        // ******************************************************************************************************
+        // **********************************appended vehicle category in form***********************************
+        for (var i = 0; i < vehicle_category_data.message.data.length; i++) {
+          {
+            $("#edit_vehicle_category").append(
               '<option value="' +
-              vehicle_document_type_data.message.data[i].id +
+              vehicle_category_data.message.data[i].id +
               '" >' +
-              vehicle_document_type_data.message.data[i].title +
+              vehicle_category_data.message.data[i].name +
               "</option>"
             );
           }
-          // *************************************appending data on vehicle card*********************************
-          //to display image when image is null in db.
-          if (vehicle_data.message.image != null) {
-            imgDis = vehicle_data.message.image;
-          } else {
-            imgDis = '/images/dp.jpg';
-          }
-          $("#vehicle_image").attr("src", imgDis);
-          $("#vehicle_name").text(vehicle_data.message.name);
-          $("#vehicle_number").text(vehicle_data.message.vehicle_number);
-          $("#vehicle_company").text(vehicle_data.message.company);
-          // $("#vehicle_category").text(category_name);
-          // **************************************appending data to edit popup***********************************
-          $("#edit_vehicle_image").attr("src", vehicle_data.message.image);
-          $("#edit_vehicle_name").val(vehicle_data.message.name);
-          $("#edit_vehicle_number").val(vehicle_data.message.vehicle_number);
-          $("#edit_vehicle_company").val(vehicle_data.message.company);
-
-        } else {
-          window.location.replace("index.html");
         }
-      });
+        // *****************************************************************************************************
+        // *************************************appendend document type in form*********************************
+        for (
+          var i = 0;
+          i < vehicle_document_type_data.message.data.length;
+          i++
+        ) {
+          all_documents[vehicle_document_type_data.message.data[i].id] =
+            vehicle_document_type_data.message.data[i];
+          $("#add_document_type").append(
+            '<option value="' +
+            vehicle_document_type_data.message.data[i].id +
+            '" >' +
+            vehicle_document_type_data.message.data[i].title +
+            "</option>"
+          );
+        }
+        // *************************************appending data on vehicle card*********************************
+        //to display image when image is null in db.
+        if (vehicle_data.message.image != null) {
+          imgDis = vehicle_data.message.image;
+        } else {
+          imgDis = '/images/dp.jpg';
+        }
+        $("#vehicle_image").attr("src", imgDis);
+        $("#vehicle_name").text(vehicle_data.message.name);
+        $("#vehicle_number").text(vehicle_data.message.vehicle_number);
+        $("#vehicle_company").text(vehicle_data.message.company);
+        // $("#vehicle_category").text(category_name);
+        // **************************************appending data to edit popup***********************************
+        $("#edit_vehicle_image").attr("src", vehicle_data.message.image);
+        $("#edit_vehicle_name").val(vehicle_data.message.name);
+        $("#edit_vehicle_number").val(vehicle_data.message.vehicle_number);
+        $("#edit_vehicle_company").val(vehicle_data.message.company);
+
+      } else {
+        // window.location.replace("index.html");
+        console.log(vehicle_data.message);
+      }
       // if(vehicle_document.error == false){
       //     console.log(vehicle_document.message);
       //   }
@@ -663,169 +665,170 @@
       });
 
       //added google map
-      function initMap() {
-        // Styles a map in night mode.
-        const map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: 40.674, lng: -73.945 },
-          zoom: 12,
-          styles: [
-            { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-            { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-            { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-            {
-              featureType: "administrative.locality",
-              elementType: "labels.text.fill",
-              stylers: [{ color: "#d59563" }],
-            },
-            {
-              featureType: "poi",
-              elementType: "labels.text.fill",
-              stylers: [{ color: "#d59563" }],
-            },
-            {
-              featureType: "poi.park",
-              elementType: "geometry",
-              stylers: [{ color: "#263c3f" }],
-            },
-            {
-              featureType: "poi.park",
-              elementType: "labels.text.fill",
-              stylers: [{ color: "#6b9a76" }],
-            },
-            {
-              featureType: "road",
-              elementType: "geometry",
-              stylers: [{ color: "#38414e" }],
-            },
-            {
-              featureType: "road",
-              elementType: "geometry.stroke",
-              stylers: [{ color: "#212a37" }],
-            },
-            {
-              featureType: "road",
-              elementType: "labels.text.fill",
-              stylers: [{ color: "#9ca5b3" }],
-            },
-            {
-              featureType: "road.highway",
-              elementType: "geometry",
-              stylers: [{ color: "#746855" }],
-            },
-            {
-              featureType: "road.highway",
-              elementType: "geometry.stroke",
-              stylers: [{ color: "#1f2835" }],
-            },
-            {
-              featureType: "road.highway",
-              elementType: "labels.text.fill",
-              stylers: [{ color: "#f3d19c" }],
-            },
-            {
-              featureType: "transit",
-              elementType: "geometry",
-              stylers: [{ color: "#2f3948" }],
-            },
-            {
-              featureType: "transit.station",
-              elementType: "labels.text.fill",
-              stylers: [{ color: "#d59563" }],
-            },
-            {
-              featureType: "water",
-              elementType: "geometry",
-              stylers: [{ color: "#17263c" }],
-            },
-            {
-              featureType: "water",
-              elementType: "labels.text.fill",
-              stylers: [{ color: "#515c6d" }],
-            },
-            {
-              featureType: "water",
-              elementType: "labels.text.stroke",
-              stylers: [{ color: "#17263c" }],
-            },
-          ],
-        });
-      }
+      // function initMap() {
+      //   // Styles a map in night mode.
+      //   const map = new google.maps.Map(document.getElementById("map"), {
+      //     center: { lat: 40.674, lng: -73.945 },
+      //     zoom: 12,
+      //     styles: [
+      //       { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+      //       { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+      //       { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+      //       {
+      //         featureType: "administrative.locality",
+      //         elementType: "labels.text.fill",
+      //         stylers: [{ color: "#d59563" }],
+      //       },
+      //       {
+      //         featureType: "poi",
+      //         elementType: "labels.text.fill",
+      //         stylers: [{ color: "#d59563" }],
+      //       },
+      //       {
+      //         featureType: "poi.park",
+      //         elementType: "geometry",
+      //         stylers: [{ color: "#263c3f" }],
+      //       },
+      //       {
+      //         featureType: "poi.park",
+      //         elementType: "labels.text.fill",
+      //         stylers: [{ color: "#6b9a76" }],
+      //       },
+      //       {
+      //         featureType: "road",
+      //         elementType: "geometry",
+      //         stylers: [{ color: "#38414e" }],
+      //       },
+      //       {
+      //         featureType: "road",
+      //         elementType: "geometry.stroke",
+      //         stylers: [{ color: "#212a37" }],
+      //       },
+      //       {
+      //         featureType: "road",
+      //         elementType: "labels.text.fill",
+      //         stylers: [{ color: "#9ca5b3" }],
+      //       },
+      //       {
+      //         featureType: "road.highway",
+      //         elementType: "geometry",
+      //         stylers: [{ color: "#746855" }],
+      //       },
+      //       {
+      //         featureType: "road.highway",
+      //         elementType: "geometry.stroke",
+      //         stylers: [{ color: "#1f2835" }],
+      //       },
+      //       {
+      //         featureType: "road.highway",
+      //         elementType: "labels.text.fill",
+      //         stylers: [{ color: "#f3d19c" }],
+      //       },
+      //       {
+      //         featureType: "transit",
+      //         elementType: "geometry",
+      //         stylers: [{ color: "#2f3948" }],
+      //       },
+      //       {
+      //         featureType: "transit.station",
+      //         elementType: "labels.text.fill",
+      //         stylers: [{ color: "#d59563" }],
+      //       },
+      //       {
+      //         featureType: "water",
+      //         elementType: "geometry",
+      //         stylers: [{ color: "#17263c" }],
+      //       },
+      //       {
+      //         featureType: "water",
+      //         elementType: "labels.text.fill",
+      //         stylers: [{ color: "#515c6d" }],
+      //       },
+      //       {
+      //         featureType: "water",
+      //         elementType: "labels.text.stroke",
+      //         stylers: [{ color: "#17263c" }],
+      //       },
+      //     ],
+      //   });
+      // }
 
       //graph
-      const labels = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-      ];
+      const labels = [];
       const report = {
         labels: labels,
         datasets: [{
-          label: 'Profit Earned',
-          data: [65000, 59000, 80000, 81000, 56000, 55000, 40000, 72000, 30000, 25000, 100000, 62000],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)'
-          ],
-          borderColor: [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(153, 102, 255)',
-            'rgb(201, 203, 207)'
-          ],
-          borderWidth: 1
-        },
-        {
-          label: 'Money Invested',
-          data: [36000, 20000, 40000, 38000, 30000, 50000, 60000, 40000, 50000, 60000, 60000, 30000],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)'
-          ],
-          borderColor: [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(153, 102, 255)',
-            'rgb(201, 203, 207)'
-          ],
-          borderWidth: 1
-        }
-        ]
+          label: 'Trip expenses per kilometer',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(245,106,0)',
+          tension: 0.1
+        }]
       };
-      const config = {
-        type: 'bar',
-        data: report,
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+      let vehicleGraphDetailsLength = Object.values(vehicle_data.message.graph_details).length
+      // console.log(Object.values(vehicle_data));
+      // if (Object.values(vehicle_data.message.graph_details)) {
+      //   vehicleGraphDetailsLength;
+      // } else {
+      //   vehicleGraphDetailsLength = -1;
+      // }
+      let noExpenses = Object.keys(Object.values(vehicle_data.message).slice(-1)[0]);
+      console.log('all expenses', noExpenses);
+      for (let i = 0; i < vehicleGraphDetailsLength; i++) {
+        // let noExpenses = Object.keys(Object.values(vehicle_data.message.graph_details).slice(-1)[0]);
+        console.log(Object.keys(vehicle_data.message.graph_details)[i]);
+        if (Object.keys(vehicle_data.message.graph_details)[i] != 'no_expenses') {
+          let vehicleGraphDetails = Object.values(vehicle_data.message.graph_details)[i];
+          let vehicleGraphDetailsFrom = vehicleGraphDetails.from_place;
+          let vehicleGraphDetailsTo = vehicleGraphDetails.to_place;
+          let vehicleGraphDetailsPerKm = vehicleGraphDetails.expense_per_km;
+          // console.log(vehicleGraphDetails);
+          let date = tripDates(vehicleGraphDetails.date);
+          let dateWithTrip = `${date.day}${date.month}${date.year} (${vehicleGraphDetailsFrom}-${vehicleGraphDetailsTo})`;
+          // console.log(dateWithTrip);
+          labels.push(dateWithTrip);
+          report.datasets[0].data.push(vehicleGraphDetailsPerKm);
+        } else {
+          let noExpenses = Object.values(Object.values(vehicle_data.message.graph_details)[i]);
+          console.log(noExpenses);
+          for (let i = 0; i < noExpenses.length; i++) {
+            let noExpenseFrom = noExpenses[i].from_place;
+            let noExpenseTo = noExpenses[i].to_place;
+            let noExpenseDate = tripDates(noExpenses[i].date);
+            $('#expensesAlert').append(`
+            <div class="card alert" style="color: #909090;" role="alert">
+              You haven't added expenses of trip done on ${noExpenseDate.day} ${noExpenseDate.month} ${noExpenseDate.year} from ${noExpenseFrom} to ${noExpenseTo}.
+            </div>
+            `)
           }
-        },
+        }
+      }
+      function tripDates(tripDate) {
+        var trip_date = tripDate.split("-");
+        var trip_date_month = trip_date[1];
+        var trip_date_day = trip_date[2];
+        var trip_date_year = trip_date[0];
+        var trip_date_list = [];
+        var trip_date_string = trip_date_month.toString();
+        for (var j = 0, len = trip_date_string.length; j < len; j += 1) {
+          trip_date_list.push(+trip_date_string.charAt(j));
+        }
+        if (trip_date_list[0] == "0") {
+          trip_date_month = trip_date_list[1];
+        } else {
+          trip_date_month = trip_date[1];
+        }
+        var trip_month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var trip_month_name = trip_month[trip_date_month - 1];
+        return { "day": trip_date[2], "month": trip_month_name, "year": trip_date_year }
+      }
+      // let noExpenses = Object.values(Object.values(vehicle_data.message.graph_details).slice(-1)[0]);
+      // for (let i = 0; i < noExpenses.length; i++) {
+      //   console.log(noExpensesData[i]);
+      // }
+      const config = {
+        type: 'line',
+        data: report,
       };
       var myChart = new Chart(
         document.getElementById('myChart'),

@@ -232,6 +232,18 @@ a.article:hover {
     font-size: 25px;
     margin-left: 20px;
 }
+.organizationGain .org{
+    background-color: #9966FF;
+    color: #fff;
+}
+.organizationExpenses .org{
+    background-color: #D05B74 ;
+    color: #fff;
+}
+.organizationProfit .org{
+    background-color: #478D8D;
+    color: #fff;
+}
 /* .vehicleSearch input {
     width: 50%;
     background-color: ;
