@@ -162,19 +162,19 @@
                 </td>
                      <td>
                         <input type="text" class="form-control" id="expense_name${counter}" name="expense_name"
-                                        aria-describedby="nameHelp" placeholder="Tea" />
+                                        aria-describedby="nameHelp" placeholder="Enter spended on" />
                      </td>
                      <td>
                         <input type="text" class="form-control" id="expense_amount${counter}" name="expense_amount"
-                                        aria-describedby="nameHelp" placeholder="Utkarsh" />
+                                        aria-describedby="nameHelp" placeholder="Enter amount" />
                      </td>
                      <td>
                         <input type="text" class="form-control" id="expense_invoice${counter}" name="dexpense_invoice"
-                                        aria-describedby="nameHelp" placeholder="34543234" />
+                                        aria-describedby="nameHelp" placeholder="Enter invoice" />
                      </td>
                      <td>
                         <textarea class="form-control" id="expense_description${counter}" name="expense_description" 
-                                        aria-describedby="nameHelp" placeholder="Description">
+                                        aria-describedby="nameHelp" placeholder="Enter description">
                         </textarea>
                      </td>
                      <td>
@@ -242,7 +242,7 @@
             var response = add_data("trip_vehicle_expense", total_expense);
             if (response.error == false) {
                 console.log(response.message);
-                window.location.replace("trip.html");
+                window.location.replace(`expenses.html?id=${id}`);
             } else {
                 console.log(response.error);
                 console.log(response.message);
