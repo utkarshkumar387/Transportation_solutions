@@ -33,6 +33,21 @@ function expenses_data(sub_url, type, data, status) {
     return call_ajax(type, url, data, status);
 }
 
+// function remove_data(sub_url, type, data, status) {
+//     if (sub_url != 'trip') {
+//         sub_url = 'trip/' + sub_url;
+//     }
+
+//     var type = type;
+//     var url = main_url + sub_url + '/';
+//     var data = data;
+//     var status = status;
+//     return call_ajax(type, url, data, status);
+// }
+
 function fetch_data(sub_url) {
     return expenses_data(sub_url, "get", {}, 200);
 }
+// function remove_data_by_id(sub_url, data) {
+//     return remove_data_by_id(sub_url, 'delete', data, 200)
+// }
