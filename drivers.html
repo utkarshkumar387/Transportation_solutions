@@ -128,6 +128,7 @@
           for (var i = 0; i < driver.message.data.length; i++) {
             temp = driver.message.data[i];
             console.log(temp);
+            temp.image.replace("/media/media", "/media");
             //append all drivers
             $("#driver_data").append(
               `<div class="col-md-5">
