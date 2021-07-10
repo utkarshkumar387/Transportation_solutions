@@ -128,13 +128,17 @@
           for (var i = 0; i < driver.message.data.length; i++) {
             temp = driver.message.data[i];
             console.log(temp);
-            temp.image.replace("/media/media", "/media");
+
+            // cloud functionality added by github.com/abhishekvarde
+            console.log(temp.image.replace("/media/media", "/media"));
+            temp.image = "https://res.cloudinary.com/hjtepqxjx/image/upload/v1" + temp.image.replace("/media/media", "/media")
+
             //append all drivers
             $("#driver_data").append(
               `<div class="col-md-5">
                 <div class="card">
                   <div class="driver_detail">
-                    <div class="driver_img"><img src="https://res.cloudinary.com/hjtepqxjx/image/upload/v1${temp.image}" alt="driver image"></div>
+                    <div class="driver_img"><img src="${temp.image}" alt="driver image"></div>
                     <div class="driver_detail_box">
                       <div class="driver_detail_box_in">
                         <p class="driver_name">${temp.name}</p>

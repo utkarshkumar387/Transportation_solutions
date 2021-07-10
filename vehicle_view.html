@@ -525,6 +525,11 @@
         // *************************************appending data on vehicle card*********************************
         //to display image when image is null in db.
         if (vehicle_data.message.image != null) {
+
+          // cloud functionality added by github.com/abhishekvarde
+          console.log(temp.image.replace("/media/media", "/media"));
+          vehicle_data.messag.image = "https://res.cloudinary.com/hjtepqxjx/image/upload/v1" + vehicle_data.messag.image.replace("/media/media", "/media")
+          
           imgDis = vehicle_data.message.image;
         } else {
           imgDis = '/images/dp.jpg';

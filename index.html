@@ -144,7 +144,9 @@
           temp = vehicle.message.data[i];
           console.log(temp.image);
           if (temp.image != null) {
-            imgDis = 'https://transportations.herokuapp.com' + temp.image;
+            // cloud functionality added by github.com/abhishekvarde
+            console.log(temp.image.replace("/media/media", "/media"));
+            imgDis = "https://res.cloudinary.com/hjtepqxjx/image/upload/v1" + temp.image.replace("/media/media", "/media")
           } else {
             imgDis = '/images/dp.jpg';
           }
