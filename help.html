@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Add driver form</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <!-- font-awesome icons cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- external stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="css/form.css" />
+    <link rel="stylesheet" type="text/css" href="css/add.css" />
+    <!-- ajax jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- external javascript -->
+    <script src="driver.js"></script>
+</head>
+<style>
+    .card {
+        background-color: #555555 !important;
+        color: #fff;
+    }
+
+    .card-header {
+        background-color: #272727;
+        border: none;
+    }
+
+    .btn-link {
+        color: #fff !important;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <span>
+                    <img src="images/truck.png" alt="" height="35" />
+                </span>
+                <strong>TOT</strong>
+            </div>
+            <ul class="list-unstyled components mt-4 mx-2">
+                <li class="active mt-1">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                        Fleet Assets
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="index.html">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                vehicles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="drivers.html">
+                                <i class="fa fa-id-card" aria-hidden="true"></i>
+                                Drivers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="inventory.html">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                Inventory
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Dasboard
+                    </a>
+                    <a href="trip.html">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Trips
+                    </a>
+                    <a href="services.html">
+                        <i class="fa fa-calendar mt-3" aria-hidden="true"></i>
+                        Services
+                    </a>
+                    <a href="help.html">
+                        <i class="fa fa-question mt-3" aria-hidden="true"></i>
+                        Help
+                    </a>
+                    <!-- <a href="#">
+                        <i class="fa fa-sign-out mt-3" aria-hidden="true"></i>
+                        Log out
+                    </a> -->
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="dashHeader">
+                    <span>
+                        <button type="button" id="sidebarCollapse" class="btn btn_toggle">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                    </ul>
+                </div> -->
+            </nav>
+            <div class="container-fluid">
+                <h4 style="color:#fff">Frequently Asked Questions</h4>
+                <hr />
+                <div class="accordion mb-4" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    What is Inventory ?
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                Inventory section provides the facilities to save the item as an scrap or spare part. It
+                                saves the data over local block chain provided by ganache.We can perform all the create,
+                                read, update and delete
+                                operation on the items in the inventory.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                    data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">
+                                    What is driver section ?
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                Driver module of portal is used to manage drivers within organisation. It also support
+                                different add on functionality of alert over documents expiry and salary alerts etc.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                    data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
+                                    What is Vehicle section ?
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                Vehicle module of portal is used to mange vehicles within organisation. It also support
+                                different add on functionality of alert over documents expiry and service alerts etc.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                    data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
+                                    aria-controls="collapseFour">
+                                    What is Trip section ?
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                Trip module of portal is used to manage trips within organisation. It also support
+                                different analysis of company growth and current status of business. It also help to
+                                perform any analysis over vehicle and driver about all spends during trip.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4 style="color:#fff">Contact Us</h4>
+                <hr />
+                <div class="card p-4 mb-4">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Email</label>
+                                <input type="email" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Name</label>
+                                <input type="password" class="form-control" id="inputName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">State</label>
+                                <select id="inputState" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">Zip</label>
+                                <input type="text" class="form-control" id="inputZip">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Popper.JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+                integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+                crossorigin="anonymous"></script>
+            <!-- Bootstrap JS -->
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+                integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+                crossorigin="anonymous"></script>
+</body>
+
+</html>
